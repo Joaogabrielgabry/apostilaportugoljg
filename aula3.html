@@ -2,79 +2,647 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 3 - O que é Portugol</title>
+    <title>Aula 3 — O que é Portugol · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* ── HERO compacto ── */
+        .aula-hero {
+            padding: 48px 0 32px;
+            text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        .aula-numero-dot {
+            width: 6px; height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .progresso-meio {
+            flex: 1;
+        }
+
+        .progresso-track {
+            height: 5px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 20%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 3px;
+        }
+
+        .progresso-pip {
+            flex: 1;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            white-space: nowrap;
+        }
+
+        /* ── LAYOUT PRINCIPAL ── */
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
+        }
+
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* ── CARD INTRO ── */
+        .card-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+        }
+
+        .card-intro p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .card-intro p + p { margin-top: 12px; }
+        .card-intro strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── PASSOS HORIZONTAIS ── */
+        .passos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .passos-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .passo-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .passo-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--cyan-dim), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .passo-item:hover { border-color: var(--border-accent); }
+        .passo-item:hover::before { opacity: 1; }
+
+        .passo-num {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .passo-icone { font-size: 1.5rem; margin-bottom: 8px; }
+
+        .passo-texto {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* ── VANTAGENS EM LINHA ── */
+        .vantagens-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .vantagens-grid { grid-template-columns: 1fr; }
+        }
+
+        .vantagem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 22px 20px;
+            transition: var(--transition);
+        }
+
+        .vantagem-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .vantagem-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .vantagem-icone {
+            font-size: 1.2rem;
+        }
+
+        .vantagem-titulo {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .vantagem-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── CARD MERCADO (linha única) ── */
+        .card-mercado {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .card-mercado { grid-template-columns: 1fr; }
+        }
+
+        .mercado-icone-wrap {
+            width: 56px; height: 56px;
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .mercado-texto p {
+            font-size: 0.87rem;
+            color: #b0bec5;
+            line-height: 1.7;
+        }
+
+        .mercado-texto p + p { margin-top: 8px; }
+        .mercado-texto strong { color: var(--text-primary); }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card caminho */
+        .card-caminho {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-caminho-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .caminho-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .caminho-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+        }
+
+        .caminho-step.atual {
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        .caminho-step.futuro { color: var(--text-muted); }
+
+        .caminho-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .atual .caminho-dot { background: var(--cyan); }
+        .futuro .caminho-dot { background: var(--text-faint); }
+
+        /* Próxima aula */
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-proximo p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 24px var(--cyan-glow);
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 3 – O que é Portugol?</h1>
+        <!-- Hero -->
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 03 · Módulo I
+            </div>
+            <h1 class="aula-titulo">O que é <span>Portugol?</span></h1>
+            <p class="aula-desc">A linguagem feita para você aprender a pensar — antes de qualquer sintaxe complicada.</p>
+        </div>
 
-        <div class="card-aula">
+        <!-- Progresso horizontal -->
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track">
+                    <div class="progresso-fill"></div>
+                </div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">3 / 15</span>
+        </div>
 
-            <p>
-                Portugol é uma linguagem criada para facilitar o aprendizado
-                de programação. Utiliza comandos em português e uma estrutura
-                mais simples, ideal para iniciantes.
-            </p>
+        <br>
 
-            <p>
-                Seu objetivo não é o uso direto no mercado, mas sim
-                ensinar como a programação funciona internamente,
-                desenvolvendo lógica e organização.
-            </p>
+        <div class="aula-grid">
 
-            <h2>Com o Portugol você aprende a:</h2>
+            <div class="col-principal">
 
-            <ul>
-                <li>Entender o problema</li>
-                <li>Pensar na solução</li>
-                <li>Organizar os passos</li>
-                <li>Transformar a ideia em algoritmo</li>
-            </ul>
+                <!-- Intro -->
+                <div class="card-intro">
+                    <p>
+                        Portugol é uma linguagem criada para <strong>facilitar o aprendizado de programação</strong>.
+                        Utiliza comandos em português e uma estrutura simples, ideal para quem está começando do zero.
+                    </p>
+                    <p>
+                        Seu objetivo não é o uso direto no mercado — é <strong>ensinar como a programação funciona internamente</strong>,
+                        desenvolvendo lógica e organização de pensamento.
+                    </p>
+                </div>
 
-            <h2>Vantagens do Portugol</h2>
+                <!-- 4 passos em grid -->
+                <div>
+                    <p class="secao-label">// com portugol você aprende a</p>
+                    <div class="passos-grid">
+                        <div class="passo-item">
+                            <div class="passo-num">01</div>
+                            <div class="passo-icone">🔍</div>
+                            <div class="passo-texto">Entender o problema</div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-num">02</div>
+                            <div class="passo-icone">💡</div>
+                            <div class="passo-texto">Pensar na solução</div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-num">03</div>
+                            <div class="passo-icone">📋</div>
+                            <div class="passo-texto">Organizar os passos</div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-num">04</div>
+                            <div class="passo-icone">⚙️</div>
+                            <div class="passo-texto">Transformar em algoritmo</div>
+                        </div>
+                    </div>
+                </div>
 
-            <h3>Sintaxe simples</h3>
-            <p>
-                Os comandos são semelhantes ao português do dia a dia,
-                facilitando a compreensão.
-            </p>
+                <!-- 3 vantagens lado a lado -->
+                <div>
+                    <p class="secao-label">// vantagens do portugol</p>
+                    <div class="vantagens-grid">
+                        <div class="vantagem-card">
+                            <div class="vantagem-header">
+                                <span class="vantagem-icone">🇧🇷</span>
+                                <span class="vantagem-titulo">Sintaxe Simples</span>
+                            </div>
+                            <p class="vantagem-desc">Comandos semelhantes ao português do dia a dia, fáceis de ler e entender.</p>
+                        </div>
+                        <div class="vantagem-card">
+                            <div class="vantagem-header">
+                                <span class="vantagem-icone">🧠</span>
+                                <span class="vantagem-titulo">Foco em Lógica</span>
+                            </div>
+                            <p class="vantagem-desc">Prioriza pensamento estruturado, não memorização de regras complexas.</p>
+                        </div>
+                        <div class="vantagem-card">
+                            <div class="vantagem-header">
+                                <span class="vantagem-icone">🚀</span>
+                                <span class="vantagem-titulo">Sem Barreiras</span>
+                            </div>
+                            <p class="vantagem-desc">Remove complexidades de linguagens profissionais para ganho progressivo de confiança.</p>
+                        </div>
+                    </div>
+                </div>
 
-            <h3>Foco no raciocínio lógico</h3>
-            <p>
-                O aprendizado prioriza pensamento estruturado,
-                não memorização de regras complexas.
-            </p>
+                <!-- Mercado de trabalho compacto -->
+                <div class="card-mercado">
+                    <div class="mercado-icone-wrap">💼</div>
+                    <div class="mercado-texto">
+                        <p>
+                            Portugol não é usado diretamente em empresas, mas funciona como
+                            <strong>base estratégica de formação</strong>. Quem domina a lógica aqui
+                            aprende <strong>Python, Java e C</strong> com muito mais facilidade — é o primeiro passo estruturado para entrar no mercado com base sólida.
+                        </p>
+                    </div>
+                </div>
 
-            <h3>Redução de barreiras iniciais</h3>
-            <p>
-                Remove complexidades comuns em linguagens profissionais,
-                permitindo ganho de confiança progressivo.
-            </p>
+            </div>
 
-            <hr>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <h2>Portugol e o mercado de trabalho</h2>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item">
+                        <span class="meta-label">Aula</span>
+                        <span class="meta-valor cyan">03</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tipo</span>
+                        <span class="meta-valor">Conceito</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Nível</span>
+                        <span class="meta-valor">Iniciante</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pré-requisito</span>
+                        <span class="meta-valor cyan">Aula 02</span>
+                    </div>
+                </div>
 
-            <p>
-                Portugol não é usado diretamente em empresas,
-                mas funciona como base estratégica de formação.
-            </p>
+                <!-- Caminho de aprendizado -->
+                <div class="card-caminho">
+                    <p class="card-caminho-titulo">// caminho do aluno</p>
+                    <div class="caminho-steps">
+                        <div class="caminho-step futuro">
+                            <div class="caminho-dot"></div>
+                            Portugol
+                        </div>
+                        <div class="caminho-step atual">
+                            <div class="caminho-dot"></div>
+                            Lógica & Algoritmos ← você está aqui
+                        </div>
+                        <div class="caminho-step futuro">
+                            <div class="caminho-dot"></div>
+                            Python / Java / C
+                        </div>
+                        <div class="caminho-step futuro">
+                            <div class="caminho-dot"></div>
+                            Mercado de Trabalho
+                        </div>
+                    </div>
+                </div>
 
-            <p>
-                Quem domina a lógica em Portugol aprende com mais facilidade
-                linguagens como Python, Java e C.
-            </p>
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>Algoritmo</h3>
+                    <p>Descubra o que é um algoritmo e como ele representa a solução de qualquer problema.</p>
+                    <a href="aula4.html" class="btn-proximo">
+                        Ir para Aula 4
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
 
-            <p>
-                É o primeiro passo estruturado para quem quer entrar
-                no universo da programação com base sólida.
-            </p>
-
+            </div>
         </div>
 
     </section>

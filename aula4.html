@@ -2,85 +2,752 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 4 - Algoritmo</title>
+    <title>Aula 4 — Algoritmo · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* ── HERO ── */
+        .aula-hero {
+            padding: 48px 0 32px;
+            text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        .aula-numero-dot {
+            width: 6px; height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .progresso-meio { flex: 1; }
+
+        .progresso-track {
+            height: 5px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 26.67%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas { display: flex; gap: 3px; }
+
+        .progresso-pip {
+            flex: 1; height: 4px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            white-space: nowrap;
+        }
+
+        /* ── GRID ── */
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
+        }
+
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        /* ── CARD BASE ── */
+        .card-base {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+        }
+
+        .card-base p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .card-base p + p { margin-top: 12px; }
+        .card-base strong { color: var(--text-primary); font-weight: 600; }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        /* ── EXEMPLO VIDA REAL — dois painéis lado a lado ── */
+        .exemplo-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .exemplo-wrap { grid-template-columns: 1fr; }
+        }
+
+        /* Painel da receita */
+        .painel-receita {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .painel-receita-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .receita-icone {
+            font-size: 1.4rem;
+        }
+
+        .receita-titulo {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .receita-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .receita-passos {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .receita-passos li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.83rem;
+            color: #b0bec5;
+            padding: 8px 10px;
+            background: var(--bg-surface);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .passo-n {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            width: 22px; height: 22px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Painel da nota */
+        .painel-nota {
+            background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .nota-icone { font-size: 2rem; }
+
+        .nota-titulo {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 4px;
+        }
+
+        .nota-texto {
+            font-size: 0.82rem;
+            color: #b0bec5;
+            line-height: 1.7;
+        }
+
+        .nota-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: var(--amber);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        /* ── EXEMPLOS PROGRAMAÇÃO — 3 cards ── */
+        .exemplos-prog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .exemplos-prog-grid { grid-template-columns: 1fr; }
+        }
+
+        .exemplo-prog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exemplo-prog-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .exemplo-prog-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .exemplo-prog-card:hover::before { opacity: 1; }
+
+        .ep-icone { font-size: 1.3rem; margin-bottom: 8px; }
+
+        .ep-titulo {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .ep-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── CARD POR QUE — horizontal com ícones ── */
+        .porque-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .porque-grid { grid-template-columns: 1fr; }
+        }
+
+        .porque-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            transition: var(--transition);
+        }
+
+        .porque-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .porque-icone {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .porque-texto {
+            font-size: 0.82rem;
+            color: #b0bec5;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* ── CARD MÁXIMA ── */
+        .card-maxima {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--cyan);
+            border-radius: var(--radius-md);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .maxima-codigo {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+
+        .maxima-texto {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .maxima-texto span { color: var(--cyan); }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card propriedades */
+        .card-props {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-props-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .prop-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.82rem;
+        }
+
+        .prop-item:last-child { border-bottom: none; }
+
+        .prop-nome {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .prop-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            flex-shrink: 0;
+        }
+
+        .prop-valor {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Próxima */
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-proximo p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 24px var(--cyan-glow);
+        }
+
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 4 – Algoritmo</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 04 · Módulo I
+            </div>
+            <h1 class="aula-titulo"><span>Algoritmo</span></h1>
+            <p class="aula-desc">A sequência que transforma qualquer ideia em solução — dentro e fora do computador.</p>
+        </div>
 
-        <div class="card-aula">
+        <!-- Progresso horizontal -->
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track">
+                    <div class="progresso-fill"></div>
+                </div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">4 / 15</span>
+        </div>
 
-            <p>
-                Algoritmo é uma sequência organizada de passos
-                para resolver um problema ou executar uma tarefa.
-                Deve ter início, ordem lógica e fim.
-            </p>
+        <br>
 
-            <p>
-                No cotidiano, utilizamos algoritmos o tempo todo,
-                mesmo sem perceber. Receitas, manuais e tutoriais
-                são exemplos práticos.
-            </p>
+        <div class="aula-grid">
 
-            <h2>Exemplo (vida real)</h2>
+            <div class="col-principal">
 
-            <p><strong>Para beber água:</strong></p>
+                <!-- Intro -->
+                <div class="card-base">
+                    <p>
+                        Algoritmo é uma <strong>sequência organizada de passos</strong> para resolver um problema
+                        ou executar uma tarefa. Deve ter início, ordem lógica e fim.
+                    </p>
+                    <p>
+                        No cotidiano, utilizamos algoritmos o tempo todo, mesmo sem perceber.
+                        Receitas, manuais e tutoriais são exemplos práticos de algoritmos do dia a dia.
+                    </p>
+                </div>
 
-            <ol>
-                <li>Pegar a garrafa</li>
-                <li>Abrir a tampa</li>
-                <li>Levar à boca</li>
-                <li>Beber a água</li>
-            </ol>
+                <!-- Exemplo vida real + nota lado a lado -->
+                <div>
+                    <p class="secao-label">// exemplo da vida real</p>
+                    <div class="exemplo-wrap">
+                        <div class="painel-receita">
+                            <div class="painel-receita-header">
+                                <span class="receita-icone">💧</span>
+                                <div>
+                                    <div class="receita-titulo">Para beber água</div>
+                                    <div class="receita-subtitle">// algoritmo cotidiano</div>
+                                </div>
+                            </div>
+                            <ol class="receita-passos">
+                                <li><span class="passo-n">01</span> Pegar a garrafa</li>
+                                <li><span class="passo-n">02</span> Abrir a tampa</li>
+                                <li><span class="passo-n">03</span> Levar à boca</li>
+                                <li><span class="passo-n">04</span> Beber a água</li>
+                            </ol>
+                        </div>
+                        <div class="painel-nota">
+                            <div class="nota-icone">⚠️</div>
+                            <div>
+                                <div class="nota-titulo">Ordem é fundamental</div>
+                                <p class="nota-texto">Se inverter os passos, o resultado não funciona. O mesmo vale para qualquer programa.</p>
+                            </div>
+                            <span class="nota-tag">sequência obrigatória</span>
+                        </div>
+                    </div>
+                </div>
 
-            <p>
-                A ordem é fundamental. Se inverter os passos,
-                o resultado não funciona.
-            </p>
+                <!-- Exemplos na programação -->
+                <div>
+                    <p class="secao-label">// algoritmos na programação</p>
+                    <div class="exemplos-prog-grid">
+                        <div class="exemplo-prog-card">
+                            <div class="ep-icone">📊</div>
+                            <div class="ep-titulo">Calcular Média</div>
+                            <div class="ep-desc">Passos para somar notas e dividir pelo total de alunos.</div>
+                        </div>
+                        <div class="exemplo-prog-card">
+                            <div class="ep-icone">🔢</div>
+                            <div class="ep-titulo">Par ou Ímpar</div>
+                            <div class="ep-desc">Verificar se um número é divisível por 2 e retornar o resultado.</div>
+                        </div>
+                        <div class="exemplo-prog-card">
+                            <div class="ep-icone">🔐</div>
+                            <div class="ep-titulo">Sistema de Login</div>
+                            <div class="ep-desc">Validar usuário e senha antes de liberar o acesso ao sistema.</div>
+                        </div>
+                    </div>
+                </div>
 
-            <hr>
+                <!-- Por que aprender -->
+                <div>
+                    <p class="secao-label">// por que aprender algoritmos?</p>
+                    <div class="porque-grid">
+                        <div class="porque-item">
+                            <span class="porque-icone">🧩</span>
+                            <span class="porque-texto">Pensamento organizado e estruturado</span>
+                        </div>
+                        <div class="porque-item">
+                            <span class="porque-icone">✂️</span>
+                            <span class="porque-texto">Divisão de problemas em partes menores</span>
+                        </div>
+                        <div class="porque-item">
+                            <span class="porque-icone">🏗️</span>
+                            <span class="porque-texto">Construção de soluções estruturadas</span>
+                        </div>
+                        <div class="porque-item">
+                            <span class="porque-icone">🖥️</span>
+                            <span class="porque-texto">Compreensão da lógica do computador</span>
+                        </div>
+                    </div>
+                </div>
 
-            <h2>Algoritmo na Programação</h2>
+                <!-- Máxima final -->
+                <div class="card-maxima">
+                    <span class="maxima-codigo">01</span>
+                    <span class="maxima-texto">Antes do código, vem a ideia. <span>Primeiro o algoritmo.</span> Depois a implementação.</span>
+                </div>
 
-            <p>
-                Na programação, a lógica é idêntica.
-                O computador executa exatamente os passos definidos.
-            </p>
+            </div>
 
-            <strong>Exemplos:</strong>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <ul>
-                <li>Passos para calcular média</li>
-                <li>Verificar número par ou ímpar</li>
-                <li>Criar sistema de login</li>
-            </ul>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item">
+                        <span class="meta-label">Aula</span>
+                        <span class="meta-valor cyan">04</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tipo</span>
+                        <span class="meta-valor">Conceito</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Nível</span>
+                        <span class="meta-valor">Iniciante</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pré-requisito</span>
+                        <span class="meta-valor cyan">Aula 03</span>
+                    </div>
+                </div>
 
-            <p>
-                Se faltar um passo ou a ordem estiver errada,
-                o programa não funciona corretamente.
-            </p>
+                <!-- Propriedades de um algoritmo -->
+                <div class="card-props">
+                    <p class="card-props-titulo">// propriedades</p>
+                    <div class="prop-item">
+                        <span class="prop-nome"><span class="prop-dot"></span>Início definido</span>
+                        <span class="prop-valor">true</span>
+                    </div>
+                    <div class="prop-item">
+                        <span class="prop-nome"><span class="prop-dot"></span>Ordem lógica</span>
+                        <span class="prop-valor">true</span>
+                    </div>
+                    <div class="prop-item">
+                        <span class="prop-nome"><span class="prop-dot"></span>Fim garantido</span>
+                        <span class="prop-valor">true</span>
+                    </div>
+                    <div class="prop-item">
+                        <span class="prop-nome"><span class="prop-dot"></span>Sem ambiguidade</span>
+                        <span class="prop-valor">true</span>
+                    </div>
+                </div>
 
-            <hr>
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>Estrutura Básica em Portugol</h3>
+                    <p>Veja como um algoritmo se escreve de verdade usando a sintaxe do Portugol.</p>
+                    <a href="aula5.html" class="btn-proximo">
+                        Ir para Aula 5
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
 
-            <h2>Por que aprender algoritmos?</h2>
-
-            <ul>
-                <li>Pensamento organizado</li>
-                <li>Divisão de problemas em partes menores</li>
-                <li>Construção de soluções estruturadas</li>
-                <li>Compreensão da lógica do computador</li>
-            </ul>
-
-            <p>
-                Antes do código, vem a ideia.
-                Primeiro o algoritmo. Depois a implementação.
-            </p>
-
+            </div>
         </div>
 
     </section>

@@ -2,52 +2,505 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 1 - Apresentação</title>
+    <title>Aula 1 — Apresentação · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── ESTILOS ESPECÍFICOS DA AULA 1 ── */
+
+        .aula-hero {
+            position: relative;
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+
+        .aula-numero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+
+        .aula-titulo {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            animation: fadeDown 0.5s ease 0.08s both;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+            animation: fadeDown 0.5s ease 0.15s both;
+        }
+
+        /* ── LAYOUT DO CONTEÚDO ── */
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            align-items: start;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── CARD DE TEXTO PRINCIPAL ── */
+        .card-texto {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .card-texto p {
+            color: #b0bec5;
+            font-size: 0.97rem;
+            line-height: 1.85;
+        }
+
+        .card-texto p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Separador interno */
+        .card-texto .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 0;
+        }
+
+        /* Título de seção interno */
+        .secao-titulo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .secao-titulo::before {
+            content: "";
+            width: 3px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Lista de foco */
+        .lista-foco {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lista-foco li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.95rem;
+            color: #b0bec5;
+            padding: 14px 18px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .lista-foco li:hover {
+            border-color: var(--border-accent);
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+
+        .lista-foco li::before {
+            content: attr(data-icon);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Card de progresso da aula */
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card de destino — o que vem depois */
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .card-proximo h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 28px var(--cyan-glow);
+        }
+
+        /* Card de citação motivacional */
+        .card-citacao {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--cyan);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+        }
+
+        .card-citacao blockquote {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .card-citacao cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--cyan);
+            font-style: normal;
+        }
+
+        /* ── BARRA DE PROGRESSO DO MÓDULO ── */
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            animation: fadeUp 0.6s ease 0.35s both;
+        }
+
+        .progresso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .progresso-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+        }
+
+        .progresso-track {
+            height: 6px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 6.67%; /* aula 1 de 15 */
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+            transition: width 1s ease 0.5s;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 4px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .progresso-pip {
+            width: 18px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 1 – Apresentação</h1>
+        <!-- Hero da aula -->
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 01 · Módulo I
+            </div>
+            <h1 class="aula-titulo">
+                <span>Apresentação</span>
+            </h1>
+            <p class="aula-desc">Seu ponto de partida para pensar como programador — antes mesmo de escrever uma linha de código.</p>
+        </div>
 
-        <div class="card-aula">
-            <p>
-                Esta apostila foi criada para ajudar você a dar os primeiros passos no mundo da programação,
-                de forma simples, organizada e sem complicação.
-                Aqui, você vai aprender a pensar como um programador, mesmo antes de usar linguagens
-                famosas como Python, Java ou C.
-            </p>
+        <!-- Barra de progresso do módulo -->
+        <div class="progresso-modulo">
+            <div class="progresso-header">
+                <span class="progresso-label">Progresso do Módulo</span>
+                <span class="progresso-pct">Aula 1 / 15</span>
+            </div>
+            <div class="progresso-track">
+                <div class="progresso-fill"></div>
+            </div>
+            <div class="progresso-aulas">
+                <div class="progresso-pip ativa"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+            </div>
+        </div>
 
-            <p>
-                A proposta é começar pelo básico e evoluir de forma progressiva.
-                Primeiro, você vai entender como resolver problemas usando lógica, passo a passo.
-                Depois, vai aprender a transformar esse raciocínio em algoritmos e programas usando Portugol,
-                uma linguagem feita especialmente para iniciantes.
-            </p>
+        <br>
 
-            <h2>Foco Principal</h2>
+        <!-- Grid principal -->
+        <div class="aula-grid">
 
-            <ul>
-                <li>Pensar</li>
-                <li>Organizar ideias</li>
-                <li>Resolver problemas</li>
-                <li>Criar soluções com lógica</li>
-            </ul>
+            <!-- Coluna principal -->
+            <div class="card-texto">
 
-            <p>
-                Aqui, errar faz parte do aprendizado. Cada exercício é uma oportunidade
-                de evoluir e entender como o computador processa informações.
-            </p>
+                <p>
+                    Esta apostila foi criada para ajudar você a dar os primeiros passos no mundo da programação,
+                    de forma simples, organizada e sem complicação. Aqui, você vai aprender a
+                    <strong>pensar como um programador</strong>, mesmo antes de usar linguagens
+                    famosas como Python, Java ou C.
+                </p>
 
-            <p>
-                Ao finalizar esta apostila, você estará preparado para aprender
-                linguagens como Python, Java ou C com muito mais segurança,
-                porque a base lógica será sólida.
-            </p>
+                <div class="divider"></div>
 
+                <p>
+                    A proposta é começar pelo básico e evoluir de forma progressiva.
+                    Primeiro, você vai entender como resolver problemas usando <strong>lógica passo a passo</strong>.
+                    Depois, vai aprender a transformar esse raciocínio em algoritmos e programas usando
+                    <strong>Portugol</strong> — uma linguagem feita especialmente para iniciantes.
+                </p>
+
+                <div class="divider"></div>
+
+                <div>
+                    <p class="secao-titulo">Foco Principal</p>
+                    <ul class="lista-foco">
+                        <li data-icon="🧠">Pensar de forma estruturada e lógica</li>
+                        <li data-icon="📋">Organizar ideias antes de programar</li>
+                        <li data-icon="🔍">Resolver problemas em etapas menores</li>
+                        <li data-icon="⚙️">Criar soluções com lógica computacional</li>
+                    </ul>
+                </div>
+
+                <div class="divider"></div>
+
+                <p>
+                    Aqui, <strong>errar faz parte do aprendizado.</strong> Cada exercício é uma oportunidade
+                    de evoluir e entender como o computador processa informações.
+                </p>
+
+                <p>
+                    Ao finalizar esta apostila, você estará preparado para aprender
+                    linguagens como Python, Java ou C com muito mais segurança,
+                    porque a <strong>base lógica será sólida</strong>.
+                </p>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
+
+                <!-- Metadados da aula -->
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item">
+                        <span class="meta-label">Aula</span>
+                        <span class="meta-valor cyan">01</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tipo</span>
+                        <span class="meta-valor">Apresentação</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Nível</span>
+                        <span class="meta-valor">Iniciante</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pré-requisitos</span>
+                        <span class="meta-valor cyan">Nenhum</span>
+                    </div>
+                </div>
+
+                <!-- Citação -->
+                <div class="card-citacao">
+                    <blockquote>
+                        "Todo programador começa sem saber programar. O que diferencia é a vontade de aprender."
+                    </blockquote>
+                    <cite>— Fundamentos de Programação</cite>
+                </div>
+
+                <!-- Próxima aula -->
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>O que é Programação</h3>
+                    <p>Entenda o que significa programar e como os computadores processam instruções.</p>
+                    <a href="aula2.html" class="btn-proximo">
+                        Ir para Aula 2
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
         </div>
 
     </section>

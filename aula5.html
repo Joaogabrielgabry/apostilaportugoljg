@@ -1,117 +1,692 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Aula 5 - Estrutura Básica</title>
+    <title>Aula 5 — Estrutura Básica · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
 
+        .aula-hero {
+            padding: 48px 0 32px;
+            text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        .aula-numero-dot {
+            width: 6px; height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+
+        .progresso-track {
+            height: 5px; background: var(--bg-surface);
+            border-radius: 999px; overflow: hidden; margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%; width: 33.33%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas { display: flex; gap: 3px; }
+
+        .progresso-pip {
+            flex: 1; height: 4px; border-radius: 999px;
+            background: var(--bg-surface); border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
+        }
+
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        /* ── CARD BASE ── */
+        .card-base {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+        }
+
+        .card-base p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; }
+        .card-base p + p { margin-top: 12px; }
+        .card-base strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── BLOCO CÓDIGO COMPLETO ── */
+        .codigo-completo {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .codigo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(0, 229, 255, 0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+
+        .codigo-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .codigo-dots span {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red   { background: #ff5f57; }
+        .dot-yellow{ background: #febc2e; }
+        .dot-green { background: #28c840; }
+
+        .codigo-filename {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .codigo-lang {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .codigo-body {
+            padding: 24px 28px;
+            overflow-x: auto;
+        }
+
+        .codigo-body pre {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        /* Syntax highlighting manual */
+        .kw  { color: #00e5ff; font-weight: 700; }   /* keywords: algoritmo, var, inicio, fimalgoritmo */
+        .fn  { color: #c084fc; }                      /* funções: escreva, leia */
+        .str { color: #86efac; }                      /* strings */
+        .var { color: #fbbf24; }                      /* variáveis */
+        .tp  { color: #60a5fa; }                      /* tipos: inteiro, caractere */
+        .cm  { color: #475569; font-style: italic; }  /* comentários */
+
+        /* ── ANATOMIA — cards de cada parte ── */
+        .anatomia-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 580px) {
+            .anatomia-grid { grid-template-columns: 1fr; }
+        }
+
+        .anatomia-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .anatomia-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+        }
+
+        .anatomia-topo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px 10px;
+        }
+
+        .anatomia-keyword {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .anatomia-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding: 0 18px 14px;
+            line-height: 1.6;
+        }
+
+        .anatomia-mini-code {
+            background: var(--bg-deep);
+            border-top: 1px solid var(--border);
+            padding: 10px 18px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* ── PONTOS EM 2 COLUNAS ── */
+        .pontos-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 560px) {
+            .pontos-wrap { grid-template-columns: 1fr; }
+        }
+
+        .pontos-grupo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+        }
+
+        .pontos-titulo {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pontos-titulo::before {
+            content: "";
+            width: 3px; height: 14px;
+            background: var(--cyan);
+            border-radius: 2px;
+        }
+
+        .pontos-lista {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pontos-lista li {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .pontos-lista li::before {
+            content: "›";
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── CARD DISCIPLINA ── */
+        .card-disciplina {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--cyan);
+            border-radius: var(--radius-md);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .disciplina-icone { font-size: 1.4rem; flex-shrink: 0; }
+
+        .disciplina-texto {
+            font-size: 0.88rem;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
+
+        .disciplina-texto strong { color: var(--text-primary); }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card estrutura resumida */
+        .card-estrutura {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .estrutura-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 16px 20px 12px;
+        }
+
+        .estrutura-linha {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px;
+            border-top: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .estrutura-linha:hover { background: var(--bg-card-hover); }
+
+        .estrutura-kw {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--cyan);
+            min-width: 80px;
+        }
+
+        .estrutura-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Próxima */
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
+</head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 5 – Estrutura Básica de um Programa em Portugol</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 05 · Módulo I
+            </div>
+            <h1 class="aula-titulo">Estrutura Básica em <span>Portugol</span></h1>
+            <p class="aula-desc">O esqueleto que todo programa precisa ter — do primeiro ao último caractere.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">5 / 15</span>
+        </div>
 
-            <p>
-                Todo programa em Portugol segue uma estrutura padrão.
-                Essa organização mantém o código claro e fácil de manter.
-            </p>
+        <br>
 
-            <h2>Exemplo completo</h2>
+        <div class="aula-grid">
 
-            <div class="bloco-codigo">
-                <pre>
-algoritmo "Exemplo"
+            <div class="col-principal">
 
-var
-   nome: caractere
+                <!-- Intro -->
+                <div class="card-base">
+                    <p>
+                        Todo programa em Portugol segue uma <strong>estrutura padrão</strong>.
+                        Essa organização mantém o código claro, legível e fácil de manter — desde o primeiro exercício até projetos maiores.
+                    </p>
+                </div>
 
-inicio
-   escreva("Digite seu nome: ")
-   leia(nome)
-   escreva("Olá, ", nome)
+                <!-- Código completo com syntax highlight -->
+                <div>
+                    <p class="secao-label">// exemplo completo</p>
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="codigo-filename">exemplo.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+<pre><span class="kw">algoritmo</span> <span class="str">"Exemplo"</span>
 
-fimalgoritmo
-</pre>
+<span class="kw">var</span>
+   <span class="var">nome</span>: <span class="tp">caractere</span>
+
+<span class="kw">inicio</span>
+   <span class="fn">escreva</span>(<span class="str">"Digite seu nome: "</span>)
+   <span class="fn">leia</span>(<span class="var">nome</span>)
+   <span class="fn">escreva</span>(<span class="str">"Olá, "</span>, <span class="var">nome</span>)
+
+<span class="kw">fimalgoritmo</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anatomia em 4 cards -->
+                <div>
+                    <p class="secao-label">// anatomia do programa</p>
+                    <div class="anatomia-grid">
+
+                        <div class="anatomia-card">
+                            <div class="anatomia-topo">
+                                <span class="anatomia-keyword">algoritmo</span>
+                            </div>
+                            <p class="anatomia-desc">Define o nome do programa. Identifica sua finalidade para quem lê o código.</p>
+                            <div class="anatomia-mini-code"><span class="kw">algoritmo</span> <span class="str">"Cadastro"</span></div>
+                        </div>
+
+                        <div class="anatomia-card">
+                            <div class="anatomia-topo">
+                                <span class="anatomia-keyword">var</span>
+                            </div>
+                            <p class="anatomia-desc">Área de declaração de variáveis. O programa reserva espaço na memória aqui.</p>
+                            <div class="anatomia-mini-code"><span class="kw">var</span><br>&nbsp;&nbsp;<span class="var">idade</span>: <span class="tp">inteiro</span></div>
+                        </div>
+
+                        <div class="anatomia-card">
+                            <div class="anatomia-topo">
+                                <span class="anatomia-keyword">inicio</span>
+                            </div>
+                            <p class="anatomia-desc">Marca onde a execução começa. Todas as instruções executáveis ficam aqui.</p>
+                            <div class="anatomia-mini-code"><span class="kw">inicio</span><br>&nbsp;&nbsp;<span class="cm">// instruções aqui</span></div>
+                        </div>
+
+                        <div class="anatomia-card">
+                            <div class="anatomia-topo">
+                                <span class="anatomia-keyword">fimalgoritmo</span>
+                            </div>
+                            <p class="anatomia-desc">Encerra o programa. Após essa linha, nenhuma instrução é executada.</p>
+                            <div class="anatomia-mini-code"><span class="kw">fimalgoritmo</span> <span class="cm">// fim</span></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Pontos importantes + por que importa lado a lado -->
+                <div class="pontos-wrap">
+                    <div class="pontos-grupo">
+                        <p class="pontos-titulo">Pontos Importantes</p>
+                        <ul class="pontos-lista">
+                            <li>Todo programa começa com <strong style="color:var(--cyan);font-family:var(--font-mono)">algoritmo</strong></li>
+                            <li>Variáveis ficam dentro de <strong style="color:var(--cyan);font-family:var(--font-mono)">var</strong></li>
+                            <li>Execução ocorre entre <strong style="color:var(--cyan);font-family:var(--font-mono)">inicio</strong> e <strong style="color:var(--cyan);font-family:var(--font-mono)">fimalgoritmo</strong></li>
+                            <li>Organização reduz erros</li>
+                        </ul>
+                    </div>
+                    <div class="pontos-grupo">
+                        <p class="pontos-titulo">Por que Importa</p>
+                        <ul class="pontos-lista">
+                            <li>Evita confusão na leitura do código</li>
+                            <li>Facilita manutenção futura</li>
+                            <li>Melhora a legibilidade geral</li>
+                            <li>Prepara para linguagens reais</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Disciplina -->
+                <div class="card-disciplina">
+                    <span class="disciplina-icone">🎯</span>
+                    <p class="disciplina-texto">
+                        Criar padrão desde o início desenvolve <strong>disciplina técnica</strong>.
+                        Esse hábito acelera a transição para linguagens profissionais como Python, Java e C.
+                    </p>
+                </div>
+
             </div>
 
-            <hr>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <h2>Explicando cada parte</h2>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item">
+                        <span class="meta-label">Aula</span>
+                        <span class="meta-valor cyan">05</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tipo</span>
+                        <span class="meta-valor">Sintaxe</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Nível</span>
+                        <span class="meta-valor">Iniciante</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pré-requisito</span>
+                        <span class="meta-valor cyan">Aula 04</span>
+                    </div>
+                </div>
 
-            <h3>algoritmo</h3>
-            <p>
-                Define o nome do programa.
-                Serve para identificar sua finalidade.
-            </p>
+                <!-- Estrutura resumida -->
+                <div class="card-estrutura">
+                    <p class="estrutura-titulo">// estrutura resumida</p>
+                    <div class="estrutura-linha">
+                        <span class="estrutura-kw">algoritmo</span>
+                        <span class="estrutura-role">Nome do programa</span>
+                    </div>
+                    <div class="estrutura-linha">
+                        <span class="estrutura-kw">var</span>
+                        <span class="estrutura-role">Declarar variáveis</span>
+                    </div>
+                    <div class="estrutura-linha">
+                        <span class="estrutura-kw">inicio</span>
+                        <span class="estrutura-role">Início da execução</span>
+                    </div>
+                    <div class="estrutura-linha">
+                        <span class="estrutura-kw">  ···</span>
+                        <span class="estrutura-role">Instruções aqui</span>
+                    </div>
+                    <div class="estrutura-linha">
+                        <span class="estrutura-kw">fimalgoritmo</span>
+                        <span class="estrutura-role">Encerra tudo</span>
+                    </div>
+                </div>
 
-            <div class="bloco-codigo">
-                <pre>
-algoritmo "Cadastro"
-</pre>
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>Variáveis</h3>
+                    <p>Aprenda a declarar, nomear e usar variáveis para guardar informações no programa.</p>
+                    <a href="aula6.html" class="btn-proximo">
+                        Ir para Aula 6
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
             </div>
-
-            <h3>var</h3>
-            <p>
-                Área destinada à declaração das variáveis.
-                Aqui o programa reserva espaço na memória.
-            </p>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   idade: inteiro
-   nome: caractere
-</pre>
-            </div>
-
-            <h3>inicio</h3>
-            <p>
-                Marca o início da execução do programa.
-                Todas as instruções executáveis ficam aqui.
-            </p>
-
-            <h3>fimalgoritmo</h3>
-            <p>
-                Indica o encerramento do programa.
-                Após isso, não há mais execução.
-            </p>
-
-            <hr>
-
-            <h2>Pontos importantes</h2>
-
-            <ul>
-                <li>Todo programa começa com algoritmo</li>
-                <li>Variáveis ficam dentro de var</li>
-                <li>Execução ocorre entre inicio e fimalgoritmo</li>
-                <li>Organização reduz erros</li>
-            </ul>
-
-            <hr>
-
-            <h2>Por que isso é importante?</h2>
-
-            <ul>
-                <li>Evita confusão</li>
-                <li>Facilita manutenção</li>
-                <li>Melhora legibilidade</li>
-            </ul>
-
-            <p>
-                Criar padrão desde o início desenvolve disciplina técnica.
-                Esse hábito acelera a transição para linguagens profissionais.
-            </p>
-
         </div>
 
     </section>
 
 </body>
-
 </html>

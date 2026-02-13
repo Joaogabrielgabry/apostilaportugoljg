@@ -2,91 +2,734 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 2 - O que é Programação</title>
+    <title>Aula 2 — O que é Programação · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* ── HERO ── */
+        .aula-hero {
+            position: relative;
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+
+        .aula-numero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero-dot {
+            width: 6px; height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            animation: fadeDown 0.5s ease 0.08s both;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto;
+            animation: fadeDown 0.5s ease 0.15s both;
+        }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .progresso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .progresso-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+        }
+
+        .progresso-track {
+            height: 6px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 13.33%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 4px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .progresso-pip {
+            width: 18px; height: 6px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        /* ── GRID ── */
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            align-items: start;
+            animation: fadeUp 0.6s ease 0.25s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── COLUNA PRINCIPAL ── */
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Card de introdução */
+        .card-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .card-intro p {
+            color: #b0bec5;
+            font-size: 0.97rem;
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .card-intro p:last-child { margin-bottom: 0; }
+
+        .card-intro p strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── FLUXO ENTRADA > PROCESSAMENTO > SAÍDA ── */
+        .fluxo-titulo {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fluxo-titulo::before {
+            content: "";
+            width: 3px; height: 20px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .fluxo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .fluxo-etapa {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+            position: relative;
+        }
+
+        /* Linha conectora entre etapas */
+        .fluxo-etapa:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 28px;
+            top: 100%;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--etapa-cor), transparent);
+            z-index: 2;
+        }
+
+        .fluxo-etapa:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        /* Painel esquerdo da etapa (ícone + nome) */
+        .etapa-label {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-right: none;
+            border-radius: var(--radius-md) 0 0 var(--radius-md);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            position: relative;
+        }
+
+        .etapa-icone {
+            font-size: 1.6rem;
+        }
+
+        .etapa-nome {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--etapa-cor);
+        }
+
+        .etapa-num {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* Painel direito da etapa (descrição + exemplos) */
+        .etapa-conteudo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--etapa-cor);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 24px 28px;
+        }
+
+        .etapa-conteudo p {
+            font-size: 0.9rem;
+            color: #b0bec5;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .etapa-exemplos-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--etapa-cor);
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .etapa-exemplos {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .etapa-exemplos li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            background: var(--bg-surface);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .etapa-exemplos li::before {
+            content: "›";
+            color: var(--etapa-cor);
+            font-weight: 700;
+        }
+
+        /* Cores por etapa */
+        .etapa-entrada  { --etapa-cor: #00e5ff; }
+        .etapa-processo { --etapa-cor: #f59e0b; }
+        .etapa-saida    { --etapa-cor: #10b981; }
+
+        /* ── CARD "POR QUE IMPORTA" ── */
+        .card-importancia {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .card-importancia .secao-titulo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .card-importancia .secao-titulo::before {
+            content: "";
+            width: 3px; height: 20px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .card-importancia p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .habilidades-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .habilidades-grid { grid-template-columns: 1fr; }
+            .fluxo-etapa { grid-template-columns: 1fr; }
+            .etapa-label { border-right: 1px solid var(--border); border-bottom: none; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+            .etapa-conteudo { border-left: 1px solid var(--border); border-top: 2px solid var(--etapa-cor); border-radius: 0 0 var(--radius-md) var(--radius-md); }
+        }
+
+        .habilidade-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .habilidade-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .habilidade-icone { font-size: 1.4rem; margin-bottom: 8px; }
+
+        .habilidade-nome {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card de resumo do fluxo */
+        .card-fluxo-resumo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .fluxo-resumo-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .fluxo-resumo-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .resumo-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .resumo-step:last-child { border-bottom: none; }
+
+        .resumo-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .resumo-step-nome {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .resumo-step-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .card-proximo h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 28px var(--cyan-glow);
+        }
+
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 2 – O que é Programação?</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 02 · Módulo I
+            </div>
+            <h1 class="aula-titulo">
+                O que é <span>Programação?</span>
+            </h1>
+            <p class="aula-desc">Entenda o ciclo fundamental que está por trás de qualquer sistema — do app no celular ao satélite no espaço.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <div class="progresso-header">
+                <span class="progresso-label">Progresso do Módulo</span>
+                <span class="progresso-pct">Aula 2 / 15</span>
+            </div>
+            <div class="progresso-track">
+                <div class="progresso-fill"></div>
+            </div>
+            <div class="progresso-aulas">
+                <div class="progresso-pip ativa"></div>
+                <div class="progresso-pip ativa"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+                <div class="progresso-pip"></div>
+            </div>
+        </div>
 
-            <p>
-                Programar é ensinar o computador a executar tarefas por meio de
-                instruções organizadas e claras. O computador não interpreta intenções.
-                Ele executa exatamente o que foi definido.
-            </p>
+        <br>
 
-            <p>
-                Por isso, programar exige organização, atenção aos detalhes e lógica.
-                Pequenos erros podem comprometer o resultado final.
-            </p>
+        <div class="aula-grid">
 
-            <h2>Estrutura básica de todo programa</h2>
+            <!-- Coluna principal -->
+            <div class="col-principal">
 
-            <h3>Entrada de Dados</h3>
-            <p>
-                Momento em que o programa recebe informações.
-                Podem vir do teclado, mouse, formulário ou outro sistema.
-            </p>
+                <!-- Introdução -->
+                <div class="card-intro">
+                    <p>
+                        Programar é <strong>ensinar o computador a executar tarefas</strong> por meio de
+                        instruções organizadas e claras. O computador não interpreta intenções —
+                        ele executa exatamente o que foi definido.
+                    </p>
+                    <p>
+                        Por isso, programar exige <strong>organização, atenção aos detalhes e lógica.</strong>
+                        Pequenos erros podem comprometer o resultado final.
+                    </p>
+                </div>
 
-            <strong>Exemplos:</strong>
-            <ul>
-                <li>Digitar seu nome</li>
-                <li>Informar sua idade</li>
-                <li>Escolher uma opção em um menu</li>
-            </ul>
+                <!-- Fluxo EPS -->
+                <div class="card-intro">
+                    <p class="fluxo-titulo">Estrutura Básica de Todo Programa</p>
 
-            <h3>Processamento</h3>
-            <p>
-                Etapa onde o computador executa regras,
-                cálculos, comparações e decisões.
-            </p>
+                    <div class="fluxo-container">
 
-            <strong>Exemplos:</strong>
-            <ul>
-                <li>Somar dois números</li>
-                <li>Verificar maioridade</li>
-                <li>Decidir aprovação de aluno</li>
-            </ul>
+                        <div class="fluxo-etapa etapa-entrada">
+                            <div class="etapa-label">
+                                <span class="etapa-icone">⌨️</span>
+                                <span class="etapa-nome">Entrada</span>
+                                <span class="etapa-num">// step 01</span>
+                            </div>
+                            <div class="etapa-conteudo">
+                                <p>Momento em que o programa recebe informações. Podem vir do teclado, mouse, formulário ou outro sistema.</p>
+                                <div class="etapa-exemplos-label">// exemplos</div>
+                                <ul class="etapa-exemplos">
+                                    <li>Digitar seu nome</li>
+                                    <li>Informar sua idade</li>
+                                    <li>Escolher uma opção em um menu</li>
+                                </ul>
+                            </div>
+                        </div>
 
-            <h3>Saída de Dados</h3>
-            <p>
-                Fase em que o programa apresenta o resultado ao usuário.
-            </p>
+                        <div class="fluxo-etapa etapa-processo">
+                            <div class="etapa-label">
+                                <span class="etapa-icone">⚙️</span>
+                                <span class="etapa-nome">Processamento</span>
+                                <span class="etapa-num">// step 02</span>
+                            </div>
+                            <div class="etapa-conteudo">
+                                <p>Etapa onde o computador executa regras, cálculos, comparações e decisões com base nos dados recebidos.</p>
+                                <div class="etapa-exemplos-label">// exemplos</div>
+                                <ul class="etapa-exemplos">
+                                    <li>Somar dois números</li>
+                                    <li>Verificar maioridade</li>
+                                    <li>Decidir aprovação de aluno</li>
+                                </ul>
+                            </div>
+                        </div>
 
-            <strong>Exemplos:</strong>
-            <ul>
-                <li>Mostrar a soma</li>
-                <li>Exibir mensagem de erro</li>
-                <li>Mostrar “Aprovado” ou “Reprovado”</li>
-            </ul>
+                        <div class="fluxo-etapa etapa-saida">
+                            <div class="etapa-label">
+                                <span class="etapa-icone">🖥️</span>
+                                <span class="etapa-nome">Saída</span>
+                                <span class="etapa-num">// step 03</span>
+                            </div>
+                            <div class="etapa-conteudo">
+                                <p>Fase em que o programa apresenta o resultado ao usuário de forma compreensível e útil.</p>
+                                <div class="etapa-exemplos-label">// exemplos</div>
+                                <ul class="etapa-exemplos">
+                                    <li>Mostrar a soma calculada</li>
+                                    <li>Exibir mensagem de erro</li>
+                                    <li>Mostrar "Aprovado" ou "Reprovado"</li>
+                                </ul>
+                            </div>
+                        </div>
 
-            <hr>
+                    </div>
+                </div>
 
-            <h2>Por que isso é importante?</h2>
+                <!-- Por que importa -->
+                <div class="card-importancia">
+                    <p class="secao-titulo">Por que isso é importante?</p>
+                    <p>
+                        A sequência <strong>Entrada → Processamento → Saída</strong> é a base de
+                        praticamente todos os sistemas existentes — de um caixa eletrônico a um aplicativo de delivery.
+                    </p>
+                    <p>
+                        Ao dominar essa estrutura, o aprendizado de qualquer
+                        linguagem futura se torna muito mais simples e natural.
+                    </p>
+                    <div class="habilidades-grid">
+                        <div class="habilidade-item">
+                            <div class="habilidade-icone">🧩</div>
+                            <div class="habilidade-nome">Pensamento Organizado</div>
+                        </div>
+                        <div class="habilidade-item">
+                            <div class="habilidade-icone">🔧</div>
+                            <div class="habilidade-nome">Resolução de Problemas</div>
+                        </div>
+                        <div class="habilidade-item">
+                            <div class="habilidade-icone">💡</div>
+                            <div class="habilidade-nome">Criar Soluções</div>
+                        </div>
+                    </div>
+                </div>
 
-            <p>
-                A sequência Entrada → Processamento → Saída
-                é a base de praticamente todos os sistemas existentes.
-            </p>
+            </div>
 
-            <p>
-                Ao dominar essa estrutura, o aprendizado de qualquer
-                linguagem futura se torna mais simples.
-            </p>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <strong>Aprender programação desenvolve:</strong>
-            <ul>
-                <li>Pensamento organizado</li>
-                <li>Resolução estruturada de problemas</li>
-                <li>Capacidade de criar soluções</li>
-            </ul>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item">
+                        <span class="meta-label">Aula</span>
+                        <span class="meta-valor cyan">02</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tipo</span>
+                        <span class="meta-valor">Conceito</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Nível</span>
+                        <span class="meta-valor">Iniciante</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pré-requisito</span>
+                        <span class="meta-valor cyan">Aula 01</span>
+                    </div>
+                </div>
 
+                <!-- Resumo do fluxo EPS -->
+                <div class="card-fluxo-resumo">
+                    <p class="fluxo-resumo-titulo">// o ciclo fundamental</p>
+                    <div class="fluxo-resumo-steps">
+                        <div class="resumo-step">
+                            <div class="resumo-dot" style="background:#00e5ff"></div>
+                            <span class="resumo-step-nome">Entrada</span>
+                            <span class="resumo-step-tag" style="background:rgba(0,229,255,0.12);color:#00e5ff;">INPUT</span>
+                        </div>
+                        <div class="resumo-step">
+                            <div class="resumo-dot" style="background:#f59e0b"></div>
+                            <span class="resumo-step-nome">Processamento</span>
+                            <span class="resumo-step-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b;">PROCESS</span>
+                        </div>
+                        <div class="resumo-step">
+                            <div class="resumo-dot" style="background:#10b981"></div>
+                            <span class="resumo-step-nome">Saída</span>
+                            <span class="resumo-step-tag" style="background:rgba(16,185,129,0.12);color:#10b981;">OUTPUT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>O que é Portugol</h3>
+                    <p>Conheça a linguagem criada para iniciantes e entenda por que ela é o ponto de partida ideal.</p>
+                    <a href="aula3.html" class="btn-proximo">
+                        Ir para Aula 3
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
         </div>
 
     </section>
