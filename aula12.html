@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 12 - Estrutura de Repetição</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 12 – Estrutura de Repetição (para)</h1>
+
+        <div class="card-aula">
+
+            <h2>🎂 Desafio — A Central do Tempo</h2>
+
+            <p>
+                O sistema calcula automaticamente a idade da pessoa
+                com base no ano de nascimento e no ano atual.
+            </p>
+
+            <p>
+                Antes e depois da entrada de dados,
+                o programa exibe uma moldura com asteriscos
+                usando estrutura de repetição.
+            </p>
+
+            <hr>
+
+            <h2>Conceito: Estrutura <strong>para</strong></h2>
+
+            <p>
+                A estrutura <strong>para</strong> é usada quando sabemos
+                quantas vezes algo deve se repetir.
+            </p>
+
+            <div class="bloco-codigo">
+<pre>
+para(inicio; condição; incremento)
+</pre>
+            </div>
+
+            <p>Exemplo:</p>
+
+            <div class="bloco-codigo">
+<pre>
+para(i=0; i<5; i++)
+   escreva("*")
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>💻 Exemplo de Solução</h2>
+
+            <div class="bloco-codigo">
+<pre>
+programa
+{
+   funcao inicio()
+   {
+      inteiro idade, i, AnoNascimento, AnoAtual
+
+      para(i=0; i<20; i++)
+         escreva("*")
+
+      escreva("\n")
+
+      escreva("Olá, neste programa iremos calcular a sua idade\n")
+
+      escreva("Por favor digite o ano do seu nascimento: ")
+      leia(AnoNascimento)
+
+      escreva("Por favor digite o ano atual: ")
+      leia(AnoAtual)
+
+      para(i=0; i<20; i++)
+         escreva("*")
+
+      escreva("\n")
+
+      idade = AnoAtual - AnoNascimento
+
+      escreva("Sua idade que você fez ou fará este ano é: ", idade)
+
+   }
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>O que este exercício trabalha?</h2>
+
+            <ul>
+                <li>Estrutura de repetição</li>
+                <li>Organização visual no programa</li>
+                <li>Entrada de dados</li>
+                <li>Processamento matemático</li>
+                <li>Saída formatada</li>
+            </ul>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                A repetição permite automatizar tarefas.
+                Em vez de escrever 20 vezes o mesmo comando,
+                utilizamos um laço.
+            </p>
+
+            <p>
+                Isso é base para qualquer sistema mais avançado.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

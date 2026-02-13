@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 15 - Estudo da Madrugada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 15 – Estudo da Madrugada</h1>
+
+        <div class="card-aula">
+
+            <h2>📝 Desafio</h2>
+
+            <p>
+                O programa deve calcular quantos alunos estudam de madrugada
+                com base em porcentagens.
+            </p>
+
+            <hr>
+
+            <h2>Requisitos</h2>
+
+            <ul>
+                <li>Ler a quantidade total de alunos</li>
+                <li>Calcular 35% da turma</li>
+                <li>Calcular 30% a mais sobre esse resultado</li>
+                <li>Calcular a média entre os dois valores</li>
+                <li>Exibir todos os resultados</li>
+            </ul>
+
+            <hr>
+
+            <h2>💻 Exemplo de Solução</h2>
+
+            <div class="bloco-codigo">
+<pre>
+programa{
+
+   funcao inicio(){
+
+      real totalAlunos
+      real madrugada1
+      real madrugada2
+      real media
+
+      escreva("Digite a quantidade total de alunos da turma: ")
+      leia(totalAlunos)
+
+      madrugada1 = totalAlunos * 0.35
+
+      madrugada2 = madrugada1 + (madrugada1 * 0.30)
+
+      media = (madrugada1 + madrugada2) / 2
+
+      escreva("\nAlunos que estudam na 1ª matéria: ", madrugada1)
+      escreva("\nAlunos que estudam na 2ª matéria: ", madrugada2)
+      escreva("\nMédia entre as duas matérias: ", media)
+
+   }
+
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Conceitos Aplicados</h2>
+
+            <ul>
+                <li>Porcentagem (multiplicação por decimal)</li>
+                <li>Operações matemáticas</li>
+                <li>Cálculo de média</li>
+                <li>Organização de variáveis</li>
+            </ul>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                Trabalhar com porcentagem é fundamental em qualquer sistema.
+            </p>
+
+            <p>
+                Esse exercício reforça como transformar regras matemáticas
+                em lógica programável.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

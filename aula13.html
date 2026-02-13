@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 13 - O Número do Universo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 13 – Operadores Lógicos</h1>
+
+        <div class="card-aula">
+
+            <h2>📝 Desafio — O Número do Universo</h2>
+
+            <p>
+                O programa simula um diálogo com o usuário
+                sobre o significado da vida, do universo e tudo mais.
+            </p>
+
+            <hr>
+
+            <h2>Conceitos Trabalhados</h2>
+
+            <ul>
+                <li>Tipo <strong>cadeia</strong></li>
+                <li>Entrada de dados</li>
+                <li>Estrutura condicional</li>
+                <li>Operador lógico <strong>ou</strong></li>
+                <li>Biblioteca Util</li>
+            </ul>
+
+            <hr>
+
+            <h2>💻 Exemplo de Solução</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+programa
+{
+   inclua biblioteca Util --> u
+
+   funcao inicio()
+   {
+      cadeia universo
+
+      escreva("Qual o significado da vida, do universo e tudo mais?\n")
+      escreva("Deseja saber o número do universo?\n")
+      escreva("Digite sim ou não: ")
+      leia(universo)
+
+      se(universo == "Sim" ou universo == "sim" ou 
+         universo == "S" ou universo == "s"){
+
+         limpa()
+         u.aguarde(3000)
+         escreva("42")
+
+      } senao se(universo == "Não" ou universo == "não" ou 
+                 universo == "Nao" ou universo == "nao" or 
+                 universo == "N" or universo == "n"){
+
+         escreva("Você ainda não está preparado.")
+
+      } senao {
+
+         escreva("Opção inválida.")
+
+      }
+   }
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>O que é o operador <strong>ou</strong>?</h2>
+
+            <p>
+                O operador <strong>ou</strong> permite verificar
+                múltiplas condições.
+            </p>
+
+            <div class="bloco-codigo">
+                <pre>
+se(condição1 ou condição2)
+</pre>
+            </div>
+
+            <p>
+                Se qualquer uma for verdadeira,
+                o bloco será executado.
+            </p>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                Este exercício integra texto, decisão,
+                operadores lógicos e interação.
+            </p>
+
+            <p>
+                É um passo importante para criar
+                programas mais inteligentes.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

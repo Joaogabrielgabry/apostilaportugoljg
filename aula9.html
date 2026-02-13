@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 9 - Desafio Laboratório</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 9 – Exercícios de Aula</h1>
+
+        <div class="card-aula">
+
+            <h2>📘 Desafio — O Laboratório das Expressões</h2>
+
+            <p>
+                Você foi contratado para um laboratório de matemática computacional.
+                O sistema trabalha com duas expressões:
+                <strong>Expressão A</strong> e <strong>Expressão B</strong>.
+            </p>
+
+            <p>
+                O programa deve perguntar ao usuário qual expressão deseja calcular:
+            </p>
+
+            <ul>
+                <li>A → Calcula Expressão A</li>
+                <li>B → Calcula Expressão B</li>
+            </ul>
+
+            <p>
+                Caso o usuário digite qualquer outro valor,
+                o sistema deve informar que a opção é inválida.
+            </p>
+
+            <hr>
+
+            <h2>Estrutura esperada</h2>
+
+            <ul>
+                <li>Entrada de dados</li>
+                <li>Estrutura condicional (se / senao)</li>
+                <li>Cálculo matemático</li>
+                <li>Saída de resultado</li>
+            </ul>
+
+            <hr>
+
+            <h2>💻 Exemplo de solução</h2>
+
+            <div class="bloco-codigo">
+<pre>
+programa{
+
+   funcao inicio(){
+
+      caracter AorB
+
+      escreva("Digite A para expressão 'A' e B para expressão 'B': ")
+      leia(AorB)
+
+      se(AorB == 'A'){
+
+         inteiro resultadoA
+         resultadoA = 2 + 3 - 5 * 8 - 4 + 354 - 521 + 7 * 66
+
+         escreva("O resultado da expressão A é: ", resultadoA)
+
+      } senao se(AorB == 'B'){
+
+         inteiro resultadoB
+         resultadoB = 2 + 7 * (14 - 21) + 28 * 3 * 42 + 740 - (156 + 4 + 40) * 9
+
+         escreva("O resultado da expressão B é: ", resultadoB)
+
+      } senao {
+
+         escreva("Opção inválida.")
+
+      }
+
+   }
+
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Objetivo do exercício</h2>
+
+            <ul>
+                <li>Trabalhar entrada de dados</li>
+                <li>Aplicar estrutura condicional</li>
+                <li>Respeitar precedência matemática</li>
+                <li>Organizar o código corretamente</li>
+            </ul>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                Esse exercício integra variáveis, entrada,
+                decisão e cálculo em um único programa.
+            </p>
+
+            <p>
+                É um passo além dos exercícios básicos.
+                Aqui o aluno começa a pensar como programador.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

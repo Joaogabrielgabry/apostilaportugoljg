@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 7 - Entrada e Saída</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 7 – Entrada e Saída de Dados</h1>
+
+        <div class="card-aula">
+
+            <p>
+                Todo programa precisa se comunicar com o usuário.
+                Essa comunicação ocorre por meio da entrada e da saída de dados.
+            </p>
+
+            <p>
+                Sem interação, o programa fica fechado e sem utilidade prática.
+            </p>
+
+            <hr>
+
+            <h2>Entrada de Dados</h2>
+
+            <p>
+                A entrada ocorre quando o usuário fornece informações ao programa.
+                Em Portugol, utilizamos o comando <strong>leia()</strong>.
+            </p>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   idade: inteiro
+
+escreva("Digite sua idade: ")
+leia(idade)
+</pre>
+            </div>
+
+            <p>
+                O valor digitado é armazenado dentro da variável.
+            </p>
+
+            <hr>
+
+            <h3>Lendo vários dados</h3>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   nome: caractere
+   salario: real
+
+escreva("Digite seu nome: ")
+leia(nome)
+
+escreva("Digite seu salário: ")
+leia(salario)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Saída de Dados</h2>
+
+            <p>
+                A saída ocorre quando o programa apresenta informações ao usuário.
+                Utilizamos o comando <strong>escreva()</strong>.
+            </p>
+
+            <div class="bloco-codigo">
+                <pre>
+escreva("Idade informada: ", idade)
+</pre>
+            </div>
+
+            <h3>Exibindo várias informações</h3>
+
+            <div class="bloco-codigo">
+                <pre>
+escreva("Nome: ", nome)
+escreva("Salário: ", salario)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Exibindo resultados de cálculos</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   a, b, soma: inteiro
+
+a <- 4
+b <- 6
+soma <- a + b
+
+escreva("Resultado da soma: ", soma)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Boas práticas</h2>
+
+            <ul>
+                <li>Mostrar mensagens claras</li>
+                <li>Indicar o que deve ser digitado</li>
+                <li>Organizar a saída</li>
+                <li>Evitar mensagens genéricas</li>
+            </ul>
+
+            <p>
+                ✔ "Digite sua idade:" <br>
+                ✔ "Resultado final:" <br><br>
+                ❌ "Digite:" <br>
+                ❌ "Valor:"
+            </p>
+
+            <hr>
+
+            <h2>Combinação de Entrada e Saída</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   nome: caractere
+   idade: inteiro
+
+escreva("Digite seu nome: ")
+leia(nome)
+
+escreva("Digite sua idade: ")
+leia(idade)
+
+escreva("Olá ", nome, ", sua idade é ", idade)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Entrada → Processamento → Saída</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   n1, n2, media: real
+
+escreva("Digite a primeira nota: ")
+leia(n1)
+
+escreva("Digite a segunda nota: ")
+leia(n2)
+
+media <- (n1 + n2) / 2
+
+escreva("Média final: ", media)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                Os comandos leia e escreva permitem interação.
+                A entrada fornece dados, o processamento executa regras
+                e a saída apresenta resultados.
+            </p>
+
+            <p>
+                Um algoritmo eficiente é claro, organizado e compreensível.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 11 - Cofrinho do Tempo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 11 – Desafio</h1>
+
+        <div class="card-aula">
+
+            <h2>👥 O Cofrinho do Tempo de Vida</h2>
+
+            <p>
+                O objetivo é calcular o total de anos vividos por um grupo.
+                Para isso, o sistema deve somar as idades de todos.
+            </p>
+
+            <hr>
+
+            <h2>Requisitos</h2>
+
+            <ul>
+                <li>Ler a idade de cinco colegas</li>
+                <li>Ler sua própria idade</li>
+                <li>Somar todas as idades</li>
+                <li>Mostrar o total na tela</li>
+            </ul>
+
+            <hr>
+
+            <h2>💻 Exemplo de Solução</h2>
+
+            <div class="bloco-codigo">
+<pre>
+programa{
+
+   funcao inicio(){
+
+      inteiro colega1
+      inteiro colega2
+      inteiro colega3
+      inteiro colega4
+      inteiro colega5
+      inteiro minha_idade
+      inteiro tempovida
+
+      escreva("Qual é a idade do colega 1? ")
+      leia(colega1)
+
+      escreva("\nQual é a idade do colega 2? ")
+      leia(colega2)
+
+      escreva("\nQual é a idade do colega 3? ")
+      leia(colega3)
+
+      escreva("\nQual é a idade do colega 4? ")
+      leia(colega4)
+
+      escreva("\nQual é a idade do colega 5? ")
+      leia(colega5)
+
+      escreva("\nQual é a minha idade? ")
+      leia(minha_idade)
+
+      tempovida = colega1 + colega2 + colega3 +
+                  colega4 + colega5 + minha_idade
+
+      escreva("\nO tempo total de vida do grupo é: ", tempovida)
+
+   }
+
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Objetivo do Exercício</h2>
+
+            <ul>
+                <li>Trabalhar múltiplas entradas</li>
+                <li>Organizar variáveis corretamente</li>
+                <li>Realizar soma acumulada</li>
+                <li>Produzir saída clara</li>
+            </ul>
+
+            <hr>
+
+            <h2>Evolução Natural</h2>
+
+            <p>
+                Esse exercício funciona bem para introduzir,
+                no próximo passo, estruturas de repetição.
+            </p>
+
+            <p>
+                Em vez de declarar cinco variáveis,
+                poderíamos usar um laço de repetição.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

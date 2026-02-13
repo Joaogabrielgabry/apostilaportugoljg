@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 14 - Calculadora Básica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 14 – Calculadora Básica</h1>
+
+        <div class="card-aula">
+
+            <h2>📝 Desafio</h2>
+
+            <p>
+                Criar um programa que funcione como uma calculadora simples.
+            </p>
+
+            <hr>
+
+            <h2>Requisitos</h2>
+
+            <ul>
+                <li>Ler dois números</li>
+                <li>Calcular soma</li>
+                <li>Calcular subtração</li>
+                <li>Calcular multiplicação</li>
+                <li>Calcular divisão</li>
+                <li>Validar divisão por zero</li>
+            </ul>
+
+            <hr>
+
+            <h2>💻 Exemplo de Solução</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+programa{
+
+   funcao inicio(){
+
+      real numero1
+      real numero2
+      real Soma
+      real Subtracao
+      real Multiplicacao
+      real Divisao
+
+      escreva("Digite um número: ")
+      leia(numero1)
+
+      escreva("\nDigite um segundo número: ")
+      leia(numero2)
+
+      se(numero2 != 0){
+
+         Soma = numero1 + numero2
+         Subtracao = numero1 - numero2
+         Multiplicacao = numero1 * numero2
+         Divisao = numero1 / numero2
+
+         escreva("\nSoma: ", Soma)
+         escreva("\nSubtração: ", Subtracao)
+         escreva("\nMultiplicação: ", Multiplicacao)
+         escreva("\nDivisão: ", Divisao)
+
+      } senao {
+
+         escreva("Não é possível dividir por zero.")
+
+      }
+
+   }
+
+}
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Conceitos Aplicados</h2>
+
+            <ul>
+                <li>Operadores aritméticos (+ - * /)</li>
+                <li>Estrutura condicional (se / senao)</li>
+                <li>Operador relacional (!=)</li>
+                <li>Validação de dados</li>
+            </ul>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                A validação evita erros no programa.
+                Divisão por zero é uma situação que precisa ser tratada.
+            </p>
+
+            <p>
+                Programar não é apenas calcular.
+                É prever problemas antes que aconteçam.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

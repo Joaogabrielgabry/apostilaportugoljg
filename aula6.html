@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 6 - Variáveis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+
+    <section class="conteudo">
+
+        <h1>Aula 6 – Variáveis</h1>
+
+        <div class="card-aula">
+
+            <p>
+                Uma variável é um espaço reservado na memória
+                para armazenar dados que podem mudar durante a execução.
+            </p>
+
+            <p>
+                Pode ser comparada a uma caixa com nome,
+                onde guardamos valores para usar depois.
+            </p>
+
+            <p>
+                Sem variáveis, não existe processamento.
+                Elas são a infraestrutura básica de qualquer algoritmo.
+            </p>
+
+            <hr>
+
+            <h2>Para que servem?</h2>
+
+            <ul>
+                <li>Guardar dados do usuário</li>
+                <li>Armazenar resultados</li>
+                <li>Controlar decisões</li>
+                <li>Repetir processos</li>
+                <li>Organizar informações</li>
+            </ul>
+
+            <p><strong>Exemplo:</strong> armazenar a idade digitada pelo usuário.</p>
+
+            <hr>
+
+            <h2>Declaração de Variáveis</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   idade: inteiro
+   salario: real
+</pre>
+            </div>
+
+            <p>
+                idade e salario são nomes.
+                inteiro e real são os tipos.
+            </p>
+
+            <hr>
+
+            <h2>Tipos Básicos</h2>
+
+            <h3>Inteiro</h3>
+            <div class="bloco-codigo">
+                <pre>
+var
+   quantidade: inteiro
+</pre>
+            </div>
+
+            <h3>Real</h3>
+            <div class="bloco-codigo">
+                <pre>
+var
+   altura: real
+</pre>
+            </div>
+
+            <h3>Caractere</h3>
+            <div class="bloco-codigo">
+                <pre>
+var
+   nome: caractere
+</pre>
+            </div>
+
+            <h3>Lógico</h3>
+            <div class="bloco-codigo">
+                <pre>
+var
+   aprovado: logico
+</pre>
+            </div>
+
+            <p>Valores possíveis: verdadeiro ou falso</p>
+
+            <hr>
+
+            <h2>Atribuição de Valores</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+idade <- 20
+salario <- 1500.50
+nome <- "Carlos"
+aprovado <- verdadeiro
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Leitura de Dados</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+escreva("Digite sua idade: ")
+leia(idade)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Uso em Cálculos</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+var
+   a, b, soma: inteiro
+
+a <- 5
+b <- 3
+soma <- a + b
+
+escreva("Resultado: ", soma)
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Regras para Nomes</h2>
+
+            <ul>
+                <li>Não começar com número</li>
+                <li>Não usar espaços</li>
+                <li>Não usar acentos</li>
+                <li>Não usar símbolos especiais</li>
+                <li>Ser claro e objetivo</li>
+            </ul>
+
+            <p>
+                ✔ idadeAluno<br>
+                ✔ salario<br>
+                ✔ mediaFinal<br><br>
+                ❌ 2valor<br>
+                ❌ nome aluno<br>
+                ❌ salário
+            </p>
+
+            <hr>
+
+            <h2>Boas Práticas</h2>
+
+            <ul>
+                <li>Use nomes descritivos</li>
+                <li>Evite x, y, a</li>
+                <li>Declare no início</li>
+                <li>Escolha o tipo correto</li>
+            </ul>
+
+            <hr>
+
+            <h2>Exemplo Completo</h2>
+
+            <div class="bloco-codigo">
+                <pre>
+algoritmo "ExemploVariaveis"
+
+var
+   nome: caractere
+   idade: inteiro
+   altura: real
+
+inicio
+   escreva("Digite seu nome: ")
+   leia(nome)
+
+   escreva("Digite sua idade: ")
+   leia(idade)
+
+   escreva("Digite sua altura: ")
+   leia(altura)
+
+   escreva("Nome: ", nome)
+   escreva("Idade: ", idade)
+   escreva("Altura: ", altura)
+
+fimalgoritmo
+</pre>
+            </div>
+
+            <hr>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                Variáveis tornam o algoritmo dinâmico.
+                Permitem armazenar, modificar e utilizar informações.
+            </p>
+
+            <p>
+                Sem variáveis, o programa seria fixo,
+                sem flexibilidade ou tomada de decisão.
+            </p>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

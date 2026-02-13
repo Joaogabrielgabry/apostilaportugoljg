@@ -1,0 +1,202 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #0b1c2d);
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+/* GRID DE CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* CARD */
+.card {
+    background: #111827;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 195, 255, 0.25);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.card p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+/* BOTÃO */
+button {
+    background: linear-gradient(90deg, #00c3ff, #3b82f6);
+    border: none;
+    padding: 12px 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+button:disabled {
+    background: #475569;
+    cursor: not-allowed;
+}
+
+/* CONTEÚDO DAS AULAS */
+.conteudo {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+/* BOTÃO VOLTAR */
+.voltar {
+    display: inline-block;
+    margin: 20px;
+    color: #00c3ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.voltar:hover {
+    opacity: 0.7;
+}
+
+/* CARD DA AULA */
+.card-aula {
+    background: #0f172a;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 195, 255, 0.1);
+}
+
+/* TÍTULOS */
+.card-aula h1,
+.card-aula h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.card-aula h1 {
+    font-size: 2rem;
+}
+
+.card-aula h2 {
+    font-size: 1.4rem;
+}
+
+/* LISTAS */
+.card-aula ul,
+.card-aula ol {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.card-aula li {
+    margin-bottom: 8px;
+}
+
+/* BLOCO DE CÓDIGO */
+.bloco-codigo {
+    background: #020617;
+    padding: 25px;
+    border-radius: 14px;
+    margin-top: 25px;
+    overflow-x: auto;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.bloco-codigo pre {
+    color: #38bdf8;
+    font-size: 0.95rem;
+}
+
+/* LINHA DIVISÓRIA */
+hr {
+    margin: 40px 0;
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* TÍTULO PRINCIPAL IMPACTANTE */
+.titulo-principal {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00c3ff, #3b82f6, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+/* Linha decorativa abaixo do título */
+.titulo-principal::after {
+    content: "";
+    display: block;
+    width: 60%;
+    height: 4px;
+    margin: 15px auto 0;
+    background: linear-gradient(90deg, #00c3ff, #3b82f6);
+    border-radius: 2px;
+}
+
+/* Subtítulo */
+.subtitulo {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    letter-spacing: 1px;
+}
