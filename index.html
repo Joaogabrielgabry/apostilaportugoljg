@@ -4,145 +4,327 @@
 <head>
     <meta charset="UTF-8">
     <title>Portugol - Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-    <h1 class="titulo-principal">
-        Fundamentos de Programação
-    </h1>
-    <p class="subtitulo">
-        Plataforma Oficial • Lógica Estruturada em Portugol
-    </p>
-</header>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
 
+    <header>
+        <div class="header-badge">
+            <span class="badge-dot"></span>
+            <span>v2.0 — Semestre 2026</span>
+        </div>
+
+        <h1 class="titulo-principal">
+            <span class="titulo-linha1">Fundamentos de</span>
+            <span class="titulo-linha2">Programação</span>
+        </h1>
+
+        <p class="subtitulo">
+            <span class="mono">// </span>Lógica Estruturada em Portugol
+            <span class="subtitulo-plataforma">Plataforma Oficial</span>
+        </p>
+
+        <div class="header-stats">
+            <div class="stat">
+                <span class="stat-num">15</span>
+                <span class="stat-label">Aulas</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">∞</span>
+                <span class="stat-label">Possibilidades</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">0</span>
+                <span class="stat-label">Pré-requisitos</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="trilha-label">
+        <span class="mono">&lt;trilha&gt;</span>
+        <span>Módulo I — Introdução & Lógica</span>
+        <span class="mono">&lt;/trilha&gt;</span>
+    </section>
 
     <section class="cards">
 
-        <div class="card">
-            <h2>Aula 1</h2>
-            <p>Introdução à Programação e Portugol</p>
-            <a href="aula1.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.05s">
+            <div class="card-num">01</div>
+            <div class="card-body">
+                <h2>Introdução à Programação e Portugol</h2>
+                <div class="card-tags">
+                    <span class="tag">Conceito</span>
+                    <span class="tag">Fundação</span>
+                </div>
+            </div>
+            <a href="aula1.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 2</h2>
-            <p>O que é Programação</p>
-            <a href="aula2.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.1s">
+            <div class="card-num">02</div>
+            <div class="card-body">
+                <h2>O que é Programação</h2>
+                <div class="card-tags">
+                    <span class="tag">Teoria</span>
+                    <span class="tag">Contexto</span>
+                </div>
+            </div>
+            <a href="aula2.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 3</h2>
-            <p>O que é Portugol</p>
-            <a href="aula3.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.15s">
+            <div class="card-num">03</div>
+            <div class="card-body">
+                <h2>O que é Portugol</h2>
+                <div class="card-tags">
+                    <span class="tag">Linguagem</span>
+                    <span class="tag">Sintaxe</span>
+                </div>
+            </div>
+            <a href="aula3.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 4</h2>
-            <p>Algoritmo</p>
-            <a href="aula4.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.2s">
+            <div class="card-num">04</div>
+            <div class="card-body">
+                <h2>Algoritmo</h2>
+                <div class="card-tags">
+                    <span class="tag">Lógica</span>
+                    <span class="tag">Essencial</span>
+                </div>
+            </div>
+            <a href="aula4.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 5</h2>
-            <p>Estrutura Básica em Portugol</p>
-            <a href="aula5.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.25s">
+            <div class="card-num">05</div>
+            <div class="card-body">
+                <h2>Estrutura Básica em Portugol</h2>
+                <div class="card-tags">
+                    <span class="tag">Estrutura</span>
+                    <span class="tag">Prática</span>
+                </div>
+            </div>
+            <a href="aula5.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 6</h2>
-            <p>Variáveis</p>
-            <a href="aula6.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.3s">
+            <div class="card-num">06</div>
+            <div class="card-body">
+                <h2>Variáveis</h2>
+                <div class="card-tags">
+                    <span class="tag">Dados</span>
+                    <span class="tag">Tipos</span>
+                </div>
+            </div>
+            <a href="aula6.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 7</h2>
-            <p>Entrada e Saída</p>
-            <a href="aula7.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.35s">
+            <div class="card-num">07</div>
+            <div class="card-body">
+                <h2>Entrada e Saída</h2>
+                <div class="card-tags">
+                    <span class="tag">I/O</span>
+                    <span class="tag">Interação</span>
+                </div>
+            </div>
+            <a href="aula7.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 8</h2>
-            <p>Exercícios Propostos</p>
-            <a href="aula8.html">
-                <button>Entrar na Aula</button>
+        <div class="card card-destaque" style="--delay: 0.4s">
+            <div class="card-num">08</div>
+            <div class="card-body">
+                <h2>Exercícios Propostos</h2>
+                <div class="card-tags">
+                    <span class="tag tag-destaque">Exercício</span>
+                    <span class="tag">Fixação</span>
+                </div>
+            </div>
+            <a href="aula8.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 9</h2>
-            <p>Desafio Laboratório</p>
-            <a href="aula9.html">
-                <button>Entrar na Aula</button>
+        <div class="card card-destaque" style="--delay: 0.45s">
+            <div class="card-num">09</div>
+            <div class="card-body">
+                <h2>Desafio Laboratório</h2>
+                <div class="card-tags">
+                    <span class="tag tag-destaque">Desafio</span>
+                    <span class="tag">Lab</span>
+                </div>
+            </div>
+            <a href="aula9.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 10</h2>
-            <p>Estação Meteorológica</p>
-            <a href="aula10.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.5s">
+            <div class="card-num">10</div>
+            <div class="card-body">
+                <h2>Estação Meteorológica</h2>
+                <div class="card-tags">
+                    <span class="tag">Projeto</span>
+                    <span class="tag">Aplicado</span>
+                </div>
+            </div>
+            <a href="aula10.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 11</h2>
-            <p>Cofrinho do Tempo</p>
-            <a href="aula11.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.55s">
+            <div class="card-num">11</div>
+            <div class="card-body">
+                <h2>Cofrinho do Tempo</h2>
+                <div class="card-tags">
+                    <span class="tag">Projeto</span>
+                    <span class="tag">Criativo</span>
+                </div>
+            </div>
+            <a href="aula11.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 12</h2>
-            <p>Estrutura de Repetição (para)</p>
-            <a href="aula12.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.6s">
+            <div class="card-num">12</div>
+            <div class="card-body">
+                <h2>Estrutura de Repetição (para)</h2>
+                <div class="card-tags">
+                    <span class="tag">Loops</span>
+                    <span class="tag">Controle</span>
+                </div>
+            </div>
+            <a href="aula12.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 13</h2>
-            <p>Operadores Lógicos</p>
-            <a href="aula13.html">
-                <button>Entrar na Aula</button>
+        <div class="card" style="--delay: 0.65s">
+            <div class="card-num">13</div>
+            <div class="card-body">
+                <h2>Operadores Lógicos</h2>
+                <div class="card-tags">
+                    <span class="tag">Lógica</span>
+                    <span class="tag">Booleano</span>
+                </div>
+            </div>
+            <a href="aula13.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 14</h2>
-            <p>Calculadora Básica</p>
-            <a href="aula14.html">
-                <button>Entrar na Aula</button>
+        <div class="card card-destaque" style="--delay: 0.7s">
+            <div class="card-num">14</div>
+            <div class="card-body">
+                <h2>Calculadora Básica</h2>
+                <div class="card-tags">
+                    <span class="tag tag-destaque">Projeto</span>
+                    <span class="tag">Prática</span>
+                </div>
+            </div>
+            <a href="aula14.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <div class="card">
-            <h2>Aula 15</h2>
-            <p>Estudo da Madrugada</p>
-            <a href="aula15.html">
-                <button>Entrar na Aula</button>
+        <div class="card card-final" style="--delay: 0.75s">
+            <div class="card-num">15</div>
+            <div class="card-body">
+                <h2>Estudo da Madrugada</h2>
+                <div class="card-tags">
+                    <span class="tag tag-final">Final</span>
+                    <span class="tag">Encerramento</span>
+                </div>
+            </div>
+            <a href="aula15.html" class="card-btn">
+                <span>Entrar na Aula</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
-
 
     </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
