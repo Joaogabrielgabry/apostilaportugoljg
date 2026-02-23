@@ -1,190 +1,547 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Aula 7 - Entrada e Saída</title>
+    <title>Aula 7 — Entrada e Saída · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
 
+        .aula-hero {
+            padding: 48px 0 32px; text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+
+        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+        .aula-titulo span { background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 46.67%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
+        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+
+        /* ── CARD BASE ── */
+        .card-base { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 32px; }
+        .card-base p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; }
+        .card-base p + p { margin-top: 12px; }
+        .card-base strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── COMANDOS PRINCIPAIS — lado a lado ── */
+        .comandos-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 580px) { .comandos-wrap { grid-template-columns: 1fr; } }
+
+        .comando-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+        }
+
+        .comando-header {
+            padding: 18px 24px;
+            border-bottom: 2px solid var(--cmd-cor, var(--cyan));
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .comando-icone { font-size: 1.6rem; }
+        .comando-nome { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--cmd-cor, var(--cyan)); }
+        .comando-tipo { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+        .comando-body { padding: 20px 24px; }
+        .comando-desc { font-size: 0.88rem; color: #b0bec5; line-height: 1.7; margin-bottom: 14px; }
+
+        .comando-sintaxe {
+            background: var(--bg-deep); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 14px;
+            font-family: var(--font-mono); font-size: 0.82rem;
+            color: var(--cmd-cor, var(--cyan));
+        }
+
+        .cmd-leia     { --cmd-cor: #00e5ff; }
+        .cmd-escreva  { --cmd-cor: #10b981; }
+
+        /* ── CÓDIGO ── */
+        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
+        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
+        .codigo-dots { display: flex; gap: 6px; }
+        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
+        .codigo-body { padding: 20px 24px; overflow-x: auto; }
+        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .op  { color: #f472b6; }
+        .cm  { color: #475569; font-style: italic; }
+        .num { color: #fb923c; }
+
+        /* ── BOAS PRÁTICAS — válido vs inválido ── */
+        .praticas-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+        .praticas-header {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .praticas-col {
+            padding: 12px 20px;
+            font-family: var(--font-mono); font-size: 0.7rem;
+            font-weight: 700; letter-spacing: 0.08em;
+        }
+
+        .praticas-col.ok   { color: #86efac; background: rgba(134,239,172,0.05); }
+        .praticas-col.erro { color: #f87171; background: rgba(248,113,113,0.05); border-left: 1px solid var(--border); }
+
+        .praticas-body { display: grid; grid-template-columns: 1fr 1fr; }
+
+        .praticas-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; border-bottom: 1px solid var(--border);
+            font-family: var(--font-mono); font-size: 0.8rem;
+        }
+
+        .praticas-item:last-child { border-bottom: none; }
+        .praticas-item.erro { border-left: 1px solid var(--border); }
+        .praticas-item.ok   { color: #86efac; }
+        .praticas-item.erro { color: #f87171; }
+
+        .praticas-icone { font-size: 0.85rem; flex-shrink: 0; }
+
+        /* ── FLUXO EPS VISUAL ── */
+        .fluxo-eps-visual {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px 32px;
+        }
+
+        .fluxo-titulo {
+            font-size: 0.88rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .fluxo-titulo::before {
+            content: ""; width: 3px; height: 18px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+        }
+
+        .fluxo-linha {
+            display: flex; align-items: center; gap: 0;
+        }
+
+        @media (max-width: 640px) { .fluxo-linha { flex-direction: column; gap: 0; } }
+
+        .fluxo-box {
+            flex: 1; background: var(--bg-surface);
+            border: 2px solid var(--fluxo-cor, var(--border));
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .fluxo-box-icone { font-size: 1.5rem; margin-bottom: 8px; }
+        .fluxo-box-titulo { font-size: 0.82rem; font-weight: 700; color: var(--fluxo-cor, var(--text-primary)); margin-bottom: 6px; }
+        .fluxo-box-texto { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+        .fluxo-seta {
+            font-size: 1.2rem; color: var(--text-faint);
+            padding: 0 12px; flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .fluxo-seta { transform: rotate(90deg); padding: 12px 0; }
+        }
+
+        .fluxo-entrada  { --fluxo-cor: #00e5ff; }
+        .fluxo-processo { --fluxo-cor: #f59e0b; }
+        .fluxo-saida    { --fluxo-cor: #10b981; }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card referência comandos */
+        .card-ref-comandos { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+        .ref-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 16px 20px 12px; }
+
+        .ref-linha {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 20px; border-top: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .ref-linha:hover { background: var(--bg-card-hover); }
+        .ref-cmd { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; }
+        .ref-desc { font-size: 0.72rem; color: var(--text-muted); }
+
+        /* Card dica */
+        .card-dica {
+            background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
+            border: 1px solid rgba(16,185,129,0.25);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+        }
+
+        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .dica-icone { font-size: 1.3rem; }
+        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--green); }
+        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+
+        /* Próxima aula */
+        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
+</head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 7 – Entrada e Saída de Dados</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 07 · Módulo I
+            </div>
+            <h1 class="aula-titulo">Entrada e <span>Saída</span></h1>
+            <p class="aula-desc">A ponte entre o usuário e o programa — sem interação, o algoritmo fica fechado e sem utilidade prática.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">7 / 15</span>
+        </div>
 
-            <p>
-                Todo programa precisa se comunicar com o usuário.
-                Essa comunicação ocorre por meio da entrada e da saída de dados.
-            </p>
+        <br>
 
-            <p>
-                Sem interação, o programa fica fechado e sem utilidade prática.
-            </p>
+        <div class="aula-grid">
+        <div class="col-principal">
 
-            <hr>
-
-            <h2>Entrada de Dados</h2>
-
-            <p>
-                A entrada ocorre quando o usuário fornece informações ao programa.
-                Em Portugol, utilizamos o comando <strong>leia()</strong>.
-            </p>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   idade: inteiro
-
-escreva("Digite sua idade: ")
-leia(idade)
-</pre>
+            <!-- Intro -->
+            <div class="card-base">
+                <p>
+                    Todo programa precisa <strong>se comunicar com o usuário</strong>.
+                    Essa comunicação ocorre por meio da entrada e da saída de dados — a base de qualquer sistema interativo.
+                </p>
             </div>
 
-            <p>
-                O valor digitado é armazenado dentro da variável.
-            </p>
-
-            <hr>
-
-            <h3>Lendo vários dados</h3>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   nome: caractere
-   salario: real
-
-escreva("Digite seu nome: ")
-leia(nome)
-
-escreva("Digite seu salário: ")
-leia(salario)
-</pre>
+            <!-- Dois comandos principais -->
+            <div>
+                <p class="secao-label">// comandos principais</p>
+                <div class="comandos-wrap">
+                    <div class="comando-card cmd-leia">
+                        <div class="comando-header">
+                            <span class="comando-icone">⌨️</span>
+                            <div>
+                                <div class="comando-nome">leia()</div>
+                                <div class="comando-tipo">entrada de dados</div>
+                            </div>
+                        </div>
+                        <div class="comando-body">
+                            <p class="comando-desc">
+                                Recebe informações do usuário e armazena em uma variável. O programa pausa e aguarda a digitação.
+                            </p>
+                            <div class="comando-sintaxe"><span class="fn">leia</span>(<span class="var">variavel</span>)</div>
+                        </div>
+                    </div>
+                    <div class="comando-card cmd-escreva">
+                        <div class="comando-header">
+                            <span class="comando-icone">🖥️</span>
+                            <div>
+                                <div class="comando-nome">escreva()</div>
+                                <div class="comando-tipo">saída de dados</div>
+                            </div>
+                        </div>
+                        <div class="comando-body">
+                            <p class="comando-desc">
+                                Exibe informações na tela para o usuário. Pode mostrar textos, variáveis ou combinações.
+                            </p>
+                            <div class="comando-sintaxe"><span class="fn">escreva</span>(<span class="str">"texto"</span>, <span class="var">variavel</span>)</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Entrada de dados -->
+            <div>
+                <p class="secao-label">// entrada de dados</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">entrada.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">var</span>
+   <span class="var">idade</span>: <span class="tp">inteiro</span>
 
-            <h2>Saída de Dados</h2>
-
-            <p>
-                A saída ocorre quando o programa apresenta informações ao usuário.
-                Utilizamos o comando <strong>escreva()</strong>.
-            </p>
-
-            <div class="bloco-codigo">
-                <pre>
-escreva("Idade informada: ", idade)
-</pre>
+<span class="fn">escreva</span>(<span class="str">"Digite sua idade: "</span>)
+<span class="fn">leia</span>(<span class="var">idade</span>)    <span class="cm">// valor armazenado na variável</span></pre>
+                    </div>
+                </div>
             </div>
 
-            <h3>Exibindo várias informações</h3>
+            <!-- Lendo vários dados -->
+            <div>
+                <p class="secao-label">// lendo vários dados</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">multiplos-dados.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">var</span>
+   <span class="var">nome</span>   : <span class="tp">caractere</span>
+   <span class="var">salario</span>: <span class="tp">real</span>
 
-            <div class="bloco-codigo">
-                <pre>
-escreva("Nome: ", nome)
-escreva("Salário: ", salario)
-</pre>
+<span class="fn">escreva</span>(<span class="str">"Digite seu nome: "</span>)
+<span class="fn">leia</span>(<span class="var">nome</span>)
+
+<span class="fn">escreva</span>(<span class="str">"Digite seu salário: "</span>)
+<span class="fn">leia</span>(<span class="var">salario</span>)</pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
-
-            <h2>Exibindo resultados de cálculos</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   a, b, soma: inteiro
-
-a <- 4
-b <- 6
-soma <- a + b
-
-escreva("Resultado da soma: ", soma)
-</pre>
+            <!-- Saída de dados -->
+            <div>
+                <p class="secao-label">// saída de dados</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">saida.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="fn">escreva</span>(<span class="str">"Idade informada: "</span>, <span class="var">idade</span>)
+<span class="fn">escreva</span>(<span class="str">"Nome: "</span>, <span class="var">nome</span>)
+<span class="fn">escreva</span>(<span class="str">"Salário: "</span>, <span class="var">salario</span>)</pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Exibindo resultados de cálculos -->
+            <div>
+                <p class="secao-label">// exibindo resultados de cálculos</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">calculo.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">var</span>
+   <span class="var">a</span>, <span class="var">b</span>, <span class="var">soma</span>: <span class="tp">inteiro</span>
 
-            <h2>Boas práticas</h2>
+<span class="var">a</span>    <span class="op">&lt;-</span> <span class="num">4</span>
+<span class="var">b</span>    <span class="op">&lt;-</span> <span class="num">6</span>
+<span class="var">soma</span> <span class="op">&lt;-</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>
 
-            <ul>
-                <li>Mostrar mensagens claras</li>
-                <li>Indicar o que deve ser digitado</li>
-                <li>Organizar a saída</li>
-                <li>Evitar mensagens genéricas</li>
-            </ul>
-
-            <p>
-                ✔ "Digite sua idade:" <br>
-                ✔ "Resultado final:" <br><br>
-                ❌ "Digite:" <br>
-                ❌ "Valor:"
-            </p>
-
-            <hr>
-
-            <h2>Combinação de Entrada e Saída</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   nome: caractere
-   idade: inteiro
-
-escreva("Digite seu nome: ")
-leia(nome)
-
-escreva("Digite sua idade: ")
-leia(idade)
-
-escreva("Olá ", nome, ", sua idade é ", idade)
-</pre>
+<span class="fn">escreva</span>(<span class="str">"Resultado da soma: "</span>, <span class="var">soma</span>)  <span class="cm">// exibe 10</span></pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
-
-            <h2>Entrada → Processamento → Saída</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   n1, n2, media: real
-
-escreva("Digite a primeira nota: ")
-leia(n1)
-
-escreva("Digite a segunda nota: ")
-leia(n2)
-
-media <- (n1 + n2) / 2
-
-escreva("Média final: ", media)
-</pre>
+            <!-- Boas práticas -->
+            <div>
+                <p class="secao-label">// boas práticas</p>
+                <div class="praticas-wrap">
+                    <div class="praticas-header">
+                        <div class="praticas-col ok">✔ MENSAGENS CLARAS</div>
+                        <div class="praticas-col erro">✘ MENSAGENS GENÉRICAS</div>
+                    </div>
+                    <div class="praticas-body">
+                        <div class="praticas-item ok"><span class="praticas-icone">✔</span> "Digite sua idade:"</div>
+                        <div class="praticas-item erro"><span class="praticas-icone">✘</span> "Digite:"</div>
+                        <div class="praticas-item ok"><span class="praticas-icone">✔</span> "Resultado final:"</div>
+                        <div class="praticas-item erro"><span class="praticas-icone">✘</span> "Valor:"</div>
+                        <div class="praticas-item ok"><span class="praticas-icone">✔</span> "Informe seu salário:"</div>
+                        <div class="praticas-item erro"><span class="praticas-icone">✘</span> "?"</div>
+                        <div class="praticas-item ok"><span class="praticas-icone">✔</span> "Média calculada:"</div>
+                        <div class="praticas-item erro"><span class="praticas-icone">✘</span> "Saída:"</div>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Fluxo EPS visual -->
+            <div>
+                <p class="secao-label">// entrada → processamento → saída completo</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">fluxo-completo.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">var</span>
+   <span class="var">n1</span>, <span class="var">n2</span>, <span class="var">media</span>: <span class="tp">real</span>
 
-            <h2>Conclusão</h2>
+<span class="cm">// ENTRADA</span>
+<span class="fn">escreva</span>(<span class="str">"Digite a primeira nota: "</span>)
+<span class="fn">leia</span>(<span class="var">n1</span>)
 
-            <p>
-                Os comandos leia e escreva permitem interação.
-                A entrada fornece dados, o processamento executa regras
-                e a saída apresenta resultados.
-            </p>
+<span class="fn">escreva</span>(<span class="str">"Digite a segunda nota: "</span>)
+<span class="fn">leia</span>(<span class="var">n2</span>)
 
-            <p>
-                Um algoritmo eficiente é claro, organizado e compreensível.
-            </p>
+<span class="cm">// PROCESSAMENTO</span>
+<span class="var">media</span> <span class="op">&lt;-</span> (<span class="var">n1</span> <span class="op">+</span> <span class="var">n2</span>) <span class="op">/</span> <span class="num">2</span>
 
+<span class="cm">// SAÍDA</span>
+<span class="fn">escreva</span>(<span class="str">"Média final: "</span>, <span class="var">media</span>)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagrama visual EPS -->
+            <div class="fluxo-eps-visual">
+                <p class="fluxo-titulo">Ciclo completo visualizado</p>
+                <div class="fluxo-linha">
+                    <div class="fluxo-box fluxo-entrada">
+                        <div class="fluxo-box-icone">⌨️</div>
+                        <div class="fluxo-box-titulo">ENTRADA</div>
+                        <p class="fluxo-box-texto">leia(n1), leia(n2)</p>
+                    </div>
+                    <div class="fluxo-seta">→</div>
+                    <div class="fluxo-box fluxo-processo">
+                        <div class="fluxo-box-icone">⚙️</div>
+                        <div class="fluxo-box-titulo">PROCESSAMENTO</div>
+                        <p class="fluxo-box-texto">(n1 + n2) / 2</p>
+                    </div>
+                    <div class="fluxo-seta">→</div>
+                    <div class="fluxo-box fluxo-saida">
+                        <div class="fluxo-box-icone">🖥️</div>
+                        <div class="fluxo-box-titulo">SAÍDA</div>
+                        <p class="fluxo-box-texto">escreva(media)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="aula-sidebar">
+
+            <div class="card-meta">
+                <p class="card-meta-titulo">// info da aula</p>
+                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">07</span></div>
+                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Interação</span></div>
+                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
+                <div class="meta-item"><span class="meta-label">Pré-requisito</span><span class="meta-valor cyan">Aula 06</span></div>
+            </div>
+
+            <!-- Referência de comandos -->
+            <div class="card-ref-comandos">
+                <p class="ref-titulo">// comandos I/O</p>
+                <div class="ref-linha">
+                    <span class="ref-cmd" style="color:#00e5ff">leia( )</span>
+                    <span class="ref-desc">Receber</span>
+                </div>
+                <div class="ref-linha">
+                    <span class="ref-cmd" style="color:#10b981">escreva( )</span>
+                    <span class="ref-desc">Exibir</span>
+                </div>
+            </div>
+
+            <!-- Dica -->
+            <div class="card-dica">
+                <div class="dica-header">
+                    <span class="dica-icone">💡</span>
+                    <span class="dica-titulo">Dica de Ouro</span>
+                </div>
+                <p class="dica-texto">
+                    Sempre mostre mensagens claras antes de pedir dados. O usuário precisa saber <strong style="color:var(--text-primary)">o que</strong> digitar e <strong style="color:var(--text-primary)">por quê</strong>.
+                </p>
+            </div>
+
+            <div class="card-proximo">
+                <p class="card-proximo-label">// próxima aula</p>
+                <h3>Exercícios Propostos</h3>
+                <p>Hora de colocar em prática tudo que você aprendeu até aqui com exercícios guiados.</p>
+                <a href="aula8.html" class="btn-proximo">
+                    Ir para Aula 8
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
         </div>
 
     </section>
 
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
+    
 </body>
-
 </html>

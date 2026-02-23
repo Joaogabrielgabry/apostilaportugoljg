@@ -2,137 +2,532 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 8 - Exercícios Propostos</title>
+    <title>Aula 8 — Exercícios Propostos · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        .aula-hero {
+            padding: 48px 0 32px; text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--amber); background: var(--amber-dim);
+            border: 1px solid rgba(245,158,11,0.3);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+
+        .aula-numero-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+        .aula-titulo span { background: linear-gradient(135deg, var(--amber), #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 53.33%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
+        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+
+        /* ── INTRO ── */
+        .intro-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 24px 28px;
+            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+        }
+
+        @media (max-width: 580px) { .intro-wrap { grid-template-columns: 1fr; } }
+
+        .intro-icone { font-size: 2.4rem; }
+
+        .intro-texto p { color: #b0bec5; font-size: 0.92rem; line-height: 1.7; margin-bottom: 8px; }
+        .intro-texto p:last-child { margin-bottom: 0; }
+        .intro-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── GRID DE CONCEITOS ── */
+        .conceitos-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+        }
+
+        @media (max-width: 640px) { .conceitos-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .conceito-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px 14px;
+            text-align: center; transition: var(--transition);
+        }
+
+        .conceito-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .conceito-icone { font-size: 1.3rem; margin-bottom: 8px; }
+        .conceito-texto { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
+
+        /* ── EXERCÍCIO CARD ── */
+        .exercicio-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-left: 3px solid var(--ex-cor, var(--cyan));
+            border-radius: var(--radius-lg); overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .exercicio-card:hover { border-left-width: 4px; transform: translateX(2px); }
+
+        .ex-header {
+            padding: 20px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ex-titulo-wrap { display: flex; align-items: center; gap: 12px; }
+        .ex-icone { font-size: 1.4rem; }
+        .ex-titulo { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+
+        .ex-badge {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            background: var(--ex-badge-bg, var(--cyan-dim));
+            color: var(--ex-cor, var(--cyan));
+            border: 1px solid var(--ex-badge-border, var(--border-accent));
+            padding: 4px 10px; border-radius: 4px;
+            font-weight: 700; letter-spacing: 0.06em;
+        }
+
+        .ex-body { padding: 20px 24px; }
+
+        .ex-desc {
+            font-size: 0.88rem; color: #b0bec5; line-height: 1.7; margin-bottom: 16px;
+        }
+
+        .ex-tarefas {
+            list-style: none; padding: 0;
+            display: flex; flex-direction: column; gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .ex-tarefas li {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; color: var(--text-muted);
+            padding: 8px 12px; background: var(--bg-surface);
+            border-radius: 6px; border: 1px solid var(--border);
+        }
+
+        .ex-tarefas li::before {
+            content: "›"; color: var(--ex-cor, var(--cyan));
+            font-weight: 700; font-size: 1rem;
+        }
+
+        .ex-exemplo {
+            background: var(--bg-deep); border: 1px solid var(--border);
+            border-radius: 8px; padding: 12px 16px;
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: #94a3b8; line-height: 1.7;
+        }
+
+        .ex-exemplo-titulo {
+            font-size: 0.7rem; color: var(--text-faint);
+            margin-bottom: 8px; letter-spacing: 0.08em;
+        }
+
+        /* Cores dos exercícios */
+        .ex-1 { --ex-cor: #00e5ff; --ex-badge-bg: rgba(0,229,255,0.12); --ex-badge-border: rgba(0,229,255,0.3); }
+        .ex-2 { --ex-cor: #c084fc; --ex-badge-bg: rgba(192,132,252,0.12); --ex-badge-border: rgba(192,132,252,0.3); }
+        .ex-3 { --ex-cor: #10b981; --ex-badge-bg: rgba(16,185,129,0.12); --ex-badge-border: rgba(16,185,129,0.3); }
+
+        /* ── DICAS ESTRATÉGICAS ── */
+        .dicas-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 24px 28px;
+        }
+
+        .dicas-titulo {
+            font-size: 0.92rem; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        }
+
+        .dicas-titulo::before {
+            content: ""; width: 3px; height: 18px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+        }
+
+        .dicas-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+
+        @media (max-width: 580px) { .dicas-grid { grid-template-columns: 1fr; } }
+
+        .dicas-grupo {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px 18px;
+        }
+
+        .dicas-grupo-titulo {
+            font-size: 0.72rem; font-weight: 700;
+            color: var(--cyan); margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+
+        .dicas-lista {
+            list-style: none; padding: 0;
+            display: flex; flex-direction: column; gap: 6px;
+        }
+
+        .dicas-lista li {
+            font-size: 0.82rem; color: var(--text-muted);
+            display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+        }
+
+        .dicas-lista li::before {
+            content: "•"; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 2px;
+        }
+
+        /* ── DESAFIO EXTRA ── */
+        .desafio-card {
+            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+            border: 2px solid rgba(245,158,11,0.3);
+            border-radius: var(--radius-lg); padding: 28px 32px;
+        }
+
+        .desafio-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .desafio-icone { font-size: 2rem; }
+        .desafio-titulo { font-size: 1.1rem; font-weight: 800; color: var(--amber); }
+
+        .desafio-desc {
+            font-size: 0.92rem; color: #b0bec5; line-height: 1.7;
+        }
+
+        .desafio-desc strong { color: var(--text-primary); }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-valor.amber { color: var(--amber); font-family: var(--font-mono); }
+
+        /* Card checklist */
+        .card-checklist {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 22px 24px;
+        }
+
+        .checklist-titulo {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 14px;
+        }
+
+        .checklist-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 9px 0; border-bottom: 1px solid var(--border);
+            font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;
+        }
+
+        .checklist-item:last-child { border-bottom: none; }
+
+        .checklist-box {
+            width: 16px; height: 16px;
+            border: 2px solid var(--border);
+            border-radius: 3px; flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Card motivação */
+        .card-motivacao {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+        }
+
+        .motivacao-quote {
+            font-size: 0.88rem; color: #b0bec5;
+            line-height: 1.7; font-style: italic; margin-bottom: 10px;
+        }
+
+        .motivacao-quote strong { color: var(--text-primary); font-style: normal; }
+
+        .motivacao-autor {
+            font-family: var(--font-mono); font-size: 0.7rem;
+            color: var(--cyan); font-style: normal;
+        }
+
+        /* Próxima aula */
+        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 8 – Exercícios Propostos</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 08 · Exercícios
+            </div>
+            <h1 class="aula-titulo"><span>Exercícios Propostos</span></h1>
+            <p class="aula-desc">A teoria orienta. A prática fixa. Só no exercício o conhecimento vira competência.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">8 / 15</span>
+        </div>
 
-            <p>
-                A programação é consolidada na prática.
-                A teoria orienta, mas o exercício fixa o conhecimento.
-            </p>
+        <br>
 
-            <p>Os exercícios reforçam:</p>
+        <div class="aula-grid">
+        <div class="col-principal">
 
-            <ul>
-                <li>Variáveis</li>
-                <li>Entrada de dados (leia)</li>
-                <li>Saída de dados (escreva)</li>
-                <li>Processamento</li>
-            </ul>
-
-            <p><strong>Sem exercício, não há aprendizado.</strong></p>
-
-            <hr>
-
-            <h2>📝 Exercício 1 — Nome e Idade</h2>
-
-            <p>Crie um programa que:</p>
-
-            <ul>
-                <li>Leia o nome</li>
-                <li>Leia a idade</li>
-                <li>Mostre ambos na tela</li>
-            </ul>
-
-            <div class="bloco-codigo">
-<pre>
-Exemplo de saída:
-
-Nome: Carlos
-Idade: 20
-</pre>
+            <!-- Intro -->
+            <div class="intro-wrap">
+                <div class="intro-icone">💪</div>
+                <div class="intro-texto">
+                    <p>A programação é consolidada na prática. A teoria orienta, mas <strong>o exercício fixa o conhecimento</strong>.</p>
+                    <p>Sem exercício, não há aprendizado.</p>
+                </div>
             </div>
 
-            <hr>
-
-            <h2>📝 Exercício 2 — Soma de Dois Inteiros</h2>
-
-            <p>Crie um programa que:</p>
-
-            <ul>
-                <li>Leia dois números inteiros</li>
-                <li>Calcule a soma</li>
-                <li>Mostre o resultado</li>
-            </ul>
-
-            <div class="bloco-codigo">
-<pre>
-Digite o primeiro número: 5
-Digite o segundo número: 3
-Resultado da soma: 8
-</pre>
+            <!-- Conceitos praticados -->
+            <div>
+                <p class="secao-label">// conceitos praticados</p>
+                <div class="conceitos-grid">
+                    <div class="conceito-item"><div class="conceito-icone">📦</div><div class="conceito-texto">Variáveis</div></div>
+                    <div class="conceito-item"><div class="conceito-icone">⌨️</div><div class="conceito-texto">Entrada (leia)</div></div>
+                    <div class="conceito-item"><div class="conceito-icone">🖥️</div><div class="conceito-texto">Saída (escreva)</div></div>
+                    <div class="conceito-item"><div class="conceito-icone">⚙️</div><div class="conceito-texto">Processamento</div></div>
+                </div>
             </div>
 
-            <hr>
-
-            <h2>📝 Exercício 3 — Dobro de um Número Real</h2>
-
-            <p>Crie um programa que:</p>
-
-            <ul>
-                <li>Leia um valor real</li>
-                <li>Calcule o dobro</li>
-                <li>Mostre o resultado</li>
-            </ul>
-
-            <div class="bloco-codigo">
-<pre>
-Digite um valor: 2.5
-Dobro do valor: 5.0
-</pre>
+            <!-- Exercício 1 -->
+            <div class="exercicio-card ex-1">
+                <div class="ex-header">
+                    <div class="ex-titulo-wrap">
+                        <span class="ex-icone">📝</span>
+                        <span class="ex-titulo">Exercício 1 — Nome e Idade</span>
+                    </div>
+                    <span class="ex-badge">BÁSICO</span>
+                </div>
+                <div class="ex-body">
+                    <p class="ex-desc">Crie um programa que capture e exiba informações pessoais do usuário.</p>
+                    <ul class="ex-tarefas">
+                        <li>Leia o nome do usuário</li>
+                        <li>Leia a idade do usuário</li>
+                        <li>Mostre ambos na tela</li>
+                    </ul>
+                    <div class="ex-exemplo">
+                        <div class="ex-exemplo-titulo">// EXEMPLO DE SAÍDA</div>
+                        Nome: Carlos<br>
+                        Idade: 20
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Exercício 2 -->
+            <div class="exercicio-card ex-2">
+                <div class="ex-header">
+                    <div class="ex-titulo-wrap">
+                        <span class="ex-icone">📝</span>
+                        <span class="ex-titulo">Exercício 2 — Soma de Dois Inteiros</span>
+                    </div>
+                    <span class="ex-badge">BÁSICO</span>
+                </div>
+                <div class="ex-body">
+                    <p class="ex-desc">Desenvolva um programa que realize uma operação matemática simples entre dois números.</p>
+                    <ul class="ex-tarefas">
+                        <li>Leia dois números inteiros</li>
+                        <li>Calcule a soma dos dois valores</li>
+                        <li>Mostre o resultado na tela</li>
+                    </ul>
+                    <div class="ex-exemplo">
+                        <div class="ex-exemplo-titulo">// EXEMPLO DE INTERAÇÃO</div>
+                        Digite o primeiro número: 5<br>
+                        Digite o segundo número: 3<br>
+                        Resultado da soma: 8
+                    </div>
+                </div>
+            </div>
 
-            <h2>✅ Dicas Estratégicas</h2>
+            <!-- Exercício 3 -->
+            <div class="exercicio-card ex-3">
+                <div class="ex-header">
+                    <div class="ex-titulo-wrap">
+                        <span class="ex-icone">📝</span>
+                        <span class="ex-titulo">Exercício 3 — Dobro de um Número Real</span>
+                    </div>
+                    <span class="ex-badge">BÁSICO</span>
+                </div>
+                <div class="ex-body">
+                    <p class="ex-desc">Implemente um programa que trabalhe com números decimais e multiplicação.</p>
+                    <ul class="ex-tarefas">
+                        <li>Leia um valor real (com casas decimais)</li>
+                        <li>Calcule o dobro do valor informado</li>
+                        <li>Exiba o resultado com precisão</li>
+                    </ul>
+                    <div class="ex-exemplo">
+                        <div class="ex-exemplo-titulo">// EXEMPLO DE INTERAÇÃO</div>
+                        Digite um valor: 2.5<br>
+                        Dobro do valor: 5.0
+                    </div>
+                </div>
+            </div>
 
-            <ol>
-                <li>O que o programa vai ler?</li>
-                <li>O que ele vai processar?</li>
-                <li>O que ele vai mostrar?</li>
-            </ol>
+            <!-- Dicas estratégicas -->
+            <div class="dicas-wrap">
+                <p class="dicas-titulo">Dicas Estratégicas</p>
+                <div class="dicas-grid">
+                    <div class="dicas-grupo">
+                        <div class="dicas-grupo-titulo">Perguntas guia</div>
+                        <ul class="dicas-lista">
+                            <li>O que o programa vai ler?</li>
+                            <li>O que ele vai processar?</li>
+                            <li>O que ele vai mostrar?</li>
+                        </ul>
+                    </div>
+                    <div class="dicas-grupo">
+                        <div class="dicas-grupo-titulo">Passo a passo</div>
+                        <ul class="dicas-lista">
+                            <li>Declare as variáveis necessárias</li>
+                            <li>Use <code style="font-family:var(--font-mono);color:var(--cyan)">leia</code> para entrada</li>
+                            <li>Use <code style="font-family:var(--font-mono);color:var(--cyan)">escreva</code> para saída</li>
+                            <li>Realize cálculos antes de exibir</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <ul>
-                <li>Declare variáveis</li>
-                <li>Use leia para entrada</li>
-                <li>Use escreva para saída</li>
-                <li>Realize cálculos antes de exibir</li>
-            </ul>
+            <!-- Desafio extra -->
+            <div class="desafio-card">
+                <div class="desafio-header">
+                    <span class="desafio-icone">🚀</span>
+                    <span class="desafio-titulo">Desafio Extra</span>
+                </div>
+                <p class="desafio-desc">
+                    Crie um programa que leia o <strong>nome do aluno</strong>, <strong>duas notas</strong> e calcule a <strong>média final</strong>. Exiba o nome e a média calculada de forma clara e organizada.
+                </p>
+            </div>
 
-            <hr>
+        </div>
 
-            <h2>🚀 Desafio Extra</h2>
+        <!-- Sidebar -->
+        <div class="aula-sidebar">
 
-            <p>
-                Crie um programa que leia o nome do aluno,
-                duas notas e calcule a média.
-            </p>
+            <div class="card-meta">
+                <p class="card-meta-titulo">// info da aula</p>
+                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor amber">08</span></div>
+                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Exercício</span></div>
+                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Prática</span></div>
+                <div class="meta-item"><span class="meta-label">Exercícios</span><span class="meta-valor cyan">3 + 1</span></div>
+            </div>
 
-            <hr>
+            <!-- Checklist -->
+            <div class="card-checklist">
+                <p class="checklist-titulo">// antes de começar</p>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <span>Revisei variáveis</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <span>Entendo leia/escreva</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <span>Sei declarar tipos</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <span>Tenho editor aberto</span>
+                </div>
+            </div>
 
-            <h2>Conclusão</h2>
+            <!-- Motivação -->
+            <div class="card-motivacao">
+                <blockquote class="motivacao-quote">
+                    "Programar é <strong>executar</strong>. Não apenas ler."
+                </blockquote>
+                <cite class="motivacao-autor">— Fundamentos de Programação</cite>
+            </div>
 
-            <p>
-                A prática transforma teoria em competência.
-                Quanto mais exercícios, maior domínio da lógica.
-            </p>
+            <div class="card-proximo">
+                <p class="card-proximo-label">// próxima aula</p>
+                <h3>Desafio Laboratório</h3>
+                <p>Hora de testar suas habilidades com um desafio prático mais complexo e criativo.</p>
+                <a href="aula9.html" class="btn-proximo">
+                    Ir para Aula 9
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
 
-            <p>
-                Programar é executar. Não apenas ler.
-            </p>
-
+        </div>
         </div>
 
     </section>
 
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
+    
 </body>
 </html>

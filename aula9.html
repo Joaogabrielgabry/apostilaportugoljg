@@ -2,121 +2,462 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Aula 9 - Desafio Laboratório</title>
+    <title>Aula 9 — Desafio Laboratório · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        .aula-hero {
+            padding: 48px 0 32px; text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--amber); background: var(--amber-dim);
+            border: 1px solid rgba(245,158,11,0.3);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+
+        .aula-numero-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+        .aula-titulo span { background: linear-gradient(135deg, var(--amber), #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 60%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
+        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+
+        /* ── CENÁRIO DO DESAFIO ── */
+        .cenario-card {
+            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+            border: 2px solid rgba(245,158,11,0.3);
+            border-radius: var(--radius-lg); padding: 32px 36px;
+        }
+
+        .cenario-header {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .cenario-icone { font-size: 2.4rem; }
+        .cenario-titulo { font-size: 1.2rem; font-weight: 800; color: var(--amber); line-height: 1.2; }
+
+        .cenario-texto p {
+            font-size: 0.95rem; color: #b0bec5; line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .cenario-texto p:last-child { margin-bottom: 0; }
+        .cenario-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── OPCOES DO USUARIO ── */
+        .opcoes-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 24px 28px;
+        }
+
+        .opcoes-titulo {
+            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        }
+
+        .opcoes-titulo::before {
+            content: ""; width: 3px; height: 18px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+        }
+
+        .opcoes-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+
+        @media (max-width: 540px) { .opcoes-grid { grid-template-columns: 1fr; } }
+
+        .opcao-item {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px;
+            transition: var(--transition);
+        }
+
+        .opcao-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+
+        .opcao-key {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px;
+            background: var(--cyan-dim); border: 1px solid var(--border-accent);
+            border-radius: 6px; font-family: var(--font-mono);
+            font-size: 0.9rem; font-weight: 700; color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .opcao-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── ESTRUTURA ESPERADA ── */
+        .estrutura-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+        }
+
+        @media (max-width: 640px) { .estrutura-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .estrutura-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px 14px;
+            text-align: center; transition: var(--transition);
+        }
+
+        .estrutura-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .estrutura-icone { font-size: 1.3rem; margin-bottom: 8px; }
+        .estrutura-texto { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
+
+        /* ── CODIGO ── */
+        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
+        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
+        .codigo-dots { display: flex; gap: 6px; }
+        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--amber); background: var(--amber-dim); border: 1px solid rgba(245,158,11,0.3); padding: 2px 8px; border-radius: 4px; }
+        .codigo-body { padding: 20px 24px; overflow-x: auto; }
+        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .op  { color: #f472b6; }
+        .cm  { color: #475569; font-style: italic; }
+        .num { color: #fb923c; }
+
+        /* ── OBJETIVOS ── */
+        .objetivos-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-left: 3px solid var(--cyan);
+            border-radius: var(--radius-md); padding: 24px 28px;
+        }
+
+        .objetivos-titulo {
+            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+
+        .objetivos-lista {
+            list-style: none; padding: 0;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+
+        .objetivos-lista li {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; color: var(--text-muted);
+            padding: 8px 12px; background: var(--bg-surface);
+            border-radius: 6px; border: 1px solid var(--border);
+        }
+
+        .objetivos-lista li::before {
+            content: "✓"; color: var(--cyan);
+            font-weight: 700; font-size: 1rem;
+        }
+
+        /* ── CONCLUSAO CARD ── */
+        .conclusao-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 24px 28px;
+            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+        }
+
+        @media (max-width: 580px) { .conclusao-card { grid-template-columns: 1fr; } }
+
+        .conclusao-icone { font-size: 2.4rem; }
+
+        .conclusao-texto p { color: #b0bec5; font-size: 0.92rem; line-height: 1.7; margin-bottom: 8px; }
+        .conclusao-texto p:last-child { margin-bottom: 0; }
+        .conclusao-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-valor.amber { color: var(--amber); font-family: var(--font-mono); }
+
+        /* Card nivel */
+        .card-nivel {
+            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+            text-align: center;
+        }
+
+        .nivel-titulo { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+        .nivel-valor { font-size: 1.1rem; font-weight: 800; color: var(--amber); margin-bottom: 6px; }
+        .nivel-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Card dica */
+        .card-dica {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+        }
+
+        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .dica-icone { font-size: 1.3rem; }
+        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
+        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+
+        /* Próxima aula */
+        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
 </head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 9 – Exercícios de Aula</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 09 · Desafio
+            </div>
+            <h1 class="aula-titulo">Desafio <span>Laboratório</span></h1>
+            <p class="aula-desc">Um passo além dos exercícios básicos — hora de integrar tudo e pensar como programador.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">9 / 15</span>
+        </div>
 
-            <h2>📘 Desafio — O Laboratório das Expressões</h2>
+        <br>
 
-            <p>
-                Você foi contratado para um laboratório de matemática computacional.
-                O sistema trabalha com duas expressões:
-                <strong>Expressão A</strong> e <strong>Expressão B</strong>.
-            </p>
+        <div class="aula-grid">
+        <div class="col-principal">
 
-            <p>
-                O programa deve perguntar ao usuário qual expressão deseja calcular:
-            </p>
+            <!-- Cenário do desafio -->
+            <div class="cenario-card">
+                <div class="cenario-header">
+                    <span class="cenario-icone">🔬</span>
+                    <h2 class="cenario-titulo">O Laboratório das Expressões</h2>
+                </div>
+                <div class="cenario-texto">
+                    <p>
+                        Você foi contratado para um <strong>laboratório de matemática computacional</strong>.
+                        O sistema trabalha com duas expressões matemáticas complexas: <strong>Expressão A</strong> e <strong>Expressão B</strong>.
+                    </p>
+                    <p>
+                        O programa deve perguntar ao usuário qual expressão deseja calcular.
+                        Caso o usuário digite qualquer outro valor, o sistema deve informar que a opção é inválida.
+                    </p>
+                </div>
+            </div>
 
-            <ul>
-                <li>A → Calcula Expressão A</li>
-                <li>B → Calcula Expressão B</li>
-            </ul>
+            <!-- Opções do usuário -->
+            <div>
+                <p class="secao-label">// opções disponíveis</p>
+                <div class="opcoes-wrap">
+                    <p class="opcoes-titulo">O usuário pode escolher entre</p>
+                    <div class="opcoes-grid">
+                        <div class="opcao-item">
+                            <div class="opcao-key">A</div>
+                            <p class="opcao-desc">Calcula e exibe o resultado da Expressão A</p>
+                        </div>
+                        <div class="opcao-item">
+                            <div class="opcao-key">B</div>
+                            <p class="opcao-desc">Calcula e exibe o resultado da Expressão B</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <p>
-                Caso o usuário digite qualquer outro valor,
-                o sistema deve informar que a opção é inválida.
-            </p>
+            <!-- Estrutura esperada -->
+            <div>
+                <p class="secao-label">// estrutura esperada</p>
+                <div class="estrutura-grid">
+                    <div class="estrutura-item"><div class="estrutura-icone">⌨️</div><div class="estrutura-texto">Entrada de dados</div></div>
+                    <div class="estrutura-item"><div class="estrutura-icone">🔀</div><div class="estrutura-texto">Condicional (se/senao)</div></div>
+                    <div class="estrutura-item"><div class="estrutura-icone">🧮</div><div class="estrutura-texto">Cálculo matemático</div></div>
+                    <div class="estrutura-item"><div class="estrutura-icone">🖥️</div><div class="estrutura-texto">Saída de resultado</div></div>
+                </div>
+            </div>
 
-            <hr>
+            <!-- Solução exemplo -->
+            <div>
+                <p class="secao-label">// exemplo de solução</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">laboratorio-expressoes.por</span>
+                        <span class="codigo-lang">desafio</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">programa</span>{
 
-            <h2>Estrutura esperada</h2>
+   <span class="kw">funcao</span> <span class="fn">inicio</span>(){
 
-            <ul>
-                <li>Entrada de dados</li>
-                <li>Estrutura condicional (se / senao)</li>
-                <li>Cálculo matemático</li>
-                <li>Saída de resultado</li>
-            </ul>
+      <span class="tp">caracter</span> <span class="var">AorB</span>
 
-            <hr>
+      <span class="fn">escreva</span>(<span class="str">"Digite A para expressão 'A' e B para expressão 'B': "</span>)
+      <span class="fn">leia</span>(<span class="var">AorB</span>)
 
-            <h2>💻 Exemplo de solução</h2>
+      <span class="kw">se</span>(<span class="var">AorB</span> <span class="op">==</span> <span class="str">'A'</span>){
 
-            <div class="bloco-codigo">
-<pre>
-programa{
+         <span class="tp">inteiro</span> <span class="var">resultadoA</span>
+         <span class="var">resultadoA</span> <span class="op">=</span> <span class="num">2</span> <span class="op">+</span> <span class="num">3</span> <span class="op">-</span> <span class="num">5</span> <span class="op">*</span> <span class="num">8</span> <span class="op">-</span> <span class="num">4</span> <span class="op">+</span> <span class="num">354</span> <span class="op">-</span> <span class="num">521</span> <span class="op">+</span> <span class="num">7</span> <span class="op">*</span> <span class="num">66</span>
 
-   funcao inicio(){
+         <span class="fn">escreva</span>(<span class="str">"O resultado da expressão A é: "</span>, <span class="var">resultadoA</span>)
 
-      caracter AorB
+      } <span class="kw">senao se</span>(<span class="var">AorB</span> <span class="op">==</span> <span class="str">'B'</span>){
 
-      escreva("Digite A para expressão 'A' e B para expressão 'B': ")
-      leia(AorB)
+         <span class="tp">inteiro</span> <span class="var">resultadoB</span>
+         <span class="var">resultadoB</span> <span class="op">=</span> <span class="num">2</span> <span class="op">+</span> <span class="num">7</span> <span class="op">*</span> (<span class="num">14</span> <span class="op">-</span> <span class="num">21</span>) <span class="op">+</span> <span class="num">28</span> <span class="op">*</span> <span class="num">3</span> <span class="op">*</span> <span class="num">42</span> <span class="op">+</span> <span class="num">740</span> <span class="op">-</span> (<span class="num">156</span> <span class="op">+</span> <span class="num">4</span> <span class="op">+</span> <span class="num">40</span>) <span class="op">*</span> <span class="num">9</span>
 
-      se(AorB == 'A'){
+         <span class="fn">escreva</span>(<span class="str">"O resultado da expressão B é: "</span>, <span class="var">resultadoB</span>)
 
-         inteiro resultadoA
-         resultadoA = 2 + 3 - 5 * 8 - 4 + 354 - 521 + 7 * 66
+      } <span class="kw">senao</span> {
 
-         escreva("O resultado da expressão A é: ", resultadoA)
-
-      } senao se(AorB == 'B'){
-
-         inteiro resultadoB
-         resultadoB = 2 + 7 * (14 - 21) + 28 * 3 * 42 + 740 - (156 + 4 + 40) * 9
-
-         escreva("O resultado da expressão B é: ", resultadoB)
-
-      } senao {
-
-         escreva("Opção inválida.")
+         <span class="fn">escreva</span>(<span class="str">"Opção inválida."</span>)
 
       }
 
    }
 
-}
-</pre>
+}</pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Objetivos -->
+            <div class="objetivos-wrap">
+                <p class="objetivos-titulo">Objetivos do Exercício</p>
+                <ul class="objetivos-lista">
+                    <li>Trabalhar entrada de dados do usuário</li>
+                    <li>Aplicar estrutura condicional (se/senao)</li>
+                    <li>Respeitar precedência matemática</li>
+                    <li>Organizar o código de forma profissional</li>
+                </ul>
+            </div>
 
-            <h2>Objetivo do exercício</h2>
+            <!-- Conclusão -->
+            <div class="conclusao-card">
+                <div class="conclusao-icone">🎯</div>
+                <div class="conclusao-texto">
+                    <p>
+                        Esse exercício integra <strong>variáveis, entrada, decisão e cálculo</strong> em um único programa coeso.
+                    </p>
+                    <p>
+                        É um passo além dos exercícios básicos. Aqui o aluno começa a <strong>pensar como programador</strong>.
+                    </p>
+                </div>
+            </div>
 
-            <ul>
-                <li>Trabalhar entrada de dados</li>
-                <li>Aplicar estrutura condicional</li>
-                <li>Respeitar precedência matemática</li>
-                <li>Organizar o código corretamente</li>
-            </ul>
+        </div>
 
-            <hr>
+        <!-- Sidebar -->
+        <div class="aula-sidebar">
 
-            <h2>Conclusão</h2>
+            <div class="card-meta">
+                <p class="card-meta-titulo">// info da aula</p>
+                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor amber">09</span></div>
+                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Desafio</span></div>
+                <div class="meta-item"><span class="meta-label">Complexidade</span><span class="meta-valor amber">Intermediário</span></div>
+                <div class="meta-item"><span class="meta-label">Conceitos</span><span class="meta-valor cyan">4</span></div>
+            </div>
 
-            <p>
-                Esse exercício integra variáveis, entrada,
-                decisão e cálculo em um único programa.
-            </p>
+            <!-- Nível -->
+            <div class="card-nivel">
+                <p class="nivel-titulo">nível de dificuldade</p>
+                <p class="nivel-valor">Intermediário</p>
+                <p class="nivel-desc">Combina múltiplos conceitos em um único programa</p>
+            </div>
 
-            <p>
-                É um passo além dos exercícios básicos.
-                Aqui o aluno começa a pensar como programador.
-            </p>
+            <!-- Dica -->
+            <div class="card-dica">
+                <div class="dica-header">
+                    <span class="dica-icone">💡</span>
+                    <span class="dica-titulo">Dica Importante</span>
+                </div>
+                <p class="dica-texto">
+                    Atenção à precedência dos operadores matemáticos: multiplicação e divisão vêm antes de soma e subtração. Use parênteses para forçar uma ordem específica.
+                </p>
+            </div>
 
+            <div class="card-proximo">
+                <p class="card-proximo-label">// próxima aula</p>
+                <h3>Estação Meteorológica</h3>
+                <p>Crie um sistema completo que simula uma estação meteorológica com múltiplas funcionalidades.</p>
+                <a href="aula10.html" class="btn-proximo">
+                    Ir para Aula 10
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
         </div>
 
     </section>
 
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
+    
 </body>
 </html>

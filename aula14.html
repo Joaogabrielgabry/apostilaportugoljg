@@ -1,117 +1,505 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Aula 14 - Calculadora Básica</title>
+    <title>Aula 14 — Calculadora Básica · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
 
+        .aula-hero {
+            padding: 48px 0 32px; text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+
+        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+        .aula-titulo span { background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 93.33%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
+        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+
+        /* ── CENÁRIO ── */
+        .cenario-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px 32px;
+            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+        }
+        @media (max-width: 580px) { .cenario-card { grid-template-columns: 1fr; } }
+        .cenario-icone { font-size: 2.6rem; }
+        .cenario-texto p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
+        .cenario-texto p:last-child { margin-bottom: 0; }
+        .cenario-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── REQUISITOS ── */
+        .requisitos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        @media (max-width: 580px) { .requisitos-grid { grid-template-columns: 1fr; } }
+        .req-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 18px;
+            display: flex; align-items: center; gap: 14px;
+            transition: var(--transition);
+        }
+        .req-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .req-numero {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            width: 32px; height: 32px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; flex-shrink: 0;
+        }
+        .req-texto { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+
+        /* ── OPERAÇÕES VISUAL ── */
+        .operacoes-card {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); padding: 28px 32px;
+        }
+        .operacoes-titulo {
+            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+        }
+        .operacoes-titulo::before {
+            content: ""; width: 3px; height: 18px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+        }
+        .operacoes-lista { display: flex; flex-direction: column; gap: 8px; }
+        .op-item {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 14px 16px;
+            transition: var(--transition);
+        }
+        .op-item:hover { background: var(--bg-card-hover); }
+        .op-icone { font-size: 1.2rem; flex-shrink: 0; }
+        .op-label { flex: 1; font-size: 0.82rem; color: var(--text-muted); }
+        .op-formula {
+            font-family: var(--font-mono); font-size: 0.85rem;
+            font-weight: 700; color: var(--cyan);
+            background: var(--cyan-dim); border: 1px solid var(--border-accent);
+            padding: 4px 12px; border-radius: 4px;
+        }
+        .op-item.alerta { border-color: rgba(251,191,36,0.3); }
+        .op-item.alerta .op-formula {
+            color: #fbbf24; background: rgba(251,191,36,0.1);
+            border-color: rgba(251,191,36,0.3);
+        }
+        .op-total {
+            margin-top: 12px; padding-top: 16px;
+            border-top: 2px solid var(--border-accent);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .op-total-label { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+        .op-total-valor {
+            font-family: var(--font-mono); font-size: 0.88rem;
+            font-weight: 700; color: #fbbf24;
+            background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3);
+            padding: 6px 14px; border-radius: 6px;
+        }
+
+        /* ── CODIGO ── */
+        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
+        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
+        .codigo-dots { display: flex; gap: 6px; }
+        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
+        .codigo-body { padding: 20px 24px; overflow-x: auto; }
+        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .op  { color: #f472b6; }
+        .cm  { color: #475569; font-style: italic; }
+        .num { color: #fb923c; }
+
+        /* ── OBJETIVOS ── */
+        .objetivos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        @media (max-width: 580px) { .objetivos-grid { grid-template-columns: 1fr; } }
+        .objetivo-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 18px 16px;
+            display: flex; align-items: center; gap: 12px;
+            transition: var(--transition);
+        }
+        .objetivo-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .objetivo-icone { font-size: 1.3rem; flex-shrink: 0; }
+        .objetivo-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+
+        /* ── PRÓXIMO PASSO ── */
+        .proximo-passo-card {
+            background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
+            border: 1px solid rgba(16,185,129,0.25);
+            border-radius: var(--radius-lg); padding: 24px 28px;
+        }
+        .pp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .pp-icone { font-size: 1.4rem; }
+        .pp-titulo { font-size: 0.92rem; font-weight: 700; color: var(--green); }
+        .pp-texto p { color: #b0bec5; font-size: 0.88rem; line-height: 1.7; margin-bottom: 10px; }
+        .pp-texto p:last-child { margin-bottom: 0; }
+        .pp-texto strong { color: var(--text-primary); }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        .card-contadores { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .contadores-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+        .contador-linha { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+        .contador-linha:last-child { border-bottom: none; }
+        .contador-label { color: var(--text-muted); }
+        .contador-valor { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--cyan); }
+
+        .card-dica {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+        }
+        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .dica-icone { font-size: 1.3rem; }
+        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
+        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+
+        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
+</head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 14 – Calculadora Básica</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 14 · Validação de Dados
+            </div>
+            <h1 class="aula-titulo">Calculadora <span>Básica</span></h1>
+            <p class="aula-desc">Realize as quatro operações aritméticas com validação inteligente contra divisão por zero.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">14 / 15</span>
+        </div>
 
-            <h2>📝 Desafio</h2>
+        <br>
 
-            <p>
-                Criar um programa que funcione como uma calculadora simples.
-            </p>
+        <div class="aula-grid">
+        <div class="col-principal">
 
-            <hr>
+            <!-- Cenário -->
+            <div class="cenario-card">
+                <div class="cenario-icone">🧮</div>
+                <div class="cenario-texto">
+                    <p>
+                        O programa lê dois números e executa as <strong>quatro operações aritméticas</strong> de uma só vez,
+                        exibindo todos os resultados.
+                    </p>
+                    <p>
+                        Uma verificação prévia garante que a <strong>divisão por zero</strong> seja tratada
+                        antes de qualquer cálculo, evitando erros em tempo de execução.
+                    </p>
+                </div>
+            </div>
 
-            <h2>Requisitos</h2>
+            <!-- Requisitos -->
+            <div>
+                <p class="secao-label">// requisitos do sistema</p>
+                <div class="requisitos-grid">
+                    <div class="req-item">
+                        <div class="req-numero">01</div>
+                        <p class="req-texto">Ler dois números do tipo real</p>
+                    </div>
+                    <div class="req-item">
+                        <div class="req-numero">02</div>
+                        <p class="req-texto">Verificar se o divisor é diferente de zero</p>
+                    </div>
+                    <div class="req-item">
+                        <div class="req-numero">03</div>
+                        <p class="req-texto">Calcular as quatro operações</p>
+                    </div>
+                    <div class="req-item">
+                        <div class="req-numero">04</div>
+                        <p class="req-texto">Exibir todos os resultados ou aviso de erro</p>
+                    </div>
+                </div>
+            </div>
 
-            <ul>
-                <li>Ler dois números</li>
-                <li>Calcular soma</li>
-                <li>Calcular subtração</li>
-                <li>Calcular multiplicação</li>
-                <li>Calcular divisão</li>
-                <li>Validar divisão por zero</li>
-            </ul>
+            <!-- Operações visual -->
+            <div>
+                <p class="secao-label">// operações realizadas</p>
+                <div class="operacoes-card">
+                    <p class="operacoes-titulo">Exemplo com número1 = 10 e numero2 = 2</p>
+                    <div class="operacoes-lista">
+                        <div class="op-item">
+                            <span class="op-icone">➕</span>
+                            <span class="op-label">Soma</span>
+                            <span class="op-formula">10 + 2 = 12</span>
+                        </div>
+                        <div class="op-item">
+                            <span class="op-icone">➖</span>
+                            <span class="op-label">Subtração</span>
+                            <span class="op-formula">10 - 2 = 8</span>
+                        </div>
+                        <div class="op-item">
+                            <span class="op-icone">✖️</span>
+                            <span class="op-label">Multiplicação</span>
+                            <span class="op-formula">10 * 2 = 20</span>
+                        </div>
+                        <div class="op-item">
+                            <span class="op-icone">➗</span>
+                            <span class="op-label">Divisão</span>
+                            <span class="op-formula">10 / 2 = 5</span>
+                        </div>
+                        <div class="op-item alerta">
+                            <span class="op-icone">⚠️</span>
+                            <span class="op-label">Se numero2 fosse 0 — bloco bloqueado</span>
+                            <span class="op-formula">numero2 != 0</span>
+                        </div>
+                        <div class="op-total">
+                            <span class="op-total-label">Operador de validação utilizado</span>
+                            <span class="op-total-valor">!= (diferente de)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <hr>
+            <!-- Solução -->
+            <div>
+                <p class="secao-label">// exemplo de solução</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">calculadora.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">programa</span>{
 
-            <h2>💻 Exemplo de Solução</h2>
+   <span class="kw">funcao</span> <span class="fn">inicio</span>(){
 
-            <div class="bloco-codigo">
-                <pre>
-programa{
+      <span class="tp">real</span> <span class="var">numero1</span>
+      <span class="tp">real</span> <span class="var">numero2</span>
+      <span class="tp">real</span> <span class="var">Soma</span>
+      <span class="tp">real</span> <span class="var">Subtracao</span>
+      <span class="tp">real</span> <span class="var">Multiplicacao</span>
+      <span class="tp">real</span> <span class="var">Divisao</span>
 
-   funcao inicio(){
+      <span class="fn">escreva</span>(<span class="str">"Digite um número: "</span>)
+      <span class="fn">leia</span>(<span class="var">numero1</span>)
 
-      real numero1
-      real numero2
-      real Soma
-      real Subtracao
-      real Multiplicacao
-      real Divisao
+      <span class="fn">escreva</span>(<span class="str">"\nDigite um segundo número: "</span>)
+      <span class="fn">leia</span>(<span class="var">numero2</span>)
 
-      escreva("Digite um número: ")
-      leia(numero1)
+      <span class="kw">se</span>(<span class="var">numero2</span> <span class="op">!=</span> <span class="num">0</span>){
 
-      escreva("\nDigite um segundo número: ")
-      leia(numero2)
+         <span class="var">Soma</span>           <span class="op">=</span> <span class="var">numero1</span> <span class="op">+</span> <span class="var">numero2</span>
+         <span class="var">Subtracao</span>      <span class="op">=</span> <span class="var">numero1</span> <span class="op">-</span> <span class="var">numero2</span>
+         <span class="var">Multiplicacao</span>  <span class="op">=</span> <span class="var">numero1</span> <span class="op">*</span> <span class="var">numero2</span>
+         <span class="var">Divisao</span>        <span class="op">=</span> <span class="var">numero1</span> <span class="op">/</span> <span class="var">numero2</span>
 
-      se(numero2 != 0){
+         <span class="fn">escreva</span>(<span class="str">"\nSoma: "</span>,          <span class="var">Soma</span>)
+         <span class="fn">escreva</span>(<span class="str">"\nSubtração: "</span>,    <span class="var">Subtracao</span>)
+         <span class="fn">escreva</span>(<span class="str">"\nMultiplicação: "</span>, <span class="var">Multiplicacao</span>)
+         <span class="fn">escreva</span>(<span class="str">"\nDivisão: "</span>,       <span class="var">Divisao</span>)
 
-         Soma = numero1 + numero2
-         Subtracao = numero1 - numero2
-         Multiplicacao = numero1 * numero2
-         Divisao = numero1 / numero2
+      } <span class="kw">senao</span> {
 
-         escreva("\nSoma: ", Soma)
-         escreva("\nSubtração: ", Subtracao)
-         escreva("\nMultiplicação: ", Multiplicacao)
-         escreva("\nDivisão: ", Divisao)
-
-      } senao {
-
-         escreva("Não é possível dividir por zero.")
+         <span class="fn">escreva</span>(<span class="str">"Não é possível dividir por zero."</span>)
 
       }
 
    }
 
-}
-</pre>
+}</pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Objetivos -->
+            <div>
+                <p class="secao-label">// objetivos do exercício</p>
+                <div class="objetivos-grid">
+                    <div class="objetivo-item">
+                        <span class="objetivo-icone">🔢</span>
+                        <p class="objetivo-texto">Usar o tipo <strong>real</strong> para números com decimais</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span class="objetivo-icone">➕</span>
+                        <p class="objetivo-texto">Aplicar os quatro operadores aritméticos</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span class="objetivo-icone">🛡️</span>
+                        <p class="objetivo-texto">Validar dados antes de processar</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span class="objetivo-icone">⚖️</span>
+                        <p class="objetivo-texto">Usar o operador relacional <strong>!=</strong> (diferente)</p>
+                    </div>
+                </div>
+            </div>
 
-            <h2>Conceitos Aplicados</h2>
+            <!-- Próximo passo -->
+            <div class="proximo-passo-card">
+                <div class="pp-header">
+                    <span class="pp-icone">🔄</span>
+                    <span class="pp-titulo">Evolução Natural</span>
+                </div>
+                <div class="pp-texto">
+                    <p>
+                        Esta calculadora trata bem a divisão por zero, mas ainda calcula tudo de uma vez.
+                        O próximo passo é dar ao usuário a <strong>escolha da operação</strong> —
+                        usando um menu interativo com <strong>escolha-caso</strong>.
+                    </p>
+                    <p>
+                        Assim o programa se torna uma calculadora de verdade: o usuário
+                        <strong>seleciona o que quer calcular</strong> em vez de receber tudo ao mesmo tempo.
+                    </p>
+                </div>
+            </div>
 
-            <ul>
-                <li>Operadores aritméticos (+ - * /)</li>
-                <li>Estrutura condicional (se / senao)</li>
-                <li>Operador relacional (!=)</li>
-                <li>Validação de dados</li>
-            </ul>
+        </div>
 
-            <hr>
+        <!-- Sidebar -->
+        <div class="aula-sidebar">
 
-            <h2>Conclusão</h2>
+            <div class="card-meta">
+                <p class="card-meta-titulo">// info da aula</p>
+                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">14</span></div>
+                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Desafio</span></div>
+                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
+                <div class="meta-item"><span class="meta-label">Conceito</span><span class="meta-valor">Validação</span></div>
+            </div>
 
-            <p>
-                A validação evita erros no programa.
-                Divisão por zero é uma situação que precisa ser tratada.
-            </p>
+            <!-- Contadores -->
+            <div class="card-contadores">
+                <p class="contadores-titulo">// estatísticas</p>
+                <div class="contador-linha">
+                    <span class="contador-label">Operações</span>
+                    <span class="contador-valor">4</span>
+                </div>
+                <div class="contador-linha">
+                    <span class="contador-label">Variáveis</span>
+                    <span class="contador-valor">6</span>
+                </div>
+                <div class="contador-linha">
+                    <span class="contador-label">Entradas</span>
+                    <span class="contador-valor">2</span>
+                </div>
+                <div class="contador-linha">
+                    <span class="contador-label">Validações</span>
+                    <span class="contador-valor">1</span>
+                </div>
+            </div>
 
-            <p>
-                Programar não é apenas calcular.
-                É prever problemas antes que aconteçam.
-            </p>
+            <!-- Dica -->
+            <div class="card-dica">
+                <div class="dica-header">
+                    <span class="dica-icone">💡</span>
+                    <span class="dica-titulo">Dica de Ouro</span>
+                </div>
+                <p class="dica-texto">
+                    Sempre valide os dados <em>antes</em> de usá-los.
+                    Verificar <strong>numero2 != 0</strong> antes de dividir é
+                    um hábito que separa bons programadores de ótimos.
+                </p>
+            </div>
 
+            <div class="card-proximo">
+                <p class="card-proximo-label">// próxima aula</p>
+                <h3>Aula Final do Módulo</h3>
+                <p>A última aula chegou — aplique tudo que você aprendeu no projeto final do curso!</p>
+                <a href="aula15.html" class="btn-proximo">
+                    Ir para Aula 15
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
         </div>
 
     </section>
 
-</body>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
 
+</body>
 </html>

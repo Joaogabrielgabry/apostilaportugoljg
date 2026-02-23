@@ -1,228 +1,700 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Aula 6 - Variáveis</title>
+    <title>Aula 6 — Variáveis · Portugol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
 
+        .aula-hero {
+            padding: 48px 0 32px;
+            text-align: center;
+            animation: fadeDown 0.5s ease both;
+        }
+
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+
+        .aula-numero-dot {
+            width: 6px; height: 6px; background: var(--cyan);
+            border-radius: 50%; animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+            color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 480px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 20px 28px;
+            display: flex; align-items: center; gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 40%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+
+        /* ── GRID ── */
+        .aula-grid {
+            display: grid; grid-template-columns: 1fr 300px;
+            gap: 20px; align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+
+        @media (max-width: 860px) {
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
+        }
+
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+
+        .secao-label {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 10px; padding-left: 2px;
+        }
+
+        /* ── ANALOGIA DA CAIXA ── */
+        .analogia-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 580px) { .analogia-wrap { grid-template-columns: 1fr; } }
+
+        .analogia-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        .analogia-icone { font-size: 2rem; }
+
+        .analogia-titulo {
+            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
+        }
+
+        .analogia-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+        .analogia-memoria {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+        }
+
+        .memoria-slots {
+            display: flex; flex-direction: column; gap: 6px; margin-top: 4px;
+        }
+
+        .memoria-slot {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--bg-deep); border: 1px solid var(--border);
+            border-radius: 6px; padding: 7px 12px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+        }
+
+        .slot-addr { color: var(--text-faint); min-width: 50px; }
+        .slot-nome { color: var(--cyan); font-weight: 700; flex: 1; }
+        .slot-val  { color: #86efac; }
+
+        /* ── 4 USOS COMPACTOS ── */
+        .usos-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 640px) { .usos-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 400px) { .usos-grid { grid-template-columns: 1fr; } }
+
+        .uso-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 14px 10px;
+            text-align: center; transition: var(--transition);
+        }
+
+        .uso-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .uso-icone { font-size: 1.2rem; margin-bottom: 6px; }
+        .uso-texto { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; font-weight: 500; }
+
+        /* ── TIPOS — tabela visual ── */
+        .tipos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 640px) { .tipos-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .tipo-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .tipo-card:hover { transform: translateY(-2px); border-color: var(--etapa-cor, var(--border-accent)); }
+
+        .tipo-header {
+            padding: 14px 16px 10px;
+            border-bottom: 2px solid var(--etapa-cor, var(--border-accent));
+        }
+
+        .tipo-keyword {
+            font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700;
+            color: var(--etapa-cor, var(--cyan));
+        }
+
+        .tipo-nome { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+        .tipo-body { padding: 10px 16px 14px; }
+
+        .tipo-exemplo {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: #94a3b8; background: var(--bg-deep);
+            border-radius: 4px; padding: 6px 8px; margin-bottom: 8px;
+        }
+
+        .tipo-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Cores por tipo */
+        .tipo-inteiro  { --etapa-cor: #00e5ff; }
+        .tipo-real     { --etapa-cor: #c084fc; }
+        .tipo-caractere{ --etapa-cor: #86efac; }
+        .tipo-logico   { --etapa-cor: #f59e0b; }
+
+        /* ── BLOCO CÓDIGO ── */
+        .codigo-completo {
+            background: var(--bg-deep); border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); overflow: hidden;
+        }
+
+        .codigo-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 18px; background: rgba(0,229,255,0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+
+        .codigo-dots { display: flex; gap: 6px; }
+        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
+
+        .codigo-body { padding: 20px 24px; overflow-x: auto; }
+        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .op  { color: #f472b6; }
+        .cm  { color: #475569; font-style: italic; }
+        .num { color: #fb923c; }
+
+        /* ── ATRIBUIÇÃO + LEITURA lado a lado ── */
+        .dois-codigos {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+
+        @media (max-width: 580px) { .dois-codigos { grid-template-columns: 1fr; } }
+
+        /* ── REGRAS — válido vs inválido ── */
+        .regras-wrap {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+        }
+
+        .regras-header {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .regras-col {
+            padding: 12px 20px;
+            font-family: var(--font-mono); font-size: 0.7rem;
+            font-weight: 700; letter-spacing: 0.08em;
+        }
+
+        .regras-col.ok   { color: #86efac; background: rgba(134,239,172,0.05); }
+        .regras-col.erro { color: #f87171; background: rgba(248,113,113,0.05); border-left: 1px solid var(--border); }
+
+        .regras-body { display: grid; grid-template-columns: 1fr 1fr; }
+
+        .regras-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; border-bottom: 1px solid var(--border);
+            font-family: var(--font-mono); font-size: 0.8rem;
+        }
+
+        .regras-item:last-child { border-bottom: none; }
+        .regras-item.erro { border-left: 1px solid var(--border); }
+        .regras-item.ok   { color: #86efac; }
+        .regras-item.erro { color: #f87171; }
+
+        .regras-icone { font-size: 0.85rem; flex-shrink: 0; }
+
+        /* ── BOAS PRÁTICAS ── */
+        .praticas-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+        }
+
+        @media (max-width: 640px) { .praticas-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .pratica-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px 14px;
+            text-align: center; transition: var(--transition);
+        }
+
+        .pratica-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .pratica-icone { font-size: 1.3rem; margin-bottom: 8px; }
+        .pratica-texto { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; font-weight: 500; }
+
+        /* ── SIDEBAR ── */
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+        .card-meta {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem;
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+
+        /* Card referência de tipos */
+        .card-tipos-ref {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+        }
+
+        .tipos-ref-titulo {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); padding: 16px 20px 12px;
+        }
+
+        .tipo-ref-linha {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 20px; border-top: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .tipo-ref-linha:hover { background: var(--bg-card-hover); }
+        .tipo-ref-kw { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; }
+        .tipo-ref-ex { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+
+        /* Card operador atribuição */
+        .card-atrib {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); padding: 22px 24px;
+            text-align: center;
+        }
+
+        .atrib-simbolo {
+            font-family: var(--font-mono); font-size: 2.2rem; font-weight: 700;
+            color: var(--cyan); line-height: 1; margin-bottom: 8px;
+        }
+
+        .atrib-titulo { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .atrib-desc   { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Próxima aula */
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px;
+        }
+
+        .card-proximo-label {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
+        }
+
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+
+        .btn-proximo {
+            display: flex; align-items: center; justify-content: space-between; gap: 8px;
+            background: var(--cyan); color: var(--bg-deep);
+            font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+            padding: 11px 16px; border-radius: var(--radius-sm);
+            text-decoration: none; transition: var(--transition);
+        }
+
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+
+    </style>
+</head>
 <body>
 
-    <a class="voltar" href="index.html">← Voltar ao Portal</a>
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
 
     <section class="conteudo">
 
-        <h1>Aula 6 – Variáveis</h1>
+        <div class="aula-hero">
+            <div class="aula-numero">
+                <span class="aula-numero-dot"></span>
+                Aula 06 · Módulo I
+            </div>
+            <h1 class="aula-titulo"><span>Variáveis</span></h1>
+            <p class="aula-desc">A infraestrutura básica de qualquer algoritmo — sem elas, não existe processamento.</p>
+        </div>
 
-        <div class="card-aula">
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">6 / 15</span>
+        </div>
 
-            <p>
-                Uma variável é um espaço reservado na memória
-                para armazenar dados que podem mudar durante a execução.
-            </p>
+        <br>
 
-            <p>
-                Pode ser comparada a uma caixa com nome,
-                onde guardamos valores para usar depois.
-            </p>
+        <div class="aula-grid">
+        <div class="col-principal">
 
-            <p>
-                Sem variáveis, não existe processamento.
-                Elas são a infraestrutura básica de qualquer algoritmo.
-            </p>
-
-            <hr>
-
-            <h2>Para que servem?</h2>
-
-            <ul>
-                <li>Guardar dados do usuário</li>
-                <li>Armazenar resultados</li>
-                <li>Controlar decisões</li>
-                <li>Repetir processos</li>
-                <li>Organizar informações</li>
-            </ul>
-
-            <p><strong>Exemplo:</strong> armazenar a idade digitada pelo usuário.</p>
-
-            <hr>
-
-            <h2>Declaração de Variáveis</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-var
-   idade: inteiro
-   salario: real
-</pre>
+            <!-- Analogia da memória -->
+            <div>
+                <p class="secao-label">// o que é uma variável</p>
+                <div class="analogia-wrap">
+                    <div class="analogia-card">
+                        <div class="analogia-icone">📦</div>
+                        <div class="analogia-titulo">Caixa com etiqueta</div>
+                        <p class="analogia-texto">Pense como uma caixa física: tem um <strong style="color:var(--text-primary)">nome</strong> na etiqueta e guarda um <strong style="color:var(--text-primary)">valor</strong> dentro. Você pode trocar o que está dentro a qualquer momento.</p>
+                    </div>
+                    <div class="analogia-card analogia-memoria">
+                        <div class="analogia-icone">🧠</div>
+                        <div class="analogia-titulo">Espaço na memória RAM</div>
+                        <div class="memoria-slots">
+                            <div class="memoria-slot">
+                                <span class="slot-addr">0x1A4</span>
+                                <span class="slot-nome">nome</span>
+                                <span class="slot-val">"Carlos"</span>
+                            </div>
+                            <div class="memoria-slot">
+                                <span class="slot-addr">0x1A8</span>
+                                <span class="slot-nome">idade</span>
+                                <span class="slot-val">20</span>
+                            </div>
+                            <div class="memoria-slot">
+                                <span class="slot-addr">0x1AC</span>
+                                <span class="slot-nome">altura</span>
+                                <span class="slot-val">1.75</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <p>
-                idade e salario são nomes.
-                inteiro e real são os tipos.
-            </p>
-
-            <hr>
-
-            <h2>Tipos Básicos</h2>
-
-            <h3>Inteiro</h3>
-            <div class="bloco-codigo">
-                <pre>
-var
-   quantidade: inteiro
-</pre>
+            <!-- Para que servem — 5 usos -->
+            <div>
+                <p class="secao-label">// para que servem</p>
+                <div class="usos-grid">
+                    <div class="uso-item"><div class="uso-icone">👤</div><div class="uso-texto">Guardar dados do usuário</div></div>
+                    <div class="uso-item"><div class="uso-icone">📊</div><div class="uso-texto">Armazenar resultados</div></div>
+                    <div class="uso-item"><div class="uso-icone">🔀</div><div class="uso-texto">Controlar decisões</div></div>
+                    <div class="uso-item"><div class="uso-icone">🔁</div><div class="uso-texto">Repetir processos</div></div>
+                    <div class="uso-item"><div class="uso-icone">🗂️</div><div class="uso-texto">Organizar informações</div></div>
+                </div>
             </div>
 
-            <h3>Real</h3>
-            <div class="bloco-codigo">
-                <pre>
-var
-   altura: real
-</pre>
+            <!-- 4 tipos -->
+            <div>
+                <p class="secao-label">// tipos básicos</p>
+                <div class="tipos-grid">
+                    <div class="tipo-card tipo-inteiro">
+                        <div class="tipo-header">
+                            <div class="tipo-keyword">inteiro</div>
+                            <div class="tipo-nome">Números inteiros</div>
+                        </div>
+                        <div class="tipo-body">
+                            <div class="tipo-exemplo"><span class="var">quantidade</span>: <span class="tp">inteiro</span></div>
+                            <div class="tipo-desc">Sem casas decimais. Ex: 0, 5, -3, 100</div>
+                        </div>
+                    </div>
+                    <div class="tipo-card tipo-real">
+                        <div class="tipo-header">
+                            <div class="tipo-keyword">real</div>
+                            <div class="tipo-nome">Números decimais</div>
+                        </div>
+                        <div class="tipo-body">
+                            <div class="tipo-exemplo"><span class="var">altura</span>: <span class="tp">real</span></div>
+                            <div class="tipo-desc">Com casas decimais. Ex: 1.75, 9.99, -0.5</div>
+                        </div>
+                    </div>
+                    <div class="tipo-card tipo-caractere">
+                        <div class="tipo-header">
+                            <div class="tipo-keyword">caractere</div>
+                            <div class="tipo-nome">Texto / string</div>
+                        </div>
+                        <div class="tipo-body">
+                            <div class="tipo-exemplo"><span class="var">nome</span>: <span class="tp">caractere</span></div>
+                            <div class="tipo-desc">Letras e palavras entre aspas. Ex: "Ana"</div>
+                        </div>
+                    </div>
+                    <div class="tipo-card tipo-logico">
+                        <div class="tipo-header">
+                            <div class="tipo-keyword">logico</div>
+                            <div class="tipo-nome">Verdadeiro / Falso</div>
+                        </div>
+                        <div class="tipo-body">
+                            <div class="tipo-exemplo"><span class="var">aprovado</span>: <span class="tp">logico</span></div>
+                            <div class="tipo-desc">Apenas dois valores: verdadeiro ou falso</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h3>Caractere</h3>
-            <div class="bloco-codigo">
-                <pre>
-var
-   nome: caractere
-</pre>
+            <!-- Atribuição + Leitura lado a lado -->
+            <div>
+                <p class="secao-label">// atribuição e leitura</p>
+                <div class="dois-codigos">
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                            <span class="codigo-filename">atribuicao.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+<pre><span class="var">idade</span>    <span class="op">&lt;-</span> <span class="num">20</span>
+<span class="var">salario</span>  <span class="op">&lt;-</span> <span class="num">1500.50</span>
+<span class="var">nome</span>     <span class="op">&lt;-</span> <span class="str">"Carlos"</span>
+<span class="var">aprovado</span> <span class="op">&lt;-</span> <span class="kw">verdadeiro</span></pre>
+                        </div>
+                    </div>
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                            <span class="codigo-filename">leitura.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+<pre><span class="fn">escreva</span>(<span class="str">"Sua idade: "</span>)
+<span class="fn">leia</span>(<span class="var">idade</span>)
+
+<span class="fn">escreva</span>(<span class="str">"Seu nome: "</span>)
+<span class="fn">leia</span>(<span class="var">nome</span>)</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h3>Lógico</h3>
-            <div class="bloco-codigo">
-                <pre>
-var
-   aprovado: logico
-</pre>
+            <!-- Uso em cálculos -->
+            <div>
+                <p class="secao-label">// uso em cálculos</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">calculo.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">var</span>
+   <span class="var">a</span>, <span class="var">b</span>, <span class="var">soma</span>: <span class="tp">inteiro</span>
+
+<span class="var">a</span>    <span class="op">&lt;-</span> <span class="num">5</span>
+<span class="var">b</span>    <span class="op">&lt;-</span> <span class="num">3</span>
+<span class="var">soma</span> <span class="op">&lt;-</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>    <span class="cm">// soma = 8</span>
+
+<span class="fn">escreva</span>(<span class="str">"Resultado: "</span>, <span class="var">soma</span>)</pre>
+                    </div>
+                </div>
             </div>
 
-            <p>Valores possíveis: verdadeiro ou falso</p>
-
-            <hr>
-
-            <h2>Atribuição de Valores</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-idade <- 20
-salario <- 1500.50
-nome <- "Carlos"
-aprovado <- verdadeiro
-</pre>
+            <!-- Regras de nomenclatura: válido vs inválido -->
+            <div>
+                <p class="secao-label">// regras para nomes</p>
+                <div class="regras-wrap">
+                    <div class="regras-header">
+                        <div class="regras-col ok">✔ VÁLIDO</div>
+                        <div class="regras-col erro">✘ INVÁLIDO</div>
+                    </div>
+                    <div class="regras-body">
+                        <div class="regras-item ok"><span class="regras-icone">✔</span> idadeAluno</div>
+                        <div class="regras-item erro"><span class="regras-icone">✘</span> 2valor</div>
+                        <div class="regras-item ok"><span class="regras-icone">✔</span> salario</div>
+                        <div class="regras-item erro"><span class="regras-icone">✘</span> nome aluno</div>
+                        <div class="regras-item ok"><span class="regras-icone">✔</span> mediaFinal</div>
+                        <div class="regras-item erro"><span class="regras-icone">✘</span> salário</div>
+                        <div class="regras-item ok"><span class="regras-icone">✔</span> totalPontos</div>
+                        <div class="regras-item erro"><span class="regras-icone">✘</span> @nota!</div>
+                    </div>
+                </div>
             </div>
 
-            <hr>
-
-            <h2>Leitura de Dados</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-escreva("Digite sua idade: ")
-leia(idade)
-</pre>
+            <!-- Boas práticas -->
+            <div>
+                <p class="secao-label">// boas práticas</p>
+                <div class="praticas-grid">
+                    <div class="pratica-item"><div class="pratica-icone">🏷️</div><div class="pratica-texto">Use nomes descritivos</div></div>
+                    <div class="pratica-item"><div class="pratica-icone">🚫</div><div class="pratica-texto">Evite x, y, a</div></div>
+                    <div class="pratica-item"><div class="pratica-icone">📋</div><div class="pratica-texto">Declare no início</div></div>
+                    <div class="pratica-item"><div class="pratica-icone">🎯</div><div class="pratica-texto">Escolha o tipo certo</div></div>
+                </div>
             </div>
 
-            <hr>
+            <!-- Exemplo completo -->
+            <div>
+                <p class="secao-label">// exemplo completo</p>
+                <div class="codigo-completo">
+                    <div class="codigo-header">
+                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                        <span class="codigo-filename">ExemploVariaveis.por</span>
+                        <span class="codigo-lang">portugol</span>
+                    </div>
+                    <div class="codigo-body">
+<pre><span class="kw">algoritmo</span> <span class="str">"ExemploVariaveis"</span>
 
-            <h2>Uso em Cálculos</h2>
+<span class="kw">var</span>
+   <span class="var">nome</span>  : <span class="tp">caractere</span>
+   <span class="var">idade</span> : <span class="tp">inteiro</span>
+   <span class="var">altura</span>: <span class="tp">real</span>
 
-            <div class="bloco-codigo">
-                <pre>
-var
-   a, b, soma: inteiro
+<span class="kw">inicio</span>
+   <span class="fn">escreva</span>(<span class="str">"Digite seu nome: "</span>)
+   <span class="fn">leia</span>(<span class="var">nome</span>)
 
-a <- 5
-b <- 3
-soma <- a + b
+   <span class="fn">escreva</span>(<span class="str">"Digite sua idade: "</span>)
+   <span class="fn">leia</span>(<span class="var">idade</span>)
 
-escreva("Resultado: ", soma)
-</pre>
+   <span class="fn">escreva</span>(<span class="str">"Digite sua altura: "</span>)
+   <span class="fn">leia</span>(<span class="var">altura</span>)
+
+   <span class="fn">escreva</span>(<span class="str">"Nome: "</span>  , <span class="var">nome</span>)
+   <span class="fn">escreva</span>(<span class="str">"Idade: "</span> , <span class="var">idade</span>)
+   <span class="fn">escreva</span>(<span class="str">"Altura: "</span>, <span class="var">altura</span>)
+
+<span class="kw">fimalgoritmo</span></pre>
+                    </div>
+                </div>
             </div>
 
-            <hr>
+        </div>
 
-            <h2>Regras para Nomes</h2>
+        <!-- Sidebar -->
+        <div class="aula-sidebar">
 
-            <ul>
-                <li>Não começar com número</li>
-                <li>Não usar espaços</li>
-                <li>Não usar acentos</li>
-                <li>Não usar símbolos especiais</li>
-                <li>Ser claro e objetivo</li>
-            </ul>
-
-            <p>
-                ✔ idadeAluno<br>
-                ✔ salario<br>
-                ✔ mediaFinal<br><br>
-                ❌ 2valor<br>
-                ❌ nome aluno<br>
-                ❌ salário
-            </p>
-
-            <hr>
-
-            <h2>Boas Práticas</h2>
-
-            <ul>
-                <li>Use nomes descritivos</li>
-                <li>Evite x, y, a</li>
-                <li>Declare no início</li>
-                <li>Escolha o tipo correto</li>
-            </ul>
-
-            <hr>
-
-            <h2>Exemplo Completo</h2>
-
-            <div class="bloco-codigo">
-                <pre>
-algoritmo "ExemploVariaveis"
-
-var
-   nome: caractere
-   idade: inteiro
-   altura: real
-
-inicio
-   escreva("Digite seu nome: ")
-   leia(nome)
-
-   escreva("Digite sua idade: ")
-   leia(idade)
-
-   escreva("Digite sua altura: ")
-   leia(altura)
-
-   escreva("Nome: ", nome)
-   escreva("Idade: ", idade)
-   escreva("Altura: ", altura)
-
-fimalgoritmo
-</pre>
+            <div class="card-meta">
+                <p class="card-meta-titulo">// info da aula</p>
+                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">06</span></div>
+                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Sintaxe</span></div>
+                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
+                <div class="meta-item"><span class="meta-label">Pré-requisito</span><span class="meta-valor cyan">Aula 05</span></div>
             </div>
 
-            <hr>
+            <!-- Referência de tipos -->
+            <div class="card-tipos-ref">
+                <p class="tipos-ref-titulo">// referência de tipos</p>
+                <div class="tipo-ref-linha">
+                    <span class="tipo-ref-kw" style="color:#00e5ff">inteiro</span>
+                    <span class="tipo-ref-ex">5, -3, 100</span>
+                </div>
+                <div class="tipo-ref-linha">
+                    <span class="tipo-ref-kw" style="color:#c084fc">real</span>
+                    <span class="tipo-ref-ex">1.75, 9.99</span>
+                </div>
+                <div class="tipo-ref-linha">
+                    <span class="tipo-ref-kw" style="color:#86efac">caractere</span>
+                    <span class="tipo-ref-ex">"Ana", "x"</span>
+                </div>
+                <div class="tipo-ref-linha">
+                    <span class="tipo-ref-kw" style="color:#f59e0b">logico</span>
+                    <span class="tipo-ref-ex">verdadeiro/falso</span>
+                </div>
+            </div>
 
-            <h2>Conclusão</h2>
+            <!-- Operador de atribuição -->
+            <div class="card-atrib">
+                <div class="atrib-simbolo">&lt;-</div>
+                <div class="atrib-titulo">Operador de Atribuição</div>
+                <p class="atrib-desc">Atribui um valor a uma variável. Leia como "recebe": <span style="font-family:var(--font-mono);color:var(--cyan)">idade &lt;- 20</span> significa "idade recebe 20".</p>
+            </div>
 
-            <p>
-                Variáveis tornam o algoritmo dinâmico.
-                Permitem armazenar, modificar e utilizar informações.
-            </p>
+            <div class="card-proximo">
+                <p class="card-proximo-label">// próxima aula</p>
+                <h3>Entrada e Saída</h3>
+                <p>Aprenda a interagir com o usuário usando <code style="font-family:var(--font-mono);color:var(--cyan)">escreva</code> e <code style="font-family:var(--font-mono);color:var(--cyan)">leia</code>.</p>
+                <a href="aula7.html" class="btn-proximo">
+                    Ir para Aula 7
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
 
-            <p>
-                Sem variáveis, o programa seria fixo,
-                sem flexibilidade ou tomada de decisão.
-            </p>
-
+        </div>
         </div>
 
     </section>
 
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
+    
 </body>
-
 </html>
