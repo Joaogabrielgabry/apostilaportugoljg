@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 4 — Algoritmo · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         /* ── HERO ── */
         .aula-hero {
             padding: 48px 0 32px;
@@ -31,7 +33,8 @@
         }
 
         .aula-numero-dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             background: var(--cyan);
             border-radius: 50%;
             animation: pulse 2s ease infinite;
@@ -79,7 +82,9 @@
             white-space: nowrap;
         }
 
-        .progresso-meio { flex: 1; }
+        .progresso-meio {
+            flex: 1;
+        }
 
         .progresso-track {
             height: 5px;
@@ -96,10 +101,14 @@
             border-radius: 999px;
         }
 
-        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-aulas {
+            display: flex;
+            gap: 3px;
+        }
 
         .progresso-pip {
-            flex: 1; height: 4px;
+            flex: 1;
+            height: 4px;
             border-radius: 999px;
             background: var(--bg-surface);
             border: 1px solid var(--border);
@@ -127,11 +136,20 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid { grid-template-columns: 1fr; }
-            .progresso-modulo { flex-wrap: wrap; }
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progresso-modulo {
+                flex-wrap: wrap;
+            }
         }
 
-        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
         /* ── CARD BASE ── */
         .card-base {
@@ -147,8 +165,14 @@
             line-height: 1.8;
         }
 
-        .card-base p + p { margin-top: 12px; }
-        .card-base strong { color: var(--text-primary); font-weight: 600; }
+        .card-base p+p {
+            margin-top: 12px;
+        }
+
+        .card-base strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         .secao-label {
             font-family: var(--font-mono);
@@ -168,7 +192,9 @@
         }
 
         @media (max-width: 600px) {
-            .exemplo-wrap { grid-template-columns: 1fr; }
+            .exemplo-wrap {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Painel da receita */
@@ -228,7 +254,8 @@
             color: var(--cyan);
             background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
-            width: 22px; height: 22px;
+            width: 22px;
+            height: 22px;
             border-radius: 4px;
             display: flex;
             align-items: center;
@@ -238,8 +265,8 @@
 
         /* Painel da nota */
         .painel-nota {
-            background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
-            border: 1px solid rgba(245,158,11,0.25);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(245, 158, 11, 0.02));
+            border: 1px solid rgba(245, 158, 11, 0.25);
             border-radius: var(--radius-lg);
             padding: 24px;
             display: flex;
@@ -248,7 +275,9 @@
             gap: 14px;
         }
 
-        .nota-icone { font-size: 2rem; }
+        .nota-icone {
+            font-size: 2rem;
+        }
 
         .nota-titulo {
             font-size: 0.88rem;
@@ -267,8 +296,8 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(245,158,11,0.12);
-            border: 1px solid rgba(245,158,11,0.3);
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
             color: var(--amber);
             font-family: var(--font-mono);
             font-size: 0.68rem;
@@ -286,7 +315,9 @@
         }
 
         @media (max-width: 600px) {
-            .exemplos-prog-grid { grid-template-columns: 1fr; }
+            .exemplos-prog-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .exemplo-prog-card {
@@ -302,7 +333,9 @@
         .exemplo-prog-card::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--cyan), var(--blue));
             opacity: 0;
@@ -314,9 +347,14 @@
             background: var(--bg-card-hover);
         }
 
-        .exemplo-prog-card:hover::before { opacity: 1; }
+        .exemplo-prog-card:hover::before {
+            opacity: 1;
+        }
 
-        .ep-icone { font-size: 1.3rem; margin-bottom: 8px; }
+        .ep-icone {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
 
         .ep-titulo {
             font-size: 0.82rem;
@@ -339,7 +377,9 @@
         }
 
         @media (max-width: 500px) {
-            .porque-grid { grid-template-columns: 1fr; }
+            .porque-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .porque-item {
@@ -398,10 +438,16 @@
             line-height: 1.5;
         }
 
-        .maxima-texto span { color: var(--cyan); }
+        .maxima-texto span {
+            color: var(--cyan);
+        }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
 
         .card-meta {
             background: var(--bg-card);
@@ -428,10 +474,23 @@
             font-size: 0.83rem;
         }
 
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
 
         /* Card propriedades */
         .card-props {
@@ -459,7 +518,9 @@
             font-size: 0.82rem;
         }
 
-        .prop-item:last-child { border-bottom: none; }
+        .prop-item:last-child {
+            border-bottom: none;
+        }
 
         .prop-nome {
             display: flex;
@@ -469,7 +530,8 @@
         }
 
         .prop-dot {
-            width: 7px; height: 7px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: var(--cyan);
             flex-shrink: 0;
@@ -487,7 +549,7 @@
 
         /* Próxima */
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 22px 24px;
@@ -537,8 +599,217 @@
             box-shadow: 0 0 24px var(--cyan-glow);
         }
 
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<!-- QUIZ AULA 04 -->
+<div id="quizModal04" class="quiz-modal">
+    <div class="quiz-box">
+
+        <div class="quiz-header">
+            <h2>Quiz — Aula 04</h2>
+            <button class="quiz-close" onclick="fecharQuiz04()">✕</button>
+        </div>
+
+        <form id="quizForm04">
+
+            <!-- 1 -->
+            <div class="quiz-pergunta">
+                <p>1) O que é um algoritmo?</p>
+                <label><input type="radio" name="q1" value="a"> Um programa pronto</label>
+                <label><input type="radio" name="q1" value="b"> Uma sequência organizada de passos</label>
+                <label><input type="radio" name="q1" value="c"> Um tipo de computador</label>
+            </div>
+
+            <!-- 2 -->
+            <div class="quiz-pergunta">
+                <p>2) Um algoritmo precisa ter:</p>
+                <label><input type="radio" name="q2" value="a"> Início, ordem lógica e fim</label>
+                <label><input type="radio" name="q2" value="b"> Apenas código</label>
+                <label><input type="radio" name="q2" value="c"> Interface gráfica</label>
+            </div>
+
+            <!-- 3 -->
+            <div class="quiz-pergunta">
+                <p>3) Receita de cozinha é exemplo de:</p>
+                <label><input type="radio" name="q3" value="a"> Programa executável</label>
+                <label><input type="radio" name="q3" value="b"> Sistema operacional</label>
+                <label><input type="radio" name="q3" value="c"> Algoritmo</label>
+            </div>
+
+            <!-- 4 -->
+            <div class="quiz-pergunta">
+                <p>4) Se a ordem dos passos for alterada:</p>
+                <label><input type="radio" name="q4" value="a"> Nada muda</label>
+                <label><input type="radio" name="q4" value="b"> Pode comprometer o resultado</label>
+                <label><input type="radio" name="q4" value="c"> Fica mais rápido</label>
+            </div>
+
+            <!-- 5 -->
+            <div class="quiz-pergunta">
+                <p>5) Um algoritmo deve ser:</p>
+                <label><input type="radio" name="q5" value="a"> Ambíguo</label>
+                <label><input type="radio" name="q5" value="b"> Sem fim definido</label>
+                <label><input type="radio" name="q5" value="c"> Claro e sem ambiguidade</label>
+            </div>
+
+            <!-- 6 -->
+            <div class="quiz-pergunta">
+                <p>6) Antes do código vem:</p>
+                <label><input type="radio" name="q6" value="a"> O design</label>
+                <label><input type="radio" name="q6" value="b"> O algoritmo</label>
+                <label><input type="radio" name="q6" value="c"> A interface</label>
+            </div>
+
+            <!-- 7 -->
+            <div class="quiz-pergunta">
+                <p>7) Aprender algoritmos ajuda a:</p>
+                <label><input type="radio" name="q7" value="a"> Organizar o pensamento</label>
+                <label><input type="radio" name="q7" value="b"> Editar imagens</label>
+                <label><input type="radio" name="q7" value="c"> Melhorar a digitação</label>
+            </div>
+
+            <button type="button" class="btn-finalizar" onclick="corrigirQuiz04()">
+                Finalizar Quiz
+            </button>
+
+            <div id="quizResultado04" class="quiz-resultado"></div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    function abrirQuiz04() {
+        document.getElementById("quizModal04").style.display = "flex";
+    }
+
+    function fecharQuiz04() {
+        document.getElementById("quizModal04").style.display = "none";
+    }
+
+    function corrigirQuiz04() {
+
+        const respostas = {
+            q1: "b",
+            q2: "a",
+            q3: "c",
+            q4: "b",
+            q5: "c",
+            q6: "b",
+            q7: "a"
+        };
+
+        let acertos = 0;
+
+        for (let pergunta in respostas) {
+            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+            if (selecionada && selecionada.value === respostas[pergunta]) {
+                acertos++;
+            }
+        }
+
+        const percentual = Math.round((acertos / 7) * 100);
+
+        document.getElementById("quizResultado04").innerHTML =
+            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
+    }
+</script>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -546,7 +817,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -631,7 +903,8 @@
                             <div class="nota-icone">⚠️</div>
                             <div>
                                 <div class="nota-titulo">Ordem é fundamental</div>
-                                <p class="nota-texto">Se inverter os passos, o resultado não funciona. O mesmo vale para qualquer programa.</p>
+                                <p class="nota-texto">Se inverter os passos, o resultado não funciona. O mesmo vale para
+                                    qualquer programa.</p>
                             </div>
                             <span class="nota-tag">sequência obrigatória</span>
                         </div>
@@ -686,7 +959,8 @@
                 <!-- Máxima final -->
                 <div class="card-maxima">
                     <span class="maxima-codigo">01</span>
-                    <span class="maxima-texto">Antes do código, vem a ideia. <span>Primeiro o algoritmo.</span> Depois a implementação.</span>
+                    <span class="maxima-texto">Antes do código, vem a ideia. <span>Primeiro o algoritmo.</span> Depois a
+                        implementação.</span>
                 </div>
 
             </div>
@@ -735,6 +1009,10 @@
                     </div>
                 </div>
 
+                <button class="btn-quiz" onclick="abrirQuiz04()">
+                    Iniciar Quiz da Aula 04
+                </button>
+
                 <div class="card-proximo">
                     <p class="card-proximo-label">// próxima aula</p>
                     <h3>Estrutura Básica em Portugol</h3>
@@ -742,7 +1020,8 @@
                     <a href="aula5.html" class="btn-proximo">
                         Ir para Aula 5
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
                 </div>
@@ -765,4 +1044,5 @@
     </footer>
 
 </body>
+
 </html>

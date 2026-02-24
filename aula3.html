@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 3 — O que é Portugol · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         /* ── HERO compacto ── */
         .aula-hero {
             padding: 48px 0 32px;
@@ -31,7 +33,8 @@
         }
 
         .aula-numero-dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             background: var(--cyan);
             border-radius: 50%;
             animation: pulse 2s ease infinite;
@@ -133,8 +136,13 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid { grid-template-columns: 1fr; }
-            .progresso-modulo { flex-wrap: wrap; }
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progresso-modulo {
+                flex-wrap: wrap;
+            }
         }
 
         .col-principal {
@@ -157,8 +165,14 @@
             line-height: 1.8;
         }
 
-        .card-intro p + p { margin-top: 12px; }
-        .card-intro strong { color: var(--text-primary); font-weight: 600; }
+        .card-intro p+p {
+            margin-top: 12px;
+        }
+
+        .card-intro strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── PASSOS HORIZONTAIS ── */
         .passos-grid {
@@ -168,7 +182,9 @@
         }
 
         @media (max-width: 600px) {
-            .passos-grid { grid-template-columns: repeat(2, 1fr); }
+            .passos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .passo-item {
@@ -191,8 +207,13 @@
             transition: opacity 0.3s ease;
         }
 
-        .passo-item:hover { border-color: var(--border-accent); }
-        .passo-item:hover::before { opacity: 1; }
+        .passo-item:hover {
+            border-color: var(--border-accent);
+        }
+
+        .passo-item:hover::before {
+            opacity: 1;
+        }
 
         .passo-num {
             font-family: var(--font-mono);
@@ -201,7 +222,10 @@
             margin-bottom: 8px;
         }
 
-        .passo-icone { font-size: 1.5rem; margin-bottom: 8px; }
+        .passo-icone {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
 
         .passo-texto {
             font-size: 0.78rem;
@@ -218,7 +242,9 @@
         }
 
         @media (max-width: 600px) {
-            .vantagens-grid { grid-template-columns: 1fr; }
+            .vantagens-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .vantagem-card {
@@ -270,11 +296,14 @@
         }
 
         @media (max-width: 600px) {
-            .card-mercado { grid-template-columns: 1fr; }
+            .card-mercado {
+                grid-template-columns: 1fr;
+            }
         }
 
         .mercado-icone-wrap {
-            width: 56px; height: 56px;
+            width: 56px;
+            height: 56px;
             background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-md);
@@ -291,8 +320,13 @@
             line-height: 1.7;
         }
 
-        .mercado-texto p + p { margin-top: 8px; }
-        .mercado-texto strong { color: var(--text-primary); }
+        .mercado-texto p+p {
+            margin-top: 8px;
+        }
+
+        .mercado-texto strong {
+            color: var(--text-primary);
+        }
 
         /* ── SIDEBAR ── */
         .aula-sidebar {
@@ -326,10 +360,23 @@
             font-size: 0.83rem;
         }
 
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
 
         /* Card caminho */
         .card-caminho {
@@ -370,20 +417,28 @@
             font-weight: 600;
         }
 
-        .caminho-step.futuro { color: var(--text-muted); }
+        .caminho-step.futuro {
+            color: var(--text-muted);
+        }
 
         .caminho-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
         }
 
-        .atual .caminho-dot { background: var(--cyan); }
-        .futuro .caminho-dot { background: var(--text-faint); }
+        .atual .caminho-dot {
+            background: var(--cyan);
+        }
+
+        .futuro .caminho-dot {
+            background: var(--text-faint);
+        }
 
         /* Próxima aula */
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 22px 24px;
@@ -443,8 +498,207 @@
             padding-left: 2px;
         }
 
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<script>
+    function abrirQuiz03() {
+        document.getElementById("quizModal03").style.display = "flex";
+    }
+
+    function fecharQuiz03() {
+        document.getElementById("quizModal03").style.display = "none";
+    }
+
+    function corrigirQuiz03() {
+
+        const respostas = {
+            q1: "b",
+            q2: "b",
+            q3: "a",
+            q4: "b",
+            q5: "a",
+            q6: "b",
+            q7: "b"
+        };
+
+        let acertos = 0;
+
+        for (let pergunta in respostas) {
+            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+            if (selecionada && selecionada.value === respostas[pergunta]) {
+                acertos++;
+            }
+        }
+
+        const percentual = Math.round((acertos / 7) * 100);
+
+        document.getElementById("quizResultado03").innerHTML =
+            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
+    }
+</script>
+
+<!-- QUIZ AULA 03 -->
+<div id="quizModal03" class="quiz-modal">
+    <div class="quiz-box">
+
+        <div class="quiz-header">
+            <h2>Quiz — Aula 03</h2>
+            <button class="quiz-close" onclick="fecharQuiz03()">✕</button>
+        </div>
+
+        <form id="quizForm03">
+
+            <!-- 1 -->
+            <div class="quiz-pergunta">
+                <p>1) O que é Portugol?</p>
+                <label><input type="radio" name="q1" value="a"> Linguagem profissional de mercado</label>
+                <label><input type="radio" name="q1" value="b"> Linguagem educacional para aprender lógica</label>
+                <label><input type="radio" name="q1" value="c"> Sistema operacional</label>
+            </div>
+
+            <!-- 2 -->
+            <div class="quiz-pergunta">
+                <p>2) O principal objetivo do Portugol é:</p>
+                <label><input type="radio" name="q2" value="a"> Criar apps comerciais</label>
+                <label><input type="radio" name="q2" value="b"> Desenvolver raciocínio lógico</label>
+                <label><input type="radio" name="q2" value="c"> Trabalhar com redes</label>
+            </div>
+
+            <!-- 3 -->
+            <div class="quiz-pergunta">
+                <p>3) Portugol utiliza comandos:</p>
+                <label><input type="radio" name="q3" value="a"> Em português estruturado</label>
+                <label><input type="radio" name="q3" value="b"> Em binário</label>
+                <label><input type="radio" name="q3" value="c"> Em inglês técnico</label>
+            </div>
+
+            <!-- 4 -->
+            <div class="quiz-pergunta">
+                <p>4) O foco do Portugol é:</p>
+                <label><input type="radio" name="q4" value="a"> Interface gráfica</label>
+                <label><input type="radio" name="q4" value="b"> Pensamento estruturado</label>
+                <label><input type="radio" name="q4" value="c"> Segurança digital</label>
+            </div>
+
+            <!-- 5 -->
+            <div class="quiz-pergunta">
+                <p>5) Portugol ajuda principalmente a:</p>
+                <label><input type="radio" name="q5" value="a"> Desenvolver lógica</label>
+                <label><input type="radio" name="q5" value="b"> Editar vídeos</label>
+                <label><input type="radio" name="q5" value="c"> Criar animações</label>
+            </div>
+
+            <!-- 6 -->
+            <div class="quiz-pergunta">
+                <p>6) Portugol é usado diretamente em empresas?</p>
+                <label><input type="radio" name="q6" value="a"> Sim</label>
+                <label><input type="radio" name="q6" value="b"> Não, é educacional</label>
+                <label><input type="radio" name="q6" value="c"> Apenas startups</label>
+            </div>
+
+            <!-- 7 -->
+            <div class="quiz-pergunta">
+                <p>7) Quem domina Portugol aprende Python e Java:</p>
+                <label><input type="radio" name="q7" value="a"> Com mais dificuldade</label>
+                <label><input type="radio" name="q7" value="b"> Com mais facilidade</label>
+                <label><input type="radio" name="q7" value="c"> Sem precisar estudar</label>
+            </div>
+
+            <button type="button" class="btn-finalizar" onclick="corrigirQuiz03()">
+                Finalizar Quiz
+            </button>
+
+            <div id="quizResultado03" class="quiz-resultado"></div>
+
+        </form>
+    </div>
+</div>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -452,7 +706,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -466,7 +721,8 @@
                 Aula 03 · Módulo I
             </div>
             <h1 class="aula-titulo">O que é <span>Portugol?</span></h1>
-            <p class="aula-desc">A linguagem feita para você aprender a pensar — antes de qualquer sintaxe complicada.</p>
+            <p class="aula-desc">A linguagem feita para você aprender a pensar — antes de qualquer sintaxe complicada.
+            </p>
         </div>
 
         <!-- Progresso horizontal -->
@@ -510,7 +766,8 @@
                         Utiliza comandos em português e uma estrutura simples, ideal para quem está começando do zero.
                     </p>
                     <p>
-                        Seu objetivo não é o uso direto no mercado — é <strong>ensinar como a programação funciona internamente</strong>,
+                        Seu objetivo não é o uso direto no mercado — é <strong>ensinar como a programação funciona
+                            internamente</strong>,
                         desenvolvendo lógica e organização de pensamento.
                     </p>
                 </div>
@@ -551,21 +808,24 @@
                                 <span class="vantagem-icone">🇧🇷</span>
                                 <span class="vantagem-titulo">Sintaxe Simples</span>
                             </div>
-                            <p class="vantagem-desc">Comandos semelhantes ao português do dia a dia, fáceis de ler e entender.</p>
+                            <p class="vantagem-desc">Comandos semelhantes ao português do dia a dia, fáceis de ler e
+                                entender.</p>
                         </div>
                         <div class="vantagem-card">
                             <div class="vantagem-header">
                                 <span class="vantagem-icone">🧠</span>
                                 <span class="vantagem-titulo">Foco em Lógica</span>
                             </div>
-                            <p class="vantagem-desc">Prioriza pensamento estruturado, não memorização de regras complexas.</p>
+                            <p class="vantagem-desc">Prioriza pensamento estruturado, não memorização de regras
+                                complexas.</p>
                         </div>
                         <div class="vantagem-card">
                             <div class="vantagem-header">
                                 <span class="vantagem-icone">🚀</span>
                                 <span class="vantagem-titulo">Sem Barreiras</span>
                             </div>
-                            <p class="vantagem-desc">Remove complexidades de linguagens profissionais para ganho progressivo de confiança.</p>
+                            <p class="vantagem-desc">Remove complexidades de linguagens profissionais para ganho
+                                progressivo de confiança.</p>
                         </div>
                     </div>
                 </div>
@@ -577,7 +837,8 @@
                         <p>
                             Portugol não é usado diretamente em empresas, mas funciona como
                             <strong>base estratégica de formação</strong>. Quem domina a lógica aqui
-                            aprende <strong>Python, Java e C</strong> com muito mais facilidade — é o primeiro passo estruturado para entrar no mercado com base sólida.
+                            aprende <strong>Python, Java e C</strong> com muito mais facilidade — é o primeiro passo
+                            estruturado para entrar no mercado com base sólida.
                         </p>
                     </div>
                 </div>
@@ -630,6 +891,10 @@
                     </div>
                 </div>
 
+                <button class="btn-quiz" onclick="abrirQuiz03()">
+                    Iniciar Quiz da Aula 03
+                </button>
+
                 <div class="card-proximo">
                     <p class="card-proximo-label">// próxima aula</p>
                     <h3>Algoritmo</h3>
@@ -637,7 +902,8 @@
                     <a href="aula4.html" class="btn-proximo">
                         Ir para Aula 4
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
                 </div>
@@ -658,6 +924,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>

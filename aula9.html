@@ -234,8 +234,228 @@
         .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
         .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
 
+         .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
     </style>
 </head>
+
+<!-- QUIZ AULA 09 -->
+<div class="quiz-modal" id="quiz09">
+    <div class="quiz-box">
+
+        <div class="quiz-header">
+            <h3>Quiz — Aula 09</h3>
+            <button class="quiz-close" onclick="fecharQuiz09()">✕</button>
+        </div>
+
+        <form id="formQuiz09">
+
+            <div class="quiz-pergunta">
+                <p>1) O comando usado para ler dados do usuário é:</p>
+                <label><input type="radio" name="q1" value="a"> escreva</label>
+                <label><input type="radio" name="q1" value="b"> leia</label>
+                <label><input type="radio" name="q1" value="c"> se</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>2) A estrutura usada para decisão é:</p>
+                <label><input type="radio" name="q2" value="a"> enquanto</label>
+                <label><input type="radio" name="q2" value="b"> para</label>
+                <label><input type="radio" name="q2" value="c"> se / senao</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>3) Multiplicação tem prioridade sobre:</p>
+                <label><input type="radio" name="q3" value="a"> Soma</label>
+                <label><input type="radio" name="q3" value="b"> Parênteses</label>
+                <label><input type="radio" name="q3" value="c"> Comparação</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>4) O operador de comparação usado foi:</p>
+                <label><input type="radio" name="q4" value="a"> =</label>
+                <label><input type="radio" name="q4" value="b"> ==</label>
+                <label><input type="radio" name="q4" value="c"> !=</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>5) Caso o usuário digite algo inválido:</p>
+                <label><input type="radio" name="q5" value="a"> O sistema ignora</label>
+                <label><input type="radio" name="q5" value="b"> O sistema mostra mensagem de erro</label>
+                <label><input type="radio" name="q5" value="c"> O programa trava</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>6) Expressões matemáticas são resolvidas na etapa de:</p>
+                <label><input type="radio" name="q6" value="a"> Entrada</label>
+                <label><input type="radio" name="q6" value="b"> Processamento</label>
+                <label><input type="radio" name="q6" value="c"> Saída</label>
+            </div>
+
+            <div class="quiz-pergunta">
+                <p>7) Um programa bem estruturado deve:</p>
+                <label><input type="radio" name="q7" value="a"> Ter lógica organizada</label>
+                <label><input type="radio" name="q7" value="b"> Ser o mais curto possível</label>
+                <label><input type="radio" name="q7" value="c"> Ignorar validações</label>
+            </div>
+
+            <button type="button" class="btn-finalizar" onclick="corrigirQuiz09()">
+                Finalizar Quiz
+            </button>
+
+            <div class="quiz-resultado" id="resultadoQuiz09"></div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+function abrirQuiz09() {
+    document.getElementById("quiz09").style.display = "flex";
+}
+
+function fecharQuiz09() {
+    document.getElementById("quiz09").style.display = "none";
+    document.getElementById("formQuiz09").reset();
+    document.getElementById("resultadoQuiz09").innerHTML = "";
+}
+
+function corrigirQuiz09() {
+
+    const respostas = {
+        q1: "b",
+        q2: "c",
+        q3: "a",
+        q4: "b",
+        q5: "b",
+        q6: "b",
+        q7: "a"
+    };
+
+    let pontos = 0;
+    let total = 7;
+
+    for (let pergunta in respostas) {
+        let marcada = document.querySelector(`input[name="${pergunta}"]:checked`);
+        if (!marcada) {
+            alert("Responda todas as perguntas antes de finalizar.");
+            return;
+        }
+        if (marcada.value === respostas[pergunta]) {
+            pontos++;
+        }
+    }
+
+    let percentual = Math.round((pontos / total) * 100);
+    let mensagem = "";
+
+    if (percentual >= 85) {
+        mensagem = "Excelente desempenho.";
+    } else if (percentual >= 70) {
+        mensagem = "Bom resultado. Pode avançar.";
+    } else {
+        mensagem = "Revisar conteúdo antes da próxima aula.";
+    }
+
+    document.getElementById("resultadoQuiz09").innerHTML =
+        `Resultado: ${pontos}/${total} (${percentual}%)<br>${mensagem}`;
+}
+</script>
+
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -430,6 +650,10 @@
                 </p>
             </div>
 
+            <button class="btn-quiz" onclick="abrirQuiz09()">
+                    Iniciar Quiz da Aula 09
+                </button>
+                
             <div class="card-proximo">
                 <p class="card-proximo-label">// próxima aula</p>
                 <h3>Estação Meteorológica</h3>

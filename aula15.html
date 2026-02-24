@@ -1,249 +1,937 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 15 — Estudo da Madrugada · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         .aula-hero {
-            padding: 48px 0 32px; text-align: center;
+            padding: 48px 0 32px;
+            text-align: center;
             animation: fadeDown 0.5s ease both;
         }
 
         .aula-numero {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--cyan); background: var(--cyan-dim);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
-            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
         }
 
-        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
-        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
-        .aula-titulo span { background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; margin: 0 auto; }
+        .aula-numero-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto;
+        }
 
         /* ── BADGE FINAL ── */
         .badge-final {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-family: var(--font-mono); font-size: 0.72rem;
-            color: #fbbf24; background: rgba(251,191,36,0.1);
-            border: 1px solid rgba(251,191,36,0.3);
-            padding: 5px 14px; border-radius: 999px;
-            margin-bottom: 10px; margin-left: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            margin-left: 8px;
         }
 
         /* ── PROGRESSO ── */
-        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
-        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
-        .progresso-meio { flex: 1; }
-        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
-        .progresso-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--cyan), var(--blue), #fbbf24); border-radius: 999px; }
-        .progresso-aulas { display: flex; gap: 3px; }
-        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
-        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
-        .progresso-pip.final { background: linear-gradient(90deg, var(--blue), #fbbf24); border-color: transparent; }
-        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: #fbbf24; white-space: nowrap; font-weight: 700; }
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .progresso-meio {
+            flex: 1;
+        }
+
+        .progresso-track {
+            height: 5px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue), #fbbf24);
+            border-radius: 999px;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 3px;
+        }
+
+        .progresso-pip {
+            flex: 1;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pip.final {
+            background: linear-gradient(90deg, var(--blue), #fbbf24);
+            border-color: transparent;
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #fbbf24;
+            white-space: nowrap;
+            font-weight: 700;
+        }
 
         /* ── GRID ── */
-        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
-        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
-        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
 
-        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+        @media (max-width: 860px) {
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progresso-modulo {
+                flex-wrap: wrap;
+            }
+        }
+
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
 
         /* ── CENÁRIO ── */
         .cenario-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 28px 32px;
-            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
         }
-        @media (max-width: 580px) { .cenario-card { grid-template-columns: 1fr; } }
-        .cenario-icone { font-size: 2.6rem; }
-        .cenario-texto p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
-        .cenario-texto p:last-child { margin-bottom: 0; }
-        .cenario-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        @media (max-width: 580px) {
+            .cenario-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cenario-icone {
+            font-size: 2.6rem;
+        }
+
+        .cenario-texto p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .cenario-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cenario-texto strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── REQUISITOS ── */
-        .requisitos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        @media (max-width: 580px) { .requisitos-grid { grid-template-columns: 1fr; } }
+        .requisitos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 580px) {
+            .requisitos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .req-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px;
-            display: flex; align-items: center; gap: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
             transition: var(--transition);
         }
-        .req-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
-        .req-numero {
-            font-family: var(--font-mono); font-size: 0.8rem;
-            color: var(--cyan); background: var(--cyan-dim);
-            border: 1px solid var(--border-accent);
-            width: 32px; height: 32px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; flex-shrink: 0;
+
+        .req-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
         }
-        .req-texto { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+
+        .req-numero {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .req-texto {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── CÁLCULO VISUAL ── */
         .calculo-card {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 28px 32px;
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
         }
+
         .calculo-titulo {
-            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
-            margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
         .calculo-titulo::before {
-            content: ""; width: 3px; height: 18px;
+            content: "";
+            width: 3px;
+            height: 18px;
             background: linear-gradient(180deg, var(--cyan), var(--blue));
             border-radius: 2px;
         }
-        .calculo-lista { display: flex; flex-direction: column; gap: 8px; }
+
+        .calculo-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .calculo-etapa {
-            display: flex; align-items: center; gap: 12px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 8px; padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
             transition: var(--transition);
         }
-        .calculo-etapa:hover { background: var(--bg-card-hover); }
-        .calculo-icone { font-size: 1.2rem; flex-shrink: 0; }
-        .calculo-info { flex: 1; }
-        .calculo-info-titulo { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
-        .calculo-info-desc { font-size: 0.76rem; color: var(--text-muted); }
+
+        .calculo-etapa:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .calculo-icone {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .calculo-info {
+            flex: 1;
+        }
+
+        .calculo-info-titulo {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .calculo-info-desc {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
         .calculo-formula {
-            font-family: var(--font-mono); font-size: 0.82rem;
-            font-weight: 700; color: var(--cyan);
-            background: var(--cyan-dim); border: 1px solid var(--border-accent);
-            padding: 4px 10px; border-radius: 4px; white-space: nowrap;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
         }
+
         .calculo-total {
-            margin-top: 12px; padding-top: 16px;
+            margin-top: 12px;
+            padding-top: 16px;
             border-top: 2px solid var(--border-accent);
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .calculo-total-label { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
+
+        .calculo-total-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
         .calculo-total-valor {
-            font-family: var(--font-mono); font-size: 1rem;
-            font-weight: 700; color: var(--cyan);
-            background: var(--cyan-dim); border: 1px solid var(--border-accent);
-            padding: 6px 14px; border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 6px;
         }
 
         /* ── CODIGO ── */
-        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
-        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
-        .codigo-dots { display: flex; gap: 6px; }
-        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
-        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
-        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
-        .codigo-body { padding: 20px 24px; overflow-x: auto; }
-        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+        .codigo-completo {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
 
-        .kw  { color: #00e5ff; font-weight: 700; }
-        .fn  { color: #c084fc; }
-        .str { color: #86efac; }
-        .var { color: #fbbf24; }
-        .tp  { color: #60a5fa; }
-        .op  { color: #f472b6; }
-        .cm  { color: #475569; font-style: italic; }
-        .num { color: #fb923c; }
+        .codigo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(0, 229, 255, 0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+
+        .codigo-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .codigo-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f57;
+        }
+
+        .dot-yellow {
+            background: #febc2e;
+        }
+
+        .dot-green {
+            background: #28c840;
+        }
+
+        .codigo-filename {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .codigo-lang {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .codigo-body {
+            padding: 20px 24px;
+            overflow-x: auto;
+        }
+
+        .codigo-body pre {
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .kw {
+            color: #00e5ff;
+            font-weight: 700;
+        }
+
+        .fn {
+            color: #c084fc;
+        }
+
+        .str {
+            color: #86efac;
+        }
+
+        .var {
+            color: #fbbf24;
+        }
+
+        .tp {
+            color: #60a5fa;
+        }
+
+        .op {
+            color: #f472b6;
+        }
+
+        .cm {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .num {
+            color: #fb923c;
+        }
 
         /* ── OBJETIVOS ── */
-        .objetivos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        @media (max-width: 580px) { .objetivos-grid { grid-template-columns: 1fr; } }
+        .objetivos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 580px) {
+            .objetivos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .objetivo-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px 16px;
-            display: flex; align-items: center; gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: var(--transition);
         }
-        .objetivo-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
-        .objetivo-icone { font-size: 1.3rem; flex-shrink: 0; }
-        .objetivo-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+
+        .objetivo-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .objetivo-icone {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .objetivo-texto {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── CONCLUSÃO FINAL ── */
         .conclusao-card {
-            background: linear-gradient(135deg, rgba(251,191,36,0.07), rgba(251,191,36,0.02));
-            border: 1px solid rgba(251,191,36,0.3);
-            border-radius: var(--radius-lg); padding: 28px 32px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.07), rgba(251, 191, 36, 0.02));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
         }
-        .conclusao-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .conclusao-icone { font-size: 1.6rem; }
-        .conclusao-titulo { font-size: 0.95rem; font-weight: 700; color: #fbbf24; }
-        .conclusao-texto p { color: #b0bec5; font-size: 0.88rem; line-height: 1.7; margin-bottom: 10px; }
-        .conclusao-texto p:last-child { margin-bottom: 0; }
-        .conclusao-texto strong { color: var(--text-primary); }
+
+        .conclusao-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .conclusao-icone {
+            font-size: 1.6rem;
+        }
+
+        .conclusao-titulo {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fbbf24;
+        }
+
+        .conclusao-texto p {
+            color: #b0bec5;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .conclusao-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .conclusao-texto strong {
+            color: var(--text-primary);
+        }
 
         /* ── CONQUISTAS ── */
-        .conquistas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        @media (max-width: 580px) { .conquistas-grid { grid-template-columns: 1fr; } }
+        .conquistas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 580px) {
+            .conquistas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .conquista-item {
-            background: linear-gradient(135deg, rgba(251,191,36,0.06), rgba(251,191,36,0.02));
-            border: 1px solid rgba(251,191,36,0.2);
-            border-radius: var(--radius-md); padding: 16px;
-            display: flex; align-items: center; gap: 12px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(251, 191, 36, 0.02));
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: var(--transition);
         }
-        .conquista-item:hover { border-color: rgba(251,191,36,0.4); }
-        .conquista-icone { font-size: 1.3rem; flex-shrink: 0; }
-        .conquista-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+
+        .conquista-item:hover {
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .conquista-icone {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .conquista-texto {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
-        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
-        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
-        .meta-valor.gold { color: #fbbf24; font-family: var(--font-mono); }
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
 
-        .card-contadores { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .contadores-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
-        .contador-linha { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
-        .contador-linha:last-child { border-bottom: none; }
-        .contador-label { color: var(--text-muted); }
-        .contador-valor { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--cyan); }
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
+
+        .meta-valor.gold {
+            color: #fbbf24;
+            font-family: var(--font-mono);
+        }
+
+        .card-contadores {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .contadores-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .contador-linha {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.82rem;
+        }
+
+        .contador-linha:last-child {
+            border-bottom: none;
+        }
+
+        .contador-label {
+            color: var(--text-muted);
+        }
+
+        .contador-valor {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
 
         .card-dica {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
         }
-        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .dica-icone { font-size: 1.3rem; }
-        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
-        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+
+        .dica-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dica-icone {
+            font-size: 1.3rem;
+        }
+
+        .dica-titulo {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .dica-texto {
+            font-size: 0.8rem;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
 
         /* Card conclusão sidebar */
         .card-fim {
-            background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,191,36,0.03));
-            border: 1px solid rgba(251,191,36,0.3);
-            border-radius: var(--radius-lg); padding: 22px 24px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(251, 191, 36, 0.03));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
             text-align: center;
         }
-        .card-fim-icone { font-size: 2.4rem; margin-bottom: 10px; }
-        .card-fim h3 { font-size: 0.95rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px; }
-        .card-fim p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+
+        .card-fim-icone {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card-fim h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .card-fim p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
         .btn-fim {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             background: linear-gradient(135deg, #fbbf24, #f59e0b);
             color: #0a0a0f;
-            font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
-            padding: 11px 16px; border-radius: var(--radius-sm);
-            text-decoration: none; transition: var(--transition);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
         }
-        .btn-fim:hover { opacity: 0.85; box-shadow: 0 0 24px rgba(251,191,36,0.4); }
 
+        .btn-fim:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 24px rgba(251, 191, 36, 0.4);
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<script>
+
+function abrirQuiz15(){
+    document.getElementById("quiz15").style.display = "flex";
+}
+
+function fecharQuiz15(){
+    document.getElementById("quiz15").style.display = "none";
+    document.getElementById("formQuiz15").reset();
+    document.getElementById("resultadoQuiz15").innerHTML = "";
+}
+
+function corrigirQuiz15(){
+
+    const respostas = {
+        q1: "b",
+        q2: "b",
+        q3: "c",
+        q4: "b",
+        q5: "a",
+        q6: "b",
+        q7: "a"
+    };
+
+    let acertos = 0;
+    let total = 7;
+
+    for(let pergunta in respostas){
+        let marcada = document.querySelector('input[name="'+pergunta+'"]:checked');
+
+        if(!marcada){
+            alert("Responda todas as perguntas antes de finalizar.");
+            return;
+        }
+
+        if(marcada.value === respostas[pergunta]){
+            acertos++;
+        }
+    }
+
+    let percentual = Math.round((acertos / total) * 100);
+
+    let feedback = "";
+
+    if(percentual === 100){
+        feedback = "Excelente. Domínio total de porcentagem.";
+    } else if(percentual >= 70){
+        feedback = "Bom desempenho. Conceito consolidado.";
+    } else {
+        feedback = "Reveja o cálculo de porcentagem e média.";
+    }
+
+    document.getElementById("resultadoQuiz15").innerHTML =
+        "Acertos: " + acertos + " de " + total +
+        "<br>Percentual: " + percentual + "%<br><br>" + feedback;
+}
+
+</script>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -251,7 +939,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -259,7 +948,8 @@
     <section class="conteudo">
 
         <div class="aula-hero">
-            <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+            <div
+                style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
                 <div class="aula-numero">
                     <span class="aula-numero-dot"></span>
                     Aula 15 · Porcentagem
@@ -267,21 +957,31 @@
                 <span class="badge-final">🏆 Aula Final</span>
             </div>
             <h1 class="aula-titulo">Estudo da <span>Madrugada</span></h1>
-            <p class="aula-desc">Calcule quantos alunos estudam de madrugada usando porcentagens encadeadas e média aritmética.</p>
+            <p class="aula-desc">Calcule quantos alunos estudam de madrugada usando porcentagens encadeadas e média
+                aritmética.</p>
         </div>
 
         <div class="progresso-modulo">
             <span class="progresso-label">Progresso</span>
             <div class="progresso-meio">
-                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-track">
+                    <div class="progresso-fill"></div>
+                </div>
                 <div class="progresso-aulas">
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
                     <div class="progresso-pip final"></div>
                 </div>
             </div>
@@ -291,104 +991,106 @@
         <br>
 
         <div class="aula-grid">
-        <div class="col-principal">
+            <div class="col-principal">
 
-            <!-- Cenário -->
-            <div class="cenario-card">
-                <div class="cenario-icone">🌙</div>
-                <div class="cenario-texto">
-                    <p>
-                        Com base no total de alunos de uma turma, o programa calcula
-                        <strong>35% que estudam de madrugada</strong>, depois acrescenta
-                        <strong>30% sobre esse valor</strong> para uma segunda estimativa,
-                        e por fim calcula a <strong>média entre as duas</strong>.
-                    </p>
-                    <p>
-                        Um exercício clássico de porcentagem aplicada à programação — transformando regras matemáticas em lógica executável.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Requisitos -->
-            <div>
-                <p class="secao-label">// requisitos do sistema</p>
-                <div class="requisitos-grid">
-                    <div class="req-item">
-                        <div class="req-numero">01</div>
-                        <p class="req-texto">Ler o total de alunos da turma</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">02</div>
-                        <p class="req-texto">Calcular 35% do total (1ª estimativa)</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">03</div>
-                        <p class="req-texto">Acrescentar 30% sobre a 1ª estimativa</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">04</div>
-                        <p class="req-texto">Calcular a média e exibir os resultados</p>
+                <!-- Cenário -->
+                <div class="cenario-card">
+                    <div class="cenario-icone">🌙</div>
+                    <div class="cenario-texto">
+                        <p>
+                            Com base no total de alunos de uma turma, o programa calcula
+                            <strong>35% que estudam de madrugada</strong>, depois acrescenta
+                            <strong>30% sobre esse valor</strong> para uma segunda estimativa,
+                            e por fim calcula a <strong>média entre as duas</strong>.
+                        </p>
+                        <p>
+                            Um exercício clássico de porcentagem aplicada à programação — transformando regras
+                            matemáticas em lógica executável.
+                        </p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Cálculo visual -->
-            <div>
-                <p class="secao-label">// exemplo de cálculo (100 alunos)</p>
-                <div class="calculo-card">
-                    <p class="calculo-titulo">Passo a passo com totalAlunos = 100</p>
-                    <div class="calculo-lista">
-                        <div class="calculo-etapa">
-                            <span class="calculo-icone">📥</span>
-                            <div class="calculo-info">
-                                <p class="calculo-info-titulo">Total da turma</p>
-                                <p class="calculo-info-desc">Valor lido pelo usuário</p>
-                            </div>
-                            <span class="calculo-formula">100 alunos</span>
+                <!-- Requisitos -->
+                <div>
+                    <p class="secao-label">// requisitos do sistema</p>
+                    <div class="requisitos-grid">
+                        <div class="req-item">
+                            <div class="req-numero">01</div>
+                            <p class="req-texto">Ler o total de alunos da turma</p>
                         </div>
-                        <div class="calculo-etapa">
-                            <span class="calculo-icone">📊</span>
-                            <div class="calculo-info">
-                                <p class="calculo-info-titulo">1ª Estimativa (madrugada1)</p>
-                                <p class="calculo-info-desc">35% do total: 100 × 0.35</p>
-                            </div>
-                            <span class="calculo-formula">= 35</span>
+                        <div class="req-item">
+                            <div class="req-numero">02</div>
+                            <p class="req-texto">Calcular 35% do total (1ª estimativa)</p>
                         </div>
-                        <div class="calculo-etapa">
-                            <span class="calculo-icone">📈</span>
-                            <div class="calculo-info">
-                                <p class="calculo-info-titulo">2ª Estimativa (madrugada2)</p>
-                                <p class="calculo-info-desc">madrugada1 + 30% de madrugada1: 35 + (35 × 0.30)</p>
-                            </div>
-                            <span class="calculo-formula">= 45.5</span>
+                        <div class="req-item">
+                            <div class="req-numero">03</div>
+                            <p class="req-texto">Acrescentar 30% sobre a 1ª estimativa</p>
                         </div>
-                        <div class="calculo-etapa">
-                            <span class="calculo-icone">⚖️</span>
-                            <div class="calculo-info">
-                                <p class="calculo-info-titulo">Média entre as estimativas</p>
-                                <p class="calculo-info-desc">(madrugada1 + madrugada2) / 2: (35 + 45.5) / 2</p>
-                            </div>
-                            <span class="calculo-formula">= 40.25</span>
-                        </div>
-                        <div class="calculo-total">
-                            <span class="calculo-total-label">Fórmula da porcentagem</span>
-                            <span class="calculo-total-valor">valor × 0.XX</span>
+                        <div class="req-item">
+                            <div class="req-numero">04</div>
+                            <p class="req-texto">Calcular a média e exibir os resultados</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Solução -->
-            <div>
-                <p class="secao-label">// exemplo de solução</p>
-                <div class="codigo-completo">
-                    <div class="codigo-header">
-                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-                        <span class="codigo-filename">madrugada.por</span>
-                        <span class="codigo-lang">portugol</span>
+                <!-- Cálculo visual -->
+                <div>
+                    <p class="secao-label">// exemplo de cálculo (100 alunos)</p>
+                    <div class="calculo-card">
+                        <p class="calculo-titulo">Passo a passo com totalAlunos = 100</p>
+                        <div class="calculo-lista">
+                            <div class="calculo-etapa">
+                                <span class="calculo-icone">📥</span>
+                                <div class="calculo-info">
+                                    <p class="calculo-info-titulo">Total da turma</p>
+                                    <p class="calculo-info-desc">Valor lido pelo usuário</p>
+                                </div>
+                                <span class="calculo-formula">100 alunos</span>
+                            </div>
+                            <div class="calculo-etapa">
+                                <span class="calculo-icone">📊</span>
+                                <div class="calculo-info">
+                                    <p class="calculo-info-titulo">1ª Estimativa (madrugada1)</p>
+                                    <p class="calculo-info-desc">35% do total: 100 × 0.35</p>
+                                </div>
+                                <span class="calculo-formula">= 35</span>
+                            </div>
+                            <div class="calculo-etapa">
+                                <span class="calculo-icone">📈</span>
+                                <div class="calculo-info">
+                                    <p class="calculo-info-titulo">2ª Estimativa (madrugada2)</p>
+                                    <p class="calculo-info-desc">madrugada1 + 30% de madrugada1: 35 + (35 × 0.30)</p>
+                                </div>
+                                <span class="calculo-formula">= 45.5</span>
+                            </div>
+                            <div class="calculo-etapa">
+                                <span class="calculo-icone">⚖️</span>
+                                <div class="calculo-info">
+                                    <p class="calculo-info-titulo">Média entre as estimativas</p>
+                                    <p class="calculo-info-desc">(madrugada1 + madrugada2) / 2: (35 + 45.5) / 2</p>
+                                </div>
+                                <span class="calculo-formula">= 40.25</span>
+                            </div>
+                            <div class="calculo-total">
+                                <span class="calculo-total-label">Fórmula da porcentagem</span>
+                                <span class="calculo-total-valor">valor × 0.XX</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="codigo-body">
-<pre><span class="kw">programa</span>{
+                </div>
+
+                <!-- Solução -->
+                <div>
+                    <p class="secao-label">// exemplo de solução</p>
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span
+                                    class="dot-green"></span></div>
+                            <span class="codigo-filename">madrugada.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+                            <pre><span class="kw">programa</span>{
 
    <span class="kw">funcao</span> <span class="fn">inicio</span>(){
 
@@ -416,141 +1118,220 @@
    }
 
 }</pre>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Objetivos -->
+                <div>
+                    <p class="secao-label">// objetivos do exercício</p>
+                    <div class="objetivos-grid">
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">💯</span>
+                            <p class="objetivo-texto">Converter porcentagem em multiplicação decimal</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">🔗</span>
+                            <p class="objetivo-texto">Encadear cálculos usando resultados anteriores</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">⚖️</span>
+                            <p class="objetivo-texto">Calcular média aritmética entre dois valores</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">📦</span>
+                            <p class="objetivo-texto">Organizar variáveis <strong>real</strong> com clareza</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conquistas do módulo -->
+                <div>
+                    <p class="secao-label">// o que você dominou neste módulo</p>
+                    <div class="conquistas-grid">
+                        <div class="conquista-item">
+                            <span class="conquista-icone">📦</span>
+                            <p class="conquista-texto">Variáveis e tipos de dados</p>
+                        </div>
+                        <div class="conquista-item">
+                            <span class="conquista-icone">🔀</span>
+                            <p class="conquista-texto">Estruturas condicionais</p>
+                        </div>
+                        <div class="conquista-item">
+                            <span class="conquista-icone">🔁</span>
+                            <p class="conquista-texto">Laços de repetição</p>
+                        </div>
+                        <div class="conquista-item">
+                            <span class="conquista-icone">🔗</span>
+                            <p class="conquista-texto">Operadores lógicos</p>
+                        </div>
+                        <div class="conquista-item">
+                            <span class="conquista-icone">🛡️</span>
+                            <p class="conquista-texto">Validação de dados</p>
+                        </div>
+                        <div class="conquista-item">
+                            <span class="conquista-icone">💯</span>
+                            <p class="conquista-texto">Cálculos com porcentagem</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conclusão final -->
+                <div class="conclusao-card">
+                    <div class="conclusao-header">
+                        <span class="conclusao-icone">🏆</span>
+                        <span class="conclusao-titulo">Módulo Concluído!</span>
+                    </div>
+                    <div class="conclusao-texto">
+                        <p>
+                            Você chegou até aqui — e isso diz muito. Ao longo das 15 aulas você saiu do zero
+                            e construiu uma base sólida em lógica de programação com <strong>Portugol</strong>.
+                        </p>
+                        <p>
+                            Cada exercício foi um bloco. Cada erro, um aprendizado. Agora você tem as ferramentas
+                            para <strong>pensar como um programador</strong> — e isso é o que realmente importa.
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Objetivos -->
-            <div>
-                <p class="secao-label">// objetivos do exercício</p>
-                <div class="objetivos-grid">
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">💯</span>
-                        <p class="objetivo-texto">Converter porcentagem em multiplicação decimal</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">🔗</span>
-                        <p class="objetivo-texto">Encadear cálculos usando resultados anteriores</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">⚖️</span>
-                        <p class="objetivo-texto">Calcular média aritmética entre dois valores</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">📦</span>
-                        <p class="objetivo-texto">Organizar variáveis <strong>real</strong> com clareza</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <!-- Conquistas do módulo -->
-            <div>
-                <p class="secao-label">// o que você dominou neste módulo</p>
-                <div class="conquistas-grid">
-                    <div class="conquista-item">
-                        <span class="conquista-icone">📦</span>
-                        <p class="conquista-texto">Variáveis e tipos de dados</p>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor gold">15 ★</span>
                     </div>
-                    <div class="conquista-item">
-                        <span class="conquista-icone">🔀</span>
-                        <p class="conquista-texto">Estruturas condicionais</p>
-                    </div>
-                    <div class="conquista-item">
-                        <span class="conquista-icone">🔁</span>
-                        <p class="conquista-texto">Laços de repetição</p>
-                    </div>
-                    <div class="conquista-item">
-                        <span class="conquista-icone">🔗</span>
-                        <p class="conquista-texto">Operadores lógicos</p>
-                    </div>
-                    <div class="conquista-item">
-                        <span class="conquista-icone">🛡️</span>
-                        <p class="conquista-texto">Validação de dados</p>
-                    </div>
-                    <div class="conquista-item">
-                        <span class="conquista-icone">💯</span>
-                        <p class="conquista-texto">Cálculos com porcentagem</p>
-                    </div>
+                    <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto
+                            Final</span></div>
+                    <div class="meta-item"><span class="meta-label">Nível</span><span
+                            class="meta-valor">Iniciante</span></div>
+                    <div class="meta-item"><span class="meta-label">Conceito</span><span
+                            class="meta-valor">Porcentagem</span></div>
                 </div>
-            </div>
 
-            <!-- Conclusão final -->
-            <div class="conclusao-card">
-                <div class="conclusao-header">
-                    <span class="conclusao-icone">🏆</span>
-                    <span class="conclusao-titulo">Módulo Concluído!</span>
+                <!-- Contadores -->
+                <div class="card-contadores">
+                    <p class="contadores-titulo">// estatísticas</p>
+                    <div class="contador-linha">
+                        <span class="contador-label">Variáveis</span>
+                        <span class="contador-valor">4</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Entradas</span>
+                        <span class="contador-valor">1</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Cálculos</span>
+                        <span class="contador-valor">3</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Saídas</span>
+                        <span class="contador-valor">3</span>
+                    </div>
                 </div>
-                <div class="conclusao-texto">
-                    <p>
-                        Você chegou até aqui — e isso diz muito. Ao longo das 15 aulas você saiu do zero
-                        e construiu uma base sólida em lógica de programação com <strong>Portugol</strong>.
+
+                <!-- Dica -->
+                <div class="card-dica">
+                    <div class="dica-header">
+                        <span class="dica-icone">💡</span>
+                        <span class="dica-titulo">Dica de Ouro</span>
+                    </div>
+                    <p class="dica-texto">
+                        Porcentagem em código = multiplicar por decimal.
+                        <strong>35%</strong> vira <strong>× 0.35</strong>,
+                        <strong>30%</strong> vira <strong>× 0.30</strong>.
+                        Simples assim!
                     </p>
-                    <p>
-                        Cada exercício foi um bloco. Cada erro, um aprendizado. Agora você tem as ferramentas
-                        para <strong>pensar como um programador</strong> — e isso é o que realmente importa.
+                </div>
+
+                <button class="btn-quiz" onclick="abrirQuiz15()">
+                    Iniciar Quiz da Aula 15
+                </button>
+
+                <!-- QUIZ AULA 15 -->
+                <div class="quiz-modal" id="quiz15">
+                    <div class="quiz-box">
+
+                        <div class="quiz-header">
+                            <h3>Quiz — Aula 15 (Porcentagem)</h3>
+                            <button class="quiz-close" onclick="fecharQuiz15()">✕</button>
+                        </div>
+
+                        <form id="formQuiz15">
+
+                            <div class="quiz-pergunta">
+                                <p>1) 35% em código é representado por:</p>
+                                <label><input type="radio" name="q1" value="a"> 35</label>
+                                <label><input type="radio" name="q1" value="b"> 0.35</label>
+                                <label><input type="radio" name="q1" value="c"> 35/1000</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>2) Para calcular 35% de um valor usamos:</p>
+                                <label><input type="radio" name="q2" value="a"> valor + 0.35</label>
+                                <label><input type="radio" name="q2" value="b"> valor * 0.35</label>
+                                <label><input type="radio" name="q2" value="c"> valor - 0.35</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>3) A variável usada para média foi:</p>
+                                <label><input type="radio" name="q3" value="a"> madrugada1</label>
+                                <label><input type="radio" name="q3" value="b"> totalAlunos</label>
+                                <label><input type="radio" name="q3" value="c"> media</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>4) A segunda estimativa adiciona:</p>
+                                <label><input type="radio" name="q4" value="a"> 30% do total</label>
+                                <label><input type="radio" name="q4" value="b"> 30% sobre madrugada1</label>
+                                <label><input type="radio" name="q4" value="c"> 35% novamente</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>5) A fórmula da média é:</p>
+                                <label><input type="radio" name="q5" value="a"> (a + b) / 2</label>
+                                <label><input type="radio" name="q5" value="b"> a * b</label>
+                                <label><input type="radio" name="q5" value="c"> a - b</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>6) O tipo ideal para porcentagem é:</p>
+                                <label><input type="radio" name="q6" value="a"> inteiro</label>
+                                <label><input type="radio" name="q6" value="b"> real</label>
+                                <label><input type="radio" name="q6" value="c"> logico</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>7) Se totalAlunos for 200, 35% será:</p>
+                                <label><input type="radio" name="q7" value="a"> 70</label>
+                                <label><input type="radio" name="q7" value="b"> 35</label>
+                                <label><input type="radio" name="q7" value="c"> 65</label>
+                            </div>
+
+                            <button type="button" class="btn-finalizar" onclick="corrigirQuiz15()">
+                                Finalizar Quiz
+                            </button>
+
+                            <div class="quiz-resultado" id="resultadoQuiz15"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Fim do módulo -->
+                <div class="card-fim">
+                    <div class="card-fim-icone">🎓</div>
+                    <h3>Módulo Completo!</h3>
+                    <p>Você concluiu todas as 15 aulas do módulo de Portugol. Volte ao portal para ver seu progresso.
                     </p>
+                    <a href="index.html" class="btn-fim">
+                        🏠 Voltar ao Portal
+                    </a>
                 </div>
+
             </div>
-
-        </div>
-
-        <!-- Sidebar -->
-        <div class="aula-sidebar">
-
-            <div class="card-meta">
-                <p class="card-meta-titulo">// info da aula</p>
-                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor gold">15 ★</span></div>
-                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto Final</span></div>
-                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
-                <div class="meta-item"><span class="meta-label">Conceito</span><span class="meta-valor">Porcentagem</span></div>
-            </div>
-
-            <!-- Contadores -->
-            <div class="card-contadores">
-                <p class="contadores-titulo">// estatísticas</p>
-                <div class="contador-linha">
-                    <span class="contador-label">Variáveis</span>
-                    <span class="contador-valor">4</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Entradas</span>
-                    <span class="contador-valor">1</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Cálculos</span>
-                    <span class="contador-valor">3</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Saídas</span>
-                    <span class="contador-valor">3</span>
-                </div>
-            </div>
-
-            <!-- Dica -->
-            <div class="card-dica">
-                <div class="dica-header">
-                    <span class="dica-icone">💡</span>
-                    <span class="dica-titulo">Dica de Ouro</span>
-                </div>
-                <p class="dica-texto">
-                    Porcentagem em código = multiplicar por decimal.
-                    <strong>35%</strong> vira <strong>× 0.35</strong>,
-                    <strong>30%</strong> vira <strong>× 0.30</strong>.
-                    Simples assim!
-                </p>
-            </div>
-
-            <!-- Fim do módulo -->
-            <div class="card-fim">
-                <div class="card-fim-icone">🎓</div>
-                <h3>Módulo Completo!</h3>
-                <p>Você concluiu todas as 15 aulas do módulo de Portugol. Volte ao portal para ver seu progresso.</p>
-                <a href="index.html" class="btn-fim">
-                    🏠 Voltar ao Portal
-                </a>
-            </div>
-
-        </div>
         </div>
 
     </section>
@@ -568,4 +1349,5 @@
     </footer>
 
 </body>
+
 </html>

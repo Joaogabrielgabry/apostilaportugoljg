@@ -1,272 +1,879 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 10 — Estação Meteorológica · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         .aula-hero {
-            padding: 48px 0 32px; text-align: center;
+            padding: 48px 0 32px;
+            text-align: center;
             animation: fadeDown 0.5s ease both;
         }
 
         .aula-numero {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--cyan); background: var(--cyan-dim);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
-            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
         }
 
-        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
-        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
-        .aula-titulo span { background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+        .aula-numero-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto;
+        }
 
         /* ── PROGRESSO ── */
-        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
-        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
-        .progresso-meio { flex: 1; }
-        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
-        .progresso-fill { height: 100%; width: 66.67%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
-        .progresso-aulas { display: flex; gap: 3px; }
-        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
-        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
-        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .progresso-meio {
+            flex: 1;
+        }
+
+        .progresso-track {
+            height: 5px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 66.67%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 3px;
+        }
+
+        .progresso-pip {
+            flex: 1;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            white-space: nowrap;
+        }
 
         /* ── GRID ── */
-        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
-        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
-        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
 
-        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+        @media (max-width: 860px) {
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progresso-modulo {
+                flex-wrap: wrap;
+            }
+        }
+
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
 
         /* ── CENÁRIO ── */
         .cenario-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 28px 32px;
-            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
         }
 
-        @media (max-width: 580px) { .cenario-card { grid-template-columns: 1fr; } }
+        @media (max-width: 580px) {
+            .cenario-card {
+                grid-template-columns: 1fr;
+            }
+        }
 
-        .cenario-icone { font-size: 2.6rem; }
+        .cenario-icone {
+            font-size: 2.6rem;
+        }
 
-        .cenario-texto p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
-        .cenario-texto p:last-child { margin-bottom: 0; }
-        .cenario-texto strong { color: var(--text-primary); font-weight: 600; }
+        .cenario-texto p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .cenario-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cenario-texto strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── REQUISITOS ── */
         .requisitos-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
 
-        @media (max-width: 640px) { .requisitos-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 640px) {
+            .requisitos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .req-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px 16px;
-            text-align: center; transition: var(--transition);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            text-align: center;
+            transition: var(--transition);
         }
 
-        .req-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .req-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
 
         .req-numero {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--cyan); background: var(--cyan-dim);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
-            width: 28px; height: 28px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 10px; font-weight: 700;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
         }
 
-        .req-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+        .req-texto {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── FÓRMULA VISUAL ── */
         .formula-card {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 32px;
+            border-radius: var(--radius-lg);
+            padding: 32px;
             text-align: center;
         }
 
         .formula-titulo {
-            font-size: 0.78rem; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--text-muted);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
             margin-bottom: 20px;
         }
 
         .formula-expressao {
-            font-family: var(--font-mono); font-size: 1.3rem;
-            color: var(--text-primary); font-weight: 600;
-            margin-bottom: 16px; line-height: 1.6;
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.6;
         }
 
-        .formula-expressao .var { color: var(--cyan); }
-        .formula-expressao .num { color: #fb923c; }
-        .formula-expressao .op  { color: #f472b6; }
+        .formula-expressao .var {
+            color: var(--cyan);
+        }
+
+        .formula-expressao .num {
+            color: #fb923c;
+        }
+
+        .formula-expressao .op {
+            color: #f472b6;
+        }
 
         .formula-desc {
-            font-size: 0.82rem; color: var(--text-muted);
+            font-size: 0.82rem;
+            color: var(--text-muted);
             line-height: 1.6;
         }
 
         /* ── CONVERSÃO VISUAL ── */
         .conversao-visual {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 28px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
         }
 
         .conversao-titulo {
-            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
-            margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .conversao-titulo::before {
-            content: ""; width: 3px; height: 18px;
+            content: "";
+            width: 3px;
+            height: 18px;
             background: linear-gradient(180deg, var(--cyan), var(--blue));
             border-radius: 2px;
         }
 
         .conversao-linha {
-            display: flex; align-items: center; gap: 0;
+            display: flex;
+            align-items: center;
+            gap: 0;
         }
 
-        @media (max-width: 640px) { .conversao-linha { flex-direction: column; gap: 0; } }
+        @media (max-width: 640px) {
+            .conversao-linha {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
 
         .conversao-box {
-            flex: 1; background: var(--bg-surface);
+            flex: 1;
+            background: var(--bg-surface);
             border: 2px solid var(--conv-cor, var(--border));
             border-radius: var(--radius-md);
             padding: 20px;
             text-align: center;
         }
 
-        .conversao-box-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
-        .conversao-box-valor { font-size: 1.4rem; font-weight: 700; color: var(--conv-cor, var(--text-primary)); font-family: var(--font-mono); }
-        .conversao-box-unidade { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        .conversao-box-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .conversao-box-valor {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--conv-cor, var(--text-primary));
+            font-family: var(--font-mono);
+        }
+
+        .conversao-box-unidade {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
 
         .conversao-seta {
-            font-size: 1.4rem; color: var(--text-faint);
-            padding: 0 16px; flex-shrink: 0;
+            font-size: 1.4rem;
+            color: var(--text-faint);
+            padding: 0 16px;
+            flex-shrink: 0;
         }
 
         @media (max-width: 640px) {
-            .conversao-seta { transform: rotate(90deg); padding: 12px 0; }
+            .conversao-seta {
+                transform: rotate(90deg);
+                padding: 12px 0;
+            }
         }
 
-        .conv-celsius    { --conv-cor: #00e5ff; }
-        .conv-fahrenheit { --conv-cor: #f59e0b; }
+        .conv-celsius {
+            --conv-cor: #00e5ff;
+        }
+
+        .conv-fahrenheit {
+            --conv-cor: #f59e0b;
+        }
 
         /* ── CODIGO ── */
-        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
-        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
-        .codigo-dots { display: flex; gap: 6px; }
-        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
-        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
-        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
-        .codigo-body { padding: 20px 24px; overflow-x: auto; }
-        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+        .codigo-completo {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
 
-        .kw  { color: #00e5ff; font-weight: 700; }
-        .fn  { color: #c084fc; }
-        .str { color: #86efac; }
-        .var { color: #fbbf24; }
-        .tp  { color: #60a5fa; }
-        .op  { color: #f472b6; }
-        .cm  { color: #475569; font-style: italic; }
-        .num { color: #fb923c; }
+        .codigo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(0, 229, 255, 0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+
+        .codigo-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .codigo-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f57;
+        }
+
+        .dot-yellow {
+            background: #febc2e;
+        }
+
+        .dot-green {
+            background: #28c840;
+        }
+
+        .codigo-filename {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .codigo-lang {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .codigo-body {
+            padding: 20px 24px;
+            overflow-x: auto;
+        }
+
+        .codigo-body pre {
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .kw {
+            color: #00e5ff;
+            font-weight: 700;
+        }
+
+        .fn {
+            color: #c084fc;
+        }
+
+        .str {
+            color: #86efac;
+        }
+
+        .var {
+            color: #fbbf24;
+        }
+
+        .tp {
+            color: #60a5fa;
+        }
+
+        .op {
+            color: #f472b6;
+        }
+
+        .cm {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .num {
+            color: #fb923c;
+        }
 
         /* ── OBJETIVOS ── */
         .objetivos-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
 
-        @media (max-width: 640px) { .objetivos-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 640px) {
+            .objetivos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .objetivo-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
             transition: var(--transition);
         }
 
-        .objetivo-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .objetivo-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
 
-        .objetivo-icone { font-size: 1.3rem; margin-bottom: 10px; text-align: center; }
-        .objetivo-texto { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; text-align: center; font-weight: 500; }
+        .objetivo-icone {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .objetivo-texto {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            text-align: center;
+            font-weight: 500;
+        }
 
         /* ── CONCLUSAO ── */
         .conclusao-card {
-            background: var(--bg-card); border: 1px solid var(--border);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-left: 3px solid var(--cyan);
-            border-radius: var(--radius-md); padding: 24px 28px;
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
         }
 
-        .conclusao-texto p { color: #b0bec5; font-size: 0.92rem; line-height: 1.8; margin-bottom: 12px; }
-        .conclusao-texto p:last-child { margin-bottom: 0; }
-        .conclusao-texto strong { color: var(--text-primary); font-weight: 600; }
+        .conclusao-texto p {
+            color: #b0bec5;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .conclusao-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .conclusao-texto strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
 
-        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
-        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
 
         /* Card temperatura */
         .card-temperatura {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 22px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
         }
 
         .temp-titulo {
-            font-family: var(--font-mono); font-size: 0.68rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--text-muted); margin-bottom: 14px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
         }
 
         .temp-linha {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 9px 0; border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
             font-size: 0.82rem;
         }
 
-        .temp-linha:last-child { border-bottom: none; }
+        .temp-linha:last-child {
+            border-bottom: none;
+        }
 
-        .temp-escala { color: var(--text-muted); }
-        .temp-simbolo { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; }
+        .temp-escala {
+            color: var(--text-muted);
+        }
+
+        .temp-simbolo {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
 
         /* Card dica */
         .card-dica {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
         }
 
-        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .dica-icone { font-size: 1.3rem; }
-        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
-        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+        .dica-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dica-icone {
+            font-size: 1.3rem;
+        }
+
+        .dica-titulo {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .dica-texto {
+            font-size: 0.8rem;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
 
         /* Próxima aula */
-        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
-        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
-        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
-        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
 
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-proximo p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 24px var(--cyan-glow);
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<script>
+    function abrirQuiz10() {
+        document.getElementById("quiz10").style.display = "flex";
+    }
+
+    function fecharQuiz10() {
+        document.getElementById("quiz10").style.display = "none";
+        document.getElementById("formQuiz10").reset();
+        document.getElementById("resultadoQuiz10").innerHTML = "";
+    }
+
+    function corrigirQuiz10() {
+
+        const respostas = {
+            q1: "b",
+            q2: "a",
+            q3: "b",
+            q4: "b",
+            q5: "a",
+            q6: "c",
+            q7: "b"
+        };
+
+        let pontos = 0;
+        let total = 7;
+
+        for (let pergunta in respostas) {
+            let marcada = document.querySelector(`input[name="${pergunta}"]:checked`);
+            if (!marcada) {
+                alert("Responda todas as perguntas antes de finalizar.");
+                return;
+            }
+            if (marcada.value === respostas[pergunta]) {
+                pontos++;
+            }
+        }
+
+        let percentual = Math.round((pontos / total) * 100);
+        let mensagem = "";
+
+        if (percentual >= 85) {
+            mensagem = "Excelente. Lógica consolidada.";
+        } else if (percentual >= 70) {
+            mensagem = "Bom resultado. Pode avançar.";
+        } else {
+            mensagem = "Revisar a aula antes de continuar.";
+        }
+
+        document.getElementById("resultadoQuiz10").innerHTML =
+            `Resultado: ${pontos}/${total} (${percentual}%)<br>${mensagem}`;
+    }
+</script>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -274,7 +881,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -293,15 +901,24 @@
         <div class="progresso-modulo">
             <span class="progresso-label">Progresso</span>
             <div class="progresso-meio">
-                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-track">
+                    <div class="progresso-fill"></div>
+                </div>
                 <div class="progresso-aulas">
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
-                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
                     <div class="progresso-pip"></div>
                 </div>
             </div>
@@ -311,87 +928,90 @@
         <br>
 
         <div class="aula-grid">
-        <div class="col-principal">
+            <div class="col-principal">
 
-            <!-- Cenário -->
-            <div class="cenario-card">
-                <div class="cenario-icone">🌡️</div>
-                <div class="cenario-texto">
-                    <p>
-                        O sistema recebe a <strong>temperatura em Celsius</strong>,
-                        mas precisa exibir o valor convertido para <strong>Fahrenheit</strong>.
-                    </p>
-                    <p>
-                        Aplique a fórmula de conversão e apresente o resultado de forma clara ao usuário.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Requisitos -->
-            <div>
-                <p class="secao-label">// requisitos do sistema</p>
-                <div class="requisitos-grid">
-                    <div class="req-item">
-                        <div class="req-numero">01</div>
-                        <p class="req-texto">Ler a temperatura em Celsius</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">02</div>
-                        <p class="req-texto">Converter para Fahrenheit</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">03</div>
-                        <p class="req-texto">Exibir o resultado claramente</p>
+                <!-- Cenário -->
+                <div class="cenario-card">
+                    <div class="cenario-icone">🌡️</div>
+                    <div class="cenario-texto">
+                        <p>
+                            O sistema recebe a <strong>temperatura em Celsius</strong>,
+                            mas precisa exibir o valor convertido para <strong>Fahrenheit</strong>.
+                        </p>
+                        <p>
+                            Aplique a fórmula de conversão e apresente o resultado de forma clara ao usuário.
+                        </p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Fórmula -->
-            <div>
-                <p class="secao-label">// fórmula de conversão</p>
-                <div class="formula-card">
-                    <p class="formula-titulo">celsius para fahrenheit</p>
-                    <div class="formula-expressao">
-                        <span class="var">Fahrenheit</span> <span class="op">=</span> (<span class="var">Celsius</span> <span class="op">×</span> <span class="num">1.8</span>) <span class="op">+</span> <span class="num">32</span>
-                    </div>
-                    <p class="formula-desc">
-                        Multiplique a temperatura em Celsius por 1.8 e adicione 32 para obter Fahrenheit
-                    </p>
-                </div>
-            </div>
-
-            <!-- Conversão visual -->
-            <div>
-                <p class="secao-label">// exemplo de conversão</p>
-                <div class="conversao-visual">
-                    <p class="conversao-titulo">25°C convertido</p>
-                    <div class="conversao-linha">
-                        <div class="conversao-box conv-celsius">
-                            <div class="conversao-box-label">entrada</div>
-                            <div class="conversao-box-valor">25</div>
-                            <div class="conversao-box-unidade">Graus Celsius</div>
+                <!-- Requisitos -->
+                <div>
+                    <p class="secao-label">// requisitos do sistema</p>
+                    <div class="requisitos-grid">
+                        <div class="req-item">
+                            <div class="req-numero">01</div>
+                            <p class="req-texto">Ler a temperatura em Celsius</p>
                         </div>
-                        <div class="conversao-seta">→</div>
-                        <div class="conversao-box conv-fahrenheit">
-                            <div class="conversao-box-label">resultado</div>
-                            <div class="conversao-box-valor">77</div>
-                            <div class="conversao-box-unidade">Graus Fahrenheit</div>
+                        <div class="req-item">
+                            <div class="req-numero">02</div>
+                            <p class="req-texto">Converter para Fahrenheit</p>
+                        </div>
+                        <div class="req-item">
+                            <div class="req-numero">03</div>
+                            <p class="req-texto">Exibir o resultado claramente</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Solução -->
-            <div>
-                <p class="secao-label">// exemplo de solução</p>
-                <div class="codigo-completo">
-                    <div class="codigo-header">
-                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-                        <span class="codigo-filename">estacao-meteorologica.por</span>
-                        <span class="codigo-lang">portugol</span>
+                <!-- Fórmula -->
+                <div>
+                    <p class="secao-label">// fórmula de conversão</p>
+                    <div class="formula-card">
+                        <p class="formula-titulo">celsius para fahrenheit</p>
+                        <div class="formula-expressao">
+                            <span class="var">Fahrenheit</span> <span class="op">=</span> (<span
+                                class="var">Celsius</span> <span class="op">×</span> <span class="num">1.8</span>) <span
+                                class="op">+</span> <span class="num">32</span>
+                        </div>
+                        <p class="formula-desc">
+                            Multiplique a temperatura em Celsius por 1.8 e adicione 32 para obter Fahrenheit
+                        </p>
                     </div>
-                    <div class="codigo-body">
-<pre><span class="kw">programa</span>
+                </div>
+
+                <!-- Conversão visual -->
+                <div>
+                    <p class="secao-label">// exemplo de conversão</p>
+                    <div class="conversao-visual">
+                        <p class="conversao-titulo">25°C convertido</p>
+                        <div class="conversao-linha">
+                            <div class="conversao-box conv-celsius">
+                                <div class="conversao-box-label">entrada</div>
+                                <div class="conversao-box-valor">25</div>
+                                <div class="conversao-box-unidade">Graus Celsius</div>
+                            </div>
+                            <div class="conversao-seta">→</div>
+                            <div class="conversao-box conv-fahrenheit">
+                                <div class="conversao-box-label">resultado</div>
+                                <div class="conversao-box-valor">77</div>
+                                <div class="conversao-box-unidade">Graus Fahrenheit</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solução -->
+                <div>
+                    <p class="secao-label">// exemplo de solução</p>
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span
+                                    class="dot-green"></span></div>
+                            <span class="codigo-filename">estacao-meteorologica.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+                            <pre><span class="kw">programa</span>
 {
    <span class="kw">funcao</span> <span class="fn">inicio</span>(){
 
@@ -407,95 +1027,176 @@
 
    }
 }</pre>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Objetivos -->
-            <div>
-                <p class="secao-label">// objetivos do exercício</p>
-                <div class="objetivos-grid">
-                    <div class="objetivo-item">
-                        <div class="objetivo-icone">🔢</div>
-                        <p class="objetivo-texto">Trabalhar números reais com precisão</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <div class="objetivo-icone">📐</div>
-                        <p class="objetivo-texto">Aplicar fórmula matemática no código</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <div class="objetivo-icone">🔄</div>
-                        <p class="objetivo-texto">Organizar entrada, processamento e saída</p>
+                <!-- Objetivos -->
+                <div>
+                    <p class="secao-label">// objetivos do exercício</p>
+                    <div class="objetivos-grid">
+                        <div class="objetivo-item">
+                            <div class="objetivo-icone">🔢</div>
+                            <p class="objetivo-texto">Trabalhar números reais com precisão</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <div class="objetivo-icone">📐</div>
+                            <p class="objetivo-texto">Aplicar fórmula matemática no código</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <div class="objetivo-icone">🔄</div>
+                            <p class="objetivo-texto">Organizar entrada, processamento e saída</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Conclusão -->
+                <div class="conclusao-card">
+                    <div class="conclusao-texto">
+                        <p>
+                            Esse exercício reforça a <strong>lógica básica de qualquer sistema:</strong> receber dados,
+                            processar segundo regras definidas e devolver um resultado útil ao usuário.
+                        </p>
+                        <p>
+                            É um exemplo simples, mas representa exatamente como <strong>softwares reais
+                                funcionam</strong> — de apps de clima a sistemas industriais complexos.
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Conclusão -->
-            <div class="conclusao-card">
-                <div class="conclusao-texto">
-                    <p>
-                        Esse exercício reforça a <strong>lógica básica de qualquer sistema:</strong> receber dados, processar segundo regras definidas e devolver um resultado útil ao usuário.
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
+
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">10</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Nível</span><span
+                            class="meta-valor">Iniciante</span></div>
+                    <div class="meta-item"><span class="meta-label">Conceito</span><span
+                            class="meta-valor">Conversão</span></div>
+                </div>
+
+                <!-- Escalas -->
+                <div class="card-temperatura">
+                    <p class="temp-titulo">// escalas termométricas</p>
+                    <div class="temp-linha">
+                        <span class="temp-escala">Celsius</span>
+                        <span class="temp-simbolo" style="color:#00e5ff">°C</span>
+                    </div>
+                    <div class="temp-linha">
+                        <span class="temp-escala">Fahrenheit</span>
+                        <span class="temp-simbolo" style="color:#f59e0b">°F</span>
+                    </div>
+                    <div class="temp-linha">
+                        <span class="temp-escala">Kelvin</span>
+                        <span class="temp-simbolo" style="color:#c084fc">K</span>
+                    </div>
+                </div>
+
+                <!-- Dica -->
+                <div class="card-dica">
+                    <div class="dica-header">
+                        <span class="dica-icone">💡</span>
+                        <span class="dica-titulo">Dica Extra</span>
+                    </div>
+                    <p class="dica-texto">
+                        Tente expandir: adicione a conversão para Kelvin (K = C + 273.15) e deixe o usuário escolher
+                        qual escala deseja ver!
                     </p>
-                    <p>
-                        É um exemplo simples, mas representa exatamente como <strong>softwares reais funcionam</strong> — de apps de clima a sistemas industriais complexos.
-                    </p>
                 </div>
-            </div>
 
-        </div>
+                <button class="btn-quiz" onclick="abrirQuiz10()">
+                    Iniciar Quiz da Aula 10
+                </button>
 
-        <!-- Sidebar -->
-        <div class="aula-sidebar">
+                <!-- QUIZ AULA 10 -->
+                <div class="quiz-modal" id="quiz10">
+                    <div class="quiz-box">
 
-            <div class="card-meta">
-                <p class="card-meta-titulo">// info da aula</p>
-                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">10</span></div>
-                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto</span></div>
-                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
-                <div class="meta-item"><span class="meta-label">Conceito</span><span class="meta-valor">Conversão</span></div>
-            </div>
+                        <div class="quiz-header">
+                            <h3>Quiz — Aula 10</h3>
+                            <button class="quiz-close" onclick="fecharQuiz10()">✕</button>
+                        </div>
 
-            <!-- Escalas -->
-            <div class="card-temperatura">
-                <p class="temp-titulo">// escalas termométricas</p>
-                <div class="temp-linha">
-                    <span class="temp-escala">Celsius</span>
-                    <span class="temp-simbolo" style="color:#00e5ff">°C</span>
+                        <form id="formQuiz10">
+
+                            <div class="quiz-pergunta">
+                                <p>1) A fórmula correta para converter Celsius para Fahrenheit é:</p>
+                                <label><input type="radio" name="q1" value="a"> F = C + 32</label>
+                                <label><input type="radio" name="q1" value="b"> F = (C × 1.8) + 32</label>
+                                <label><input type="radio" name="q1" value="c"> F = C × 2</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>2) 0°C equivale a:</p>
+                                <label><input type="radio" name="q2" value="a"> 32°F</label>
+                                <label><input type="radio" name="q2" value="b"> 0°F</label>
+                                <label><input type="radio" name="q2" value="c"> 100°F</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>3) A variável usada para guardar a conversão foi:</p>
+                                <label><input type="radio" name="q3" value="a"> celsius</label>
+                                <label><input type="radio" name="q3" value="b"> fahrenheit</label>
+                                <label><input type="radio" name="q3" value="c"> temperatura</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>4) O tipo de dado ideal para temperatura é:</p>
+                                <label><input type="radio" name="q4" value="a"> inteiro</label>
+                                <label><input type="radio" name="q4" value="b"> real</label>
+                                <label><input type="radio" name="q4" value="c"> caractere</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>5) O programa segue qual estrutura lógica?</p>
+                                <label><input type="radio" name="q5" value="a"> Entrada → Processamento → Saída</label>
+                                <label><input type="radio" name="q5" value="b"> Saída → Entrada → Processamento</label>
+                                <label><input type="radio" name="q5" value="c"> Processamento → Saída → Entrada</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>6) A parte onde ocorre o cálculo é:</p>
+                                <label><input type="radio" name="q6" value="a"> Leia()</label>
+                                <label><input type="radio" name="q6" value="b"> Escreva()</label>
+                                <label><input type="radio" name="q6" value="c"> Atribuição da variável</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>7) 25°C convertido resulta em:</p>
+                                <label><input type="radio" name="q7" value="a"> 57°F</label>
+                                <label><input type="radio" name="q7" value="b"> 77°F</label>
+                                <label><input type="radio" name="q7" value="c"> 100°F</label>
+                            </div>
+
+                            <button type="button" class="btn-finalizar" onclick="corrigirQuiz10()">
+                                Finalizar Quiz
+                            </button>
+
+                            <div class="quiz-resultado" id="resultadoQuiz10"></div>
+
+                        </form>
+                    </div>
                 </div>
-                <div class="temp-linha">
-                    <span class="temp-escala">Fahrenheit</span>
-                    <span class="temp-simbolo" style="color:#f59e0b">°F</span>
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>Cofrinho do Tempo</h3>
+                    <p>Um programa criativo que converte segundos em horas, minutos e segundos legíveis.</p>
+                    <a href="aula11.html" class="btn-proximo">
+                        Ir para Aula 11
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
                 </div>
-                <div class="temp-linha">
-                    <span class="temp-escala">Kelvin</span>
-                    <span class="temp-simbolo" style="color:#c084fc">K</span>
-                </div>
-            </div>
 
-            <!-- Dica -->
-            <div class="card-dica">
-                <div class="dica-header">
-                    <span class="dica-icone">💡</span>
-                    <span class="dica-titulo">Dica Extra</span>
-                </div>
-                <p class="dica-texto">
-                    Tente expandir: adicione a conversão para Kelvin (K = C + 273.15) e deixe o usuário escolher qual escala deseja ver!
-                </p>
             </div>
-
-            <div class="card-proximo">
-                <p class="card-proximo-label">// próxima aula</p>
-                <h3>Cofrinho do Tempo</h3>
-                <p>Um programa criativo que converte segundos em horas, minutos e segundos legíveis.</p>
-                <a href="aula11.html" class="btn-proximo">
-                    Ir para Aula 11
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-
-        </div>
         </div>
 
     </section>
@@ -511,6 +1212,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>

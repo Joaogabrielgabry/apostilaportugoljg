@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 2 — O que é Programação · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         /* ── HERO ── */
         .aula-hero {
             position: relative;
@@ -32,7 +34,8 @@
         }
 
         .aula-numero-dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             background: var(--cyan);
             border-radius: 50%;
             animation: pulse 2s ease infinite;
@@ -113,7 +116,8 @@
         }
 
         .progresso-pip {
-            width: 18px; height: 6px;
+            width: 18px;
+            height: 6px;
             border-radius: 999px;
             background: var(--bg-surface);
             border: 1px solid var(--border);
@@ -134,7 +138,9 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid { grid-template-columns: 1fr; }
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ── COLUNA PRINCIPAL ── */
@@ -159,9 +165,14 @@
             margin-bottom: 16px;
         }
 
-        .card-intro p:last-child { margin-bottom: 0; }
+        .card-intro p:last-child {
+            margin-bottom: 0;
+        }
 
-        .card-intro p strong { color: var(--text-primary); font-weight: 600; }
+        .card-intro p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── FLUXO ENTRADA > PROCESSAMENTO > SAÍDA ── */
         .fluxo-titulo {
@@ -176,7 +187,8 @@
 
         .fluxo-titulo::before {
             content: "";
-            width: 3px; height: 20px;
+            width: 3px;
+            height: 20px;
             background: linear-gradient(180deg, var(--cyan), var(--blue));
             border-radius: 2px;
             flex-shrink: 0;
@@ -294,9 +306,17 @@
         }
 
         /* Cores por etapa */
-        .etapa-entrada  { --etapa-cor: #00e5ff; }
-        .etapa-processo { --etapa-cor: #f59e0b; }
-        .etapa-saida    { --etapa-cor: #10b981; }
+        .etapa-entrada {
+            --etapa-cor: #00e5ff;
+        }
+
+        .etapa-processo {
+            --etapa-cor: #f59e0b;
+        }
+
+        .etapa-saida {
+            --etapa-cor: #10b981;
+        }
 
         /* ── CARD "POR QUE IMPORTA" ── */
         .card-importancia {
@@ -318,7 +338,8 @@
 
         .card-importancia .secao-titulo::before {
             content: "";
-            width: 3px; height: 20px;
+            width: 3px;
+            height: 20px;
             background: linear-gradient(180deg, var(--cyan), var(--blue));
             border-radius: 2px;
             flex-shrink: 0;
@@ -339,10 +360,25 @@
         }
 
         @media (max-width: 600px) {
-            .habilidades-grid { grid-template-columns: 1fr; }
-            .fluxo-etapa { grid-template-columns: 1fr; }
-            .etapa-label { border-right: 1px solid var(--border); border-bottom: none; border-radius: var(--radius-md) var(--radius-md) 0 0; }
-            .etapa-conteudo { border-left: 1px solid var(--border); border-top: 2px solid var(--etapa-cor); border-radius: 0 0 var(--radius-md) var(--radius-md); }
+            .habilidades-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fluxo-etapa {
+                grid-template-columns: 1fr;
+            }
+
+            .etapa-label {
+                border-right: 1px solid var(--border);
+                border-bottom: none;
+                border-radius: var(--radius-md) var(--radius-md) 0 0;
+            }
+
+            .etapa-conteudo {
+                border-left: 1px solid var(--border);
+                border-top: 2px solid var(--etapa-cor);
+                border-radius: 0 0 var(--radius-md) var(--radius-md);
+            }
         }
 
         .habilidade-item {
@@ -359,7 +395,10 @@
             background: var(--bg-card-hover);
         }
 
-        .habilidade-icone { font-size: 1.4rem; margin-bottom: 8px; }
+        .habilidade-icone {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
 
         .habilidade-nome {
             font-size: 0.78rem;
@@ -399,10 +438,23 @@
             font-size: 0.85rem;
         }
 
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
 
         /* Card de resumo do fluxo */
         .card-fluxo-resumo {
@@ -435,10 +487,13 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .resumo-step:last-child { border-bottom: none; }
+        .resumo-step:last-child {
+            border-bottom: none;
+        }
 
         .resumo-dot {
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             flex-shrink: 0;
         }
@@ -459,7 +514,7 @@
         }
 
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 28px;
@@ -509,8 +564,206 @@
             box-shadow: 0 0 28px var(--cyan-glow);
         }
 
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 14px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<script>
+    function abrirQuiz() {
+        document.getElementById("quizModal").style.display = "flex";
+    }
+
+    function fecharQuiz() {
+        document.getElementById("quizModal").style.display = "none";
+    }
+
+    function corrigirQuiz() {
+
+        const respostasCorretas = {
+            q1: "a",
+            q2: "b",
+            q3: "c",
+            q4: "b",
+            q5: "a",
+            q6: "c",
+            q7: "a"
+        };
+
+        let acertos = 0;
+
+        for (let pergunta in respostasCorretas) {
+            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+            if (selecionada && selecionada.value === respostasCorretas[pergunta]) {
+                acertos++;
+            }
+        }
+
+        const percentual = Math.round((acertos / 7) * 100);
+
+        document.getElementById("quizResultado").innerHTML =
+            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
+    }
+</script>
+
+<!-- MODAL QUIZ AULA 02 -->
+<div id="quizModal" class="quiz-modal">
+    <div class="quiz-box">
+
+        <div class="quiz-header">
+            <h2>Quiz — Aula 02</h2>
+            <button class="quiz-close" onclick="fecharQuiz()">✕</button>
+        </div>
+
+        <form id="quizForm">
+
+            <!-- 1 -->
+            <div class="quiz-pergunta">
+                <p>1) Programar significa:</p>
+                <label><input type="radio" name="q1" value="a"> Ensinar o computador a executar tarefas</label>
+                <label><input type="radio" name="q1" value="b"> Montar peças de hardware</label>
+                <label><input type="radio" name="q1" value="c"> Navegar na internet</label>
+            </div>
+
+            <!-- 2 -->
+            <div class="quiz-pergunta">
+                <p>2) O computador executa:</p>
+                <label><input type="radio" name="q2" value="a"> O que ele acha melhor</label>
+                <label><input type="radio" name="q2" value="b"> Exatamente o que foi programado</label>
+                <label><input type="radio" name="q2" value="c"> Apenas comandos visuais</label>
+            </div>
+
+            <!-- 3 -->
+            <div class="quiz-pergunta">
+                <p>3) A estrutura básica de um programa é:</p>
+                <label><input type="radio" name="q3" value="a"> Entrada → Saída → Processamento</label>
+                <label><input type="radio" name="q3" value="b"> Processamento → Entrada → Saída</label>
+                <label><input type="radio" name="q3" value="c"> Entrada → Processamento → Saída</label>
+            </div>
+
+            <!-- 4 -->
+            <div class="quiz-pergunta">
+                <p>4) Digitar o nome no teclado é exemplo de:</p>
+                <label><input type="radio" name="q4" value="a"> Saída</label>
+                <label><input type="radio" name="q4" value="b"> Entrada</label>
+                <label><input type="radio" name="q4" value="c"> Processamento</label>
+            </div>
+
+            <!-- 5 -->
+            <div class="quiz-pergunta">
+                <p>5) Somar dois números é exemplo de:</p>
+                <label><input type="radio" name="q5" value="a"> Processamento</label>
+                <label><input type="radio" name="q5" value="b"> Entrada</label>
+                <label><input type="radio" name="q5" value="c"> Saída</label>
+            </div>
+
+            <!-- 6 -->
+            <div class="quiz-pergunta">
+                <p>6) Mostrar “Aprovado” na tela é:</p>
+                <label><input type="radio" name="q6" value="a"> Entrada</label>
+                <label><input type="radio" name="q6" value="b"> Processamento</label>
+                <label><input type="radio" name="q6" value="c"> Saída</label>
+            </div>
+
+            <!-- 7 -->
+            <div class="quiz-pergunta">
+                <p>7) Dominar a estrutura EPS facilita aprender:</p>
+                <label><input type="radio" name="q7" value="a"> Qualquer linguagem futura</label>
+                <label><input type="radio" name="q7" value="b"> Apenas Portugol</label>
+                <label><input type="radio" name="q7" value="c"> Apenas matemática</label>
+            </div>
+
+            <button type="button" class="btn-finalizar" onclick="corrigirQuiz()">
+                Finalizar Quiz
+            </button>
+
+            <div id="quizResultado" class="quiz-resultado"></div>
+
+        </form>
+    </div>
+</div>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -518,7 +771,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -533,7 +787,8 @@
             <h1 class="aula-titulo">
                 O que é <span>Programação?</span>
             </h1>
-            <p class="aula-desc">Entenda o ciclo fundamental que está por trás de qualquer sistema — do app no celular ao satélite no espaço.</p>
+            <p class="aula-desc">Entenda o ciclo fundamental que está por trás de qualquer sistema — do app no celular
+                ao satélite no espaço.</p>
         </div>
 
         <div class="progresso-modulo">
@@ -596,7 +851,8 @@
                                 <span class="etapa-num">// step 01</span>
                             </div>
                             <div class="etapa-conteudo">
-                                <p>Momento em que o programa recebe informações. Podem vir do teclado, mouse, formulário ou outro sistema.</p>
+                                <p>Momento em que o programa recebe informações. Podem vir do teclado, mouse, formulário
+                                    ou outro sistema.</p>
                                 <div class="etapa-exemplos-label">// exemplos</div>
                                 <ul class="etapa-exemplos">
                                     <li>Digitar seu nome</li>
@@ -613,7 +869,8 @@
                                 <span class="etapa-num">// step 02</span>
                             </div>
                             <div class="etapa-conteudo">
-                                <p>Etapa onde o computador executa regras, cálculos, comparações e decisões com base nos dados recebidos.</p>
+                                <p>Etapa onde o computador executa regras, cálculos, comparações e decisões com base nos
+                                    dados recebidos.</p>
                                 <div class="etapa-exemplos-label">// exemplos</div>
                                 <ul class="etapa-exemplos">
                                     <li>Somar dois números</li>
@@ -630,7 +887,8 @@
                                 <span class="etapa-num">// step 03</span>
                             </div>
                             <div class="etapa-conteudo">
-                                <p>Fase em que o programa apresenta o resultado ao usuário de forma compreensível e útil.</p>
+                                <p>Fase em que o programa apresenta o resultado ao usuário de forma compreensível e
+                                    útil.</p>
                                 <div class="etapa-exemplos-label">// exemplos</div>
                                 <ul class="etapa-exemplos">
                                     <li>Mostrar a soma calculada</li>
@@ -702,21 +960,27 @@
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#00e5ff"></div>
                             <span class="resumo-step-nome">Entrada</span>
-                            <span class="resumo-step-tag" style="background:rgba(0,229,255,0.12);color:#00e5ff;">INPUT</span>
+                            <span class="resumo-step-tag"
+                                style="background:rgba(0,229,255,0.12);color:#00e5ff;">INPUT</span>
                         </div>
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#f59e0b"></div>
                             <span class="resumo-step-nome">Processamento</span>
-                            <span class="resumo-step-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b;">PROCESS</span>
+                            <span class="resumo-step-tag"
+                                style="background:rgba(245,158,11,0.12);color:#f59e0b;">PROCESS</span>
                         </div>
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#10b981"></div>
                             <span class="resumo-step-nome">Saída</span>
-                            <span class="resumo-step-tag" style="background:rgba(16,185,129,0.12);color:#10b981;">OUTPUT</span>
+                            <span class="resumo-step-tag"
+                                style="background:rgba(16,185,129,0.12);color:#10b981;">OUTPUT</span>
                         </div>
                     </div>
                 </div>
 
+                <button class="btn-quiz" onclick="abrirQuiz()">
+                    Iniciar Quiz da Aula 02
+                </button>
                 <div class="card-proximo">
                     <p class="card-proximo-label">// próxima aula</p>
                     <h3>O que é Portugol</h3>
@@ -724,7 +988,8 @@
                     <a href="aula3.html" class="btn-proximo">
                         Ir para Aula 3
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
                 </div>
@@ -746,4 +1011,5 @@
         </div>
     </footer>
 </body>
+
 </html>

@@ -1,261 +1,858 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Aula 11 — Cofrinho do Tempo · Portugol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         .aula-hero {
-            padding: 48px 0 32px; text-align: center;
+            padding: 48px 0 32px;
+            text-align: center;
             animation: fadeDown 0.5s ease both;
         }
 
         .aula-numero {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--cyan); background: var(--cyan-dim);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
             border: 1px solid var(--border-accent);
-            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
         }
 
-        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
-        .aula-titulo { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
-        .aula-titulo span { background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; margin: 0 auto; }
+        .aula-numero-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aula-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto;
+        }
 
         /* ── PROGRESSO ── */
-        .progresso-modulo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; gap: 24px; animation: fadeUp 0.5s ease 0.1s both; }
-        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
-        .progresso-meio { flex: 1; }
-        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
-        .progresso-fill { height: 100%; width: 73.33%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
-        .progresso-aulas { display: flex; gap: 3px; }
-        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
-        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
-        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
+        .progresso-modulo {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+
+        .progresso-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .progresso-meio {
+            flex: 1;
+        }
+
+        .progresso-track {
+            height: 5px;
+            background: var(--bg-surface);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progresso-fill {
+            height: 100%;
+            width: 73.33%;
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-radius: 999px;
+        }
+
+        .progresso-aulas {
+            display: flex;
+            gap: 3px;
+        }
+
+        .progresso-pip {
+            flex: 1;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+        }
+
+        .progresso-pip.ativa {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            border-color: transparent;
+        }
+
+        .progresso-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            white-space: nowrap;
+        }
 
         /* ── GRID ── */
-        .aula-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; animation: fadeUp 0.5s ease 0.2s both; }
-        @media (max-width: 860px) { .aula-grid { grid-template-columns: 1fr; } .progresso-modulo { flex-wrap: wrap; } }
-        .col-principal { display: flex; flex-direction: column; gap: 16px; }
+        .aula-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
 
-        .secao-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-left: 2px; }
+        @media (max-width: 860px) {
+            .aula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progresso-modulo {
+                flex-wrap: wrap;
+            }
+        }
+
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
 
         /* ── CENÁRIO ── */
         .cenario-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 28px 32px;
-            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
         }
 
-        @media (max-width: 580px) { .cenario-card { grid-template-columns: 1fr; } }
+        @media (max-width: 580px) {
+            .cenario-card {
+                grid-template-columns: 1fr;
+            }
+        }
 
-        .cenario-icone { font-size: 2.6rem; }
+        .cenario-icone {
+            font-size: 2.6rem;
+        }
 
-        .cenario-texto p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
-        .cenario-texto p:last-child { margin-bottom: 0; }
-        .cenario-texto strong { color: var(--text-primary); font-weight: 600; }
+        .cenario-texto p {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .cenario-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cenario-texto strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
         /* ── REQUISITOS ── */
         .requisitos-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
-        @media (max-width: 580px) { .requisitos-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 580px) {
+            .requisitos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .req-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px;
-            display: flex; align-items: center; gap: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
             transition: var(--transition);
         }
 
-        .req-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
-
-        .req-numero {
-            font-family: var(--font-mono); font-size: 0.8rem;
-            color: var(--cyan); background: var(--cyan-dim);
-            border: 1px solid var(--border-accent);
-            width: 32px; height: 32px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; flex-shrink: 0;
+        .req-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
         }
 
-        .req-texto { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+        .req-numero {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .req-texto {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── ACUMULAÇÃO VISUAL ── */
         .acumulacao-card {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 28px 32px;
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
         }
 
         .acumulacao-titulo {
-            font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
-            margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .acumulacao-titulo::before {
-            content: ""; width: 3px; height: 18px;
+            content: "";
+            width: 3px;
+            height: 18px;
             background: linear-gradient(180deg, var(--cyan), var(--blue));
             border-radius: 2px;
         }
 
         .acumulacao-lista {
-            display: flex; flex-direction: column; gap: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .acum-pessoa {
-            display: flex; align-items: center; gap: 12px;
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 8px; padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
             transition: var(--transition);
         }
 
-        .acum-pessoa:hover { background: var(--bg-card-hover); }
+        .acum-pessoa:hover {
+            background: var(--bg-card-hover);
+        }
 
-        .acum-icone { font-size: 1.2rem; flex-shrink: 0; }
+        .acum-icone {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
 
-        .acum-label { flex: 1; font-size: 0.82rem; color: var(--text-muted); }
+        .acum-label {
+            flex: 1;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
 
         .acum-valor {
-            font-family: var(--font-mono); font-size: 0.88rem;
-            font-weight: 700; color: var(--cyan);
-            background: var(--cyan-dim); border: 1px solid var(--border-accent);
-            padding: 4px 10px; border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 4px 10px;
+            border-radius: 4px;
         }
 
         .acum-total {
-            margin-top: 12px; padding-top: 16px;
+            margin-top: 12px;
+            padding-top: 16px;
             border-top: 2px solid var(--border-accent);
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .acum-total-label {
-            font-size: 0.9rem; font-weight: 700; color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .acum-total-valor {
-            font-family: var(--font-mono); font-size: 1.1rem;
-            font-weight: 700; color: var(--cyan);
-            background: var(--cyan-dim); border: 1px solid var(--border-accent);
-            padding: 6px 14px; border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px;
+            border-radius: 6px;
         }
 
         /* ── CODIGO ── */
-        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
-        .codigo-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; background: rgba(0,229,255,0.04); border-bottom: 1px solid var(--border-accent); }
-        .codigo-dots { display: flex; gap: 6px; }
-        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
-        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
-        .codigo-lang { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 8px; border-radius: 4px; }
-        .codigo-body { padding: 20px 24px; overflow-x: auto; }
-        .codigo-body pre { font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
+        .codigo-completo {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
 
-        .kw  { color: #00e5ff; font-weight: 700; }
-        .fn  { color: #c084fc; }
-        .str { color: #86efac; }
-        .var { color: #fbbf24; }
-        .tp  { color: #60a5fa; }
-        .op  { color: #f472b6; }
-        .cm  { color: #475569; font-style: italic; }
-        .num { color: #fb923c; }
+        .codigo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            background: rgba(0, 229, 255, 0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+
+        .codigo-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .codigo-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f57;
+        }
+
+        .dot-yellow {
+            background: #febc2e;
+        }
+
+        .dot-green {
+            background: #28c840;
+        }
+
+        .codigo-filename {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .codigo-lang {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .codigo-body {
+            padding: 20px 24px;
+            overflow-x: auto;
+        }
+
+        .codigo-body pre {
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .kw {
+            color: #00e5ff;
+            font-weight: 700;
+        }
+
+        .fn {
+            color: #c084fc;
+        }
+
+        .str {
+            color: #86efac;
+        }
+
+        .var {
+            color: #fbbf24;
+        }
+
+        .tp {
+            color: #60a5fa;
+        }
+
+        .op {
+            color: #f472b6;
+        }
+
+        .cm {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .num {
+            color: #fb923c;
+        }
 
         /* ── OBJETIVOS ── */
         .objetivos-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
-        @media (max-width: 580px) { .objetivos-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 580px) {
+            .objetivos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .objetivo-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 18px 16px;
-            display: flex; align-items: center; gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: var(--transition);
         }
 
-        .objetivo-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .objetivo-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
 
-        .objetivo-icone { font-size: 1.3rem; flex-shrink: 0; }
-        .objetivo-texto { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+        .objetivo-icone {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .objetivo-texto {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
         /* ── PRÓXIMO PASSO ── */
         .proximo-passo-card {
-            background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
-            border: 1px solid rgba(16,185,129,0.25);
-            border-radius: var(--radius-lg); padding: 24px 28px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(16, 185, 129, 0.02));
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
         }
 
-        .pp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-        .pp-icone { font-size: 1.4rem; }
-        .pp-titulo { font-size: 0.92rem; font-weight: 700; color: var(--green); }
+        .pp-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
 
-        .pp-texto p { color: #b0bec5; font-size: 0.88rem; line-height: 1.7; margin-bottom: 10px; }
-        .pp-texto p:last-child { margin-bottom: 0; }
-        .pp-texto strong { color: var(--text-primary); }
+        .pp-icone {
+            font-size: 1.4rem;
+        }
+
+        .pp-titulo {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .pp-texto p {
+            color: #b0bec5;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .pp-texto p:last-child {
+            margin-bottom: 0;
+        }
+
+        .pp-texto strong {
+            color: var(--text-primary);
+        }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
+        .aula-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
 
-        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
-        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
-        .meta-item:last-child { border-bottom: none; }
-        .meta-label { color: var(--text-muted); }
-        .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .card-meta {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
+
+        .card-meta-titulo {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-valor {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .meta-valor.cyan {
+            color: var(--cyan);
+            font-family: var(--font-mono);
+        }
 
         /* Card contadores */
         .card-contadores {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 22px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
         }
 
         .contadores-titulo {
-            font-family: var(--font-mono); font-size: 0.68rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--text-muted); margin-bottom: 14px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
         }
 
         .contador-linha {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 9px 0; border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
             font-size: 0.82rem;
         }
 
-        .contador-linha:last-child { border-bottom: none; }
+        .contador-linha:last-child {
+            border-bottom: none;
+        }
 
-        .contador-label { color: var(--text-muted); }
-        .contador-valor { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--cyan); }
+        .contador-label {
+            color: var(--text-muted);
+        }
+
+        .contador-valor {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
 
         /* Card dica */
         .card-dica {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.04));
             border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
         }
 
-        .dica-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .dica-icone { font-size: 1.3rem; }
-        .dica-titulo { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
-        .dica-texto { font-size: 0.8rem; color: #b0bec5; line-height: 1.6; }
+        .dica-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dica-icone {
+            font-size: 1.3rem;
+        }
+
+        .dica-titulo {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .dica-texto {
+            font-size: 0.8rem;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
 
         /* Próxima aula */
-        .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
-        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
-        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
-        .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
-        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
+        .card-proximo {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+        }
 
+        .card-proximo-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .card-proximo h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .card-proximo p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .btn-proximo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 11px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-proximo:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 24px var(--cyan-glow);
+        }
+
+        .secao-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-quiz:hover {
+            opacity: 0.85;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .quiz-box {
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .quiz-pergunta {
+            margin-bottom: 20px;
+        }
+
+        .quiz-pergunta p {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .quiz-pergunta label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-finalizar {
+            width: 100%;
+            padding: 12px;
+            background: var(--cyan);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-resultado {
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
+
+<script>
+    function abrirQuiz011() {
+        document.getElementById("quiz011").style.display = "flex";
+    }
+
+    function fecharQuiz011() {
+        document.getElementById("quiz011").style.display = "none";
+        document.getElementById("formQuiz011").reset();
+        document.getElementById("resultadoQuiz011").innerHTML = "";
+    }
+
+    function corrigirQuiz011() {
+
+        const respostas = {
+            q1: "b",
+            q2: "b",
+            q3: "a",
+            q4: "c",
+            q5: "b",
+            q6: "b",
+            q7: "a"
+        };
+
+        let pontos = 0;
+        let total = 7;
+
+        for (let pergunta in respostas) {
+            let marcada = document.querySelector(`input[name="${pergunta}"]:checked`);
+            if (!marcada) {
+                alert("Responda todas as perguntas antes de finalizar.");
+                return;
+            }
+            if (marcada.value === respostas[pergunta]) {
+                pontos++;
+            }
+        }
+
+        let percentual = Math.round((pontos / total) * 100);
+        let mensagem = "";
+
+        if (percentual >= 85) {
+            mensagem = "Excelente. Conceito de acumulação consolidado.";
+        } else if (percentual >= 70) {
+            mensagem = "Bom resultado. Pode avançar.";
+        } else {
+            mensagem = "Reveja o exercício antes de seguir.";
+        }
+
+        document.getElementById("resultadoQuiz011").innerHTML =
+            `Resultado: ${pontos}/${total} (${percentual}%)<br>${mensagem}`;
+    }
+</script>
+
 <body>
 
     <div class="noise-overlay"></div>
@@ -263,7 +860,8 @@
 
     <a class="voltar" href="index.html">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Voltar ao Portal
     </a>
@@ -282,15 +880,24 @@
         <div class="progresso-modulo">
             <span class="progresso-label">Progresso</span>
             <div class="progresso-meio">
-                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-track">
+                    <div class="progresso-fill"></div>
+                </div>
                 <div class="progresso-aulas">
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip ativa"></div>
-                    <div class="progresso-pip ativa"></div><div class="progresso-pip"></div>
-                    <div class="progresso-pip"></div><div class="progresso-pip"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
                     <div class="progresso-pip"></div>
                 </div>
             </div>
@@ -300,100 +907,101 @@
         <br>
 
         <div class="aula-grid">
-        <div class="col-principal">
+            <div class="col-principal">
 
-            <!-- Cenário -->
-            <div class="cenario-card">
-                <div class="cenario-icone">⏳</div>
-                <div class="cenario-texto">
-                    <p>
-                        O objetivo é calcular o <strong>total de anos vividos por um grupo</strong>.
-                        Para isso, o sistema deve somar as idades de todas as pessoas.
-                    </p>
-                    <p>
-                        Uma forma simples de visualizar o tempo acumulado de experiência coletiva.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Requisitos -->
-            <div>
-                <p class="secao-label">// requisitos do sistema</p>
-                <div class="requisitos-grid">
-                    <div class="req-item">
-                        <div class="req-numero">01</div>
-                        <p class="req-texto">Ler a idade de cinco colegas</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">02</div>
-                        <p class="req-texto">Ler sua própria idade</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">03</div>
-                        <p class="req-texto">Somar todas as idades</p>
-                    </div>
-                    <div class="req-item">
-                        <div class="req-numero">04</div>
-                        <p class="req-texto">Mostrar o total na tela</p>
+                <!-- Cenário -->
+                <div class="cenario-card">
+                    <div class="cenario-icone">⏳</div>
+                    <div class="cenario-texto">
+                        <p>
+                            O objetivo é calcular o <strong>total de anos vividos por um grupo</strong>.
+                            Para isso, o sistema deve somar as idades de todas as pessoas.
+                        </p>
+                        <p>
+                            Uma forma simples de visualizar o tempo acumulado de experiência coletiva.
+                        </p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Acumulação visual -->
-            <div>
-                <p class="secao-label">// exemplo de acumulação</p>
-                <div class="acumulacao-card">
-                    <p class="acumulacao-titulo">Somando as idades do grupo</p>
-                    <div class="acumulacao-lista">
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">👤</span>
-                            <span class="acum-label">Colega 1</span>
-                            <span class="acum-valor">18</span>
+                <!-- Requisitos -->
+                <div>
+                    <p class="secao-label">// requisitos do sistema</p>
+                    <div class="requisitos-grid">
+                        <div class="req-item">
+                            <div class="req-numero">01</div>
+                            <p class="req-texto">Ler a idade de cinco colegas</p>
                         </div>
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">👤</span>
-                            <span class="acum-label">Colega 2</span>
-                            <span class="acum-valor">20</span>
+                        <div class="req-item">
+                            <div class="req-numero">02</div>
+                            <p class="req-texto">Ler sua própria idade</p>
                         </div>
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">👤</span>
-                            <span class="acum-label">Colega 3</span>
-                            <span class="acum-valor">19</span>
+                        <div class="req-item">
+                            <div class="req-numero">03</div>
+                            <p class="req-texto">Somar todas as idades</p>
                         </div>
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">👤</span>
-                            <span class="acum-label">Colega 4</span>
-                            <span class="acum-valor">21</span>
-                        </div>
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">👤</span>
-                            <span class="acum-label">Colega 5</span>
-                            <span class="acum-valor">22</span>
-                        </div>
-                        <div class="acum-pessoa">
-                            <span class="acum-icone">🙋</span>
-                            <span class="acum-label">Minha idade</span>
-                            <span class="acum-valor">20</span>
-                        </div>
-                        <div class="acum-total">
-                            <span class="acum-total-label">Tempo total de vida</span>
-                            <span class="acum-total-valor">120 anos</span>
+                        <div class="req-item">
+                            <div class="req-numero">04</div>
+                            <p class="req-texto">Mostrar o total na tela</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Solução -->
-            <div>
-                <p class="secao-label">// exemplo de solução</p>
-                <div class="codigo-completo">
-                    <div class="codigo-header">
-                        <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-                        <span class="codigo-filename">cofrinho-tempo.por</span>
-                        <span class="codigo-lang">portugol</span>
+                <!-- Acumulação visual -->
+                <div>
+                    <p class="secao-label">// exemplo de acumulação</p>
+                    <div class="acumulacao-card">
+                        <p class="acumulacao-titulo">Somando as idades do grupo</p>
+                        <div class="acumulacao-lista">
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">👤</span>
+                                <span class="acum-label">Colega 1</span>
+                                <span class="acum-valor">18</span>
+                            </div>
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">👤</span>
+                                <span class="acum-label">Colega 2</span>
+                                <span class="acum-valor">20</span>
+                            </div>
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">👤</span>
+                                <span class="acum-label">Colega 3</span>
+                                <span class="acum-valor">19</span>
+                            </div>
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">👤</span>
+                                <span class="acum-label">Colega 4</span>
+                                <span class="acum-valor">21</span>
+                            </div>
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">👤</span>
+                                <span class="acum-label">Colega 5</span>
+                                <span class="acum-valor">22</span>
+                            </div>
+                            <div class="acum-pessoa">
+                                <span class="acum-icone">🙋</span>
+                                <span class="acum-label">Minha idade</span>
+                                <span class="acum-valor">20</span>
+                            </div>
+                            <div class="acum-total">
+                                <span class="acum-total-label">Tempo total de vida</span>
+                                <span class="acum-total-valor">120 anos</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="codigo-body">
-<pre><span class="kw">programa</span>{
+                </div>
+
+                <!-- Solução -->
+                <div>
+                    <p class="secao-label">// exemplo de solução</p>
+                    <div class="codigo-completo">
+                        <div class="codigo-header">
+                            <div class="codigo-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span
+                                    class="dot-green"></span></div>
+                            <span class="codigo-filename">cofrinho-tempo.por</span>
+                            <span class="codigo-lang">portugol</span>
+                        </div>
+                        <div class="codigo-body">
+                            <pre><span class="kw">programa</span>{
 
    <span class="kw">funcao</span> <span class="fn">inicio</span>(){
 
@@ -431,107 +1039,189 @@
    }
 
 }</pre>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Objetivos -->
+                <div>
+                    <p class="secao-label">// objetivos do exercício</p>
+                    <div class="objetivos-grid">
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">⌨️</span>
+                            <p class="objetivo-texto">Trabalhar com múltiplas entradas sequenciais</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">📦</span>
+                            <p class="objetivo-texto">Organizar variáveis de forma clara</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">➕</span>
+                            <p class="objetivo-texto">Realizar soma acumulada de valores</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span class="objetivo-icone">🖥️</span>
+                            <p class="objetivo-texto">Produzir saída clara e informativa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Próximo passo -->
+                <div class="proximo-passo-card">
+                    <div class="pp-header">
+                        <span class="pp-icone">🔄</span>
+                        <span class="pp-titulo">Evolução Natural</span>
+                    </div>
+                    <div class="pp-texto">
+                        <p>
+                            Esse exercício funciona bem para introduzir, no próximo passo, <strong>estruturas de
+                                repetição</strong>.
+                        </p>
+                        <p>
+                            Em vez de declarar cinco variáveis separadas, poderíamos usar um <strong>laço de
+                                repetição</strong> para automatizar a leitura das idades — tornando o código mais
+                            elegante e escalável.
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Objetivos -->
-            <div>
-                <p class="secao-label">// objetivos do exercício</p>
-                <div class="objetivos-grid">
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">⌨️</span>
-                        <p class="objetivo-texto">Trabalhar com múltiplas entradas sequenciais</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">📦</span>
-                        <p class="objetivo-texto">Organizar variáveis de forma clara</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">➕</span>
-                        <p class="objetivo-texto">Realizar soma acumulada de valores</p>
-                    </div>
-                    <div class="objetivo-item">
-                        <span class="objetivo-icone">🖥️</span>
-                        <p class="objetivo-texto">Produzir saída clara e informativa</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Sidebar -->
+            <div class="aula-sidebar">
 
-            <!-- Próximo passo -->
-            <div class="proximo-passo-card">
-                <div class="pp-header">
-                    <span class="pp-icone">🔄</span>
-                    <span class="pp-titulo">Evolução Natural</span>
+                <div class="card-meta">
+                    <p class="card-meta-titulo">// info da aula</p>
+                    <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">11</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto</span>
+                    </div>
+                    <div class="meta-item"><span class="meta-label">Nível</span><span
+                            class="meta-valor">Iniciante</span></div>
+                    <div class="meta-item"><span class="meta-label">Conceito</span><span
+                            class="meta-valor">Acumulação</span></div>
                 </div>
-                <div class="pp-texto">
-                    <p>
-                        Esse exercício funciona bem para introduzir, no próximo passo, <strong>estruturas de repetição</strong>.
+
+                <!-- Contadores -->
+                <div class="card-contadores">
+                    <p class="contadores-titulo">// estatísticas</p>
+                    <div class="contador-linha">
+                        <span class="contador-label">Pessoas</span>
+                        <span class="contador-valor">6</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Variáveis</span>
+                        <span class="contador-valor">7</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Entradas</span>
+                        <span class="contador-valor">6</span>
+                    </div>
+                    <div class="contador-linha">
+                        <span class="contador-label">Soma</span>
+                        <span class="contador-valor">1</span>
+                    </div>
+                </div>
+
+                <!-- Dica -->
+                <div class="card-dica">
+                    <div class="dica-header">
+                        <span class="dica-icone">💡</span>
+                        <span class="dica-titulo">Próximo Passo</span>
+                    </div>
+                    <p class="dica-texto">
+                        Na Aula 12 você aprenderá <strong>estrutura de repetição</strong> — e verá como resolver este
+                        mesmo problema com muito menos linhas de código!
                     </p>
-                    <p>
-                        Em vez de declarar cinco variáveis separadas, poderíamos usar um <strong>laço de repetição</strong> para automatizar a leitura das idades — tornando o código mais elegante e escalável.
-                    </p>
                 </div>
+
+                <button class="btn-quiz" onclick="abrirQuiz011()">
+                    Iniciar Quiz da Aula 11
+                </button>
+
+                <!-- MODAL QUIZ AULA 11 -->
+                <div class="quiz-modal" id="quiz011">
+                    <div class="quiz-box">
+
+                        <div class="quiz-header">
+                            <h3>Quiz — Aula 11</h3>
+                            <button class="quiz-close" onclick="fecharQuiz011()">✕</button>
+                        </div>
+
+                        <form id="formQuiz011">
+
+                            <div class="quiz-pergunta">
+                                <p>1) O objetivo principal do programa é:</p>
+                                <label><input type="radio" name="q1" value="a"> Calcular média das idades</label>
+                                <label><input type="radio" name="q1" value="b"> Somar todas as idades</label>
+                                <label><input type="radio" name="q1" value="c"> Mostrar apenas uma idade</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>2) Quantas idades são lidas no total?</p>
+                                <label><input type="radio" name="q2" value="a"> 5</label>
+                                <label><input type="radio" name="q2" value="b"> 6</label>
+                                <label><input type="radio" name="q2" value="c"> 7</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>3) A variável que guarda o total é:</p>
+                                <label><input type="radio" name="q3" value="a"> tempovida</label>
+                                <label><input type="radio" name="q3" value="b"> minha_idade</label>
+                                <label><input type="radio" name="q3" value="c"> colega1</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>4) O tipo usado para idade foi:</p>
+                                <label><input type="radio" name="q4" value="a"> real</label>
+                                <label><input type="radio" name="q4" value="b"> caractere</label>
+                                <label><input type="radio" name="q4" value="c"> inteiro</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>5) A soma acontece em qual parte?</p>
+                                <label><input type="radio" name="q5" value="a"> Entrada</label>
+                                <label><input type="radio" name="q5" value="b"> Processamento</label>
+                                <label><input type="radio" name="q5" value="c"> Saída</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>6) Quantas variáveis foram declaradas?</p>
+                                <label><input type="radio" name="q6" value="a"> 6</label>
+                                <label><input type="radio" name="q6" value="b"> 7</label>
+                                <label><input type="radio" name="q6" value="c"> 8</label>
+                            </div>
+
+                            <div class="quiz-pergunta">
+                                <p>7) Esse exercício prepara para:</p>
+                                <label><input type="radio" name="q7" value="a"> Estruturas de repetição</label>
+                                <label><input type="radio" name="q7" value="b"> Vetores</label>
+                                <label><input type="radio" name="q7" value="c"> Funções avançadas</label>
+                            </div>
+
+                            <button type="button" class="btn-finalizar" onclick="corrigirQuiz011()">
+                                Finalizar Quiz
+                            </button>
+
+                            <div class="quiz-resultado" id="resultadoQuiz011"></div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-proximo">
+                    <p class="card-proximo-label">// próxima aula</p>
+                    <h3>Estrutura de Repetição (para)</h3>
+                    <p>Aprenda a repetir ações automaticamente sem duplicar código — loops chegaram!</p>
+                    <a href="aula12.html" class="btn-proximo">
+                        Ir para Aula 12
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+
             </div>
-
-        </div>
-
-        <!-- Sidebar -->
-        <div class="aula-sidebar">
-
-            <div class="card-meta">
-                <p class="card-meta-titulo">// info da aula</p>
-                <div class="meta-item"><span class="meta-label">Aula</span><span class="meta-valor cyan">11</span></div>
-                <div class="meta-item"><span class="meta-label">Tipo</span><span class="meta-valor">Projeto</span></div>
-                <div class="meta-item"><span class="meta-label">Nível</span><span class="meta-valor">Iniciante</span></div>
-                <div class="meta-item"><span class="meta-label">Conceito</span><span class="meta-valor">Acumulação</span></div>
-            </div>
-
-            <!-- Contadores -->
-            <div class="card-contadores">
-                <p class="contadores-titulo">// estatísticas</p>
-                <div class="contador-linha">
-                    <span class="contador-label">Pessoas</span>
-                    <span class="contador-valor">6</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Variáveis</span>
-                    <span class="contador-valor">7</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Entradas</span>
-                    <span class="contador-valor">6</span>
-                </div>
-                <div class="contador-linha">
-                    <span class="contador-label">Soma</span>
-                    <span class="contador-valor">1</span>
-                </div>
-            </div>
-
-            <!-- Dica -->
-            <div class="card-dica">
-                <div class="dica-header">
-                    <span class="dica-icone">💡</span>
-                    <span class="dica-titulo">Próximo Passo</span>
-                </div>
-                <p class="dica-texto">
-                    Na Aula 12 você aprenderá <strong>estrutura de repetição</strong> — e verá como resolver este mesmo problema com muito menos linhas de código!
-                </p>
-            </div>
-
-            <div class="card-proximo">
-                <p class="card-proximo-label">// próxima aula</p>
-                <h3>Estrutura de Repetição (para)</h3>
-                <p>Aprenda a repetir ações automaticamente sem duplicar código — loops chegaram!</p>
-                <a href="aula12.html" class="btn-proximo">
-                    Ir para Aula 12
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-
-        </div>
         </div>
 
     </section>
@@ -549,4 +1239,5 @@
     </footer>
 
 </body>
+
 </html>
