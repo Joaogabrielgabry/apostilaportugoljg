@@ -55,12 +55,7 @@
             background-clip: text;
         }
 
-        .aula-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 480px;
-            margin: 0 auto;
-        }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 480px; margin: 0 auto; }
 
         /* ── PROGRESSO ── */
         .progresso-modulo {
@@ -74,24 +69,10 @@
             animation: fadeUp 0.5s ease 0.1s both;
         }
 
-        .progresso-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio  { flex: 1; }
 
-        .progresso-meio {
-            flex: 1;
-        }
-
-        .progresso-track {
-            height: 5px;
-            background: var(--bg-surface);
-            border-radius: 999px;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
 
         .progresso-fill {
             height: 100%;
@@ -100,30 +81,11 @@
             border-radius: 999px;
         }
 
-        .progresso-aulas {
-            display: flex;
-            gap: 3px;
-        }
+        .progresso-aulas { display: flex; gap: 3px; }
 
-        .progresso-pip {
-            flex: 1;
-            height: 4px;
-            border-radius: 999px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-        }
-
-        .progresso-pip.ativa {
-            background: linear-gradient(90deg, var(--cyan), var(--blue));
-            border-color: transparent;
-        }
-
-        .progresso-pct {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--cyan);
-            white-space: nowrap;
-        }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
 
         /* ── GRID ── */
         .aula-grid {
@@ -135,20 +97,11 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .progresso-modulo {
-                flex-wrap: wrap;
-            }
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
         }
 
-        .col-principal {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
 
         .secao-label {
             font-family: var(--font-mono);
@@ -160,74 +113,30 @@
             padding-left: 2px;
         }
 
-        /* ── CARD BASE ── */
-        .card-base {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 28px 32px;
-        }
+        .card-base { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 32px; }
+        .card-base p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; }
+        .card-base p+p { margin-top: 12px; }
+        .card-base strong { color: var(--text-primary); font-weight: 600; }
 
-        .card-base p {
-            color: #b0bec5;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .card-base p+p {
-            margin-top: 12px;
-        }
-
-        .card-base strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* ── BLOCO CÓDIGO COMPLETO ── */
-        .codigo-completo {
-            background: var(--bg-deep);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-        }
+        /* ── CÓDIGO ── */
+        .codigo-completo { background: var(--bg-deep); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; }
 
         .codigo-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 20px;
-            background: rgba(0, 229, 255, 0.04);
+            background: rgba(0,229,255,0.04);
             border-bottom: 1px solid var(--border-accent);
         }
 
-        .codigo-dots {
-            display: flex;
-            gap: 6px;
-        }
+        .codigo-dots { display: flex; gap: 6px; }
+        .codigo-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red    { background: #ff5f57; }
+        .dot-yellow { background: #febc2e; }
+        .dot-green  { background: #28c840; }
 
-        .codigo-dots span {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .dot-red {
-            background: #ff5f57;
-        }
-
-        .dot-yellow {
-            background: #febc2e;
-        }
-
-        .dot-green {
-            background: #28c840;
-        }
-
-        .codigo-filename {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
+        .codigo-filename { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
 
         .codigo-lang {
             font-family: var(--font-mono);
@@ -239,65 +148,20 @@
             border-radius: 4px;
         }
 
-        .codigo-body {
-            padding: 24px 28px;
-            overflow-x: auto;
-        }
+        .codigo-body { padding: 24px 28px; overflow-x: auto; }
+        .codigo-body pre { font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.9; color: #e2e8f0; margin: 0; }
 
-        .codigo-body pre {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            line-height: 1.9;
-            color: #e2e8f0;
-            margin: 0;
-        }
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .cm  { color: #475569; font-style: italic; }
 
-        /* Syntax highlighting manual */
-        .kw {
-            color: #00e5ff;
-            font-weight: 700;
-        }
+        /* ── ANATOMIA ── */
+        .anatomia-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
-        /* keywords: algoritmo, var, inicio, fimalgoritmo */
-        .fn {
-            color: #c084fc;
-        }
-
-        /* funções: escreva, leia */
-        .str {
-            color: #86efac;
-        }
-
-        /* strings */
-        .var {
-            color: #fbbf24;
-        }
-
-        /* variáveis */
-        .tp {
-            color: #60a5fa;
-        }
-
-        /* tipos: inteiro, caractere */
-        .cm {
-            color: #475569;
-            font-style: italic;
-        }
-
-        /* comentários */
-
-        /* ── ANATOMIA — cards de cada parte ── */
-        .anatomia-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        @media (max-width: 580px) {
-            .anatomia-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 580px) { .anatomia-grid { grid-template-columns: 1fr; } }
 
         .anatomia-card {
             background: var(--bg-card);
@@ -307,17 +171,9 @@
             transition: var(--transition);
         }
 
-        .anatomia-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-2px);
-        }
+        .anatomia-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
 
-        .anatomia-topo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 18px 10px;
-        }
+        .anatomia-topo { display: flex; align-items: center; gap: 10px; padding: 14px 18px 10px; }
 
         .anatomia-keyword {
             font-family: var(--font-mono);
@@ -330,12 +186,7 @@
             border-radius: 4px;
         }
 
-        .anatomia-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            padding: 0 18px 14px;
-            line-height: 1.6;
-        }
+        .anatomia-desc { font-size: 0.78rem; color: var(--text-muted); padding: 0 18px 14px; line-height: 1.6; }
 
         .anatomia-mini-code {
             background: var(--bg-deep);
@@ -346,25 +197,12 @@
             color: #94a3b8;
         }
 
-        /* ── PONTOS EM 2 COLUNAS ── */
-        .pontos-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        /* ── PONTOS ── */
+        .pontos-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-        @media (max-width: 560px) {
-            .pontos-wrap {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 560px) { .pontos-wrap { grid-template-columns: 1fr; } }
 
-        .pontos-grupo {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 18px 20px;
-        }
+        .pontos-grupo { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 20px; }
 
         .pontos-titulo {
             font-size: 0.78rem;
@@ -376,21 +214,9 @@
             gap: 8px;
         }
 
-        .pontos-titulo::before {
-            content: "";
-            width: 3px;
-            height: 14px;
-            background: var(--cyan);
-            border-radius: 2px;
-        }
+        .pontos-titulo::before { content: ""; width: 3px; height: 14px; background: var(--cyan); border-radius: 2px; }
 
-        .pontos-lista {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+        .pontos-lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 
         .pontos-lista li {
             font-size: 0.8rem;
@@ -401,15 +227,9 @@
             line-height: 1.5;
         }
 
-        .pontos-lista li::before {
-            content: "›";
-            color: var(--cyan);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
+        .pontos-lista li::before { content: "›"; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
-        /* ── CARD DISCIPLINA ── */
+        /* ── DISCIPLINA ── */
         .card-disciplina {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -421,144 +241,41 @@
             gap: 16px;
         }
 
-        .disciplina-icone {
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-
-        .disciplina-texto {
-            font-size: 0.88rem;
-            color: #b0bec5;
-            line-height: 1.6;
-        }
-
-        .disciplina-texto strong {
-            color: var(--text-primary);
-        }
+        .disciplina-icone { font-size: 1.4rem; flex-shrink: 0; }
+        .disciplina-texto { font-size: 0.88rem; color: #b0bec5; line-height: 1.6; }
+        .disciplina-texto strong { color: var(--text-primary); }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
 
-        .card-meta {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 22px 24px;
-        }
+        .card-meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
 
-        .card-meta-titulo {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
 
-        .meta-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 9px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.83rem;
-        }
+        .card-estrutura { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 
-        .meta-item:last-child {
-            border-bottom: none;
-        }
+        .estrutura-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 16px 20px 12px; }
 
-        .meta-label {
-            color: var(--text-muted);
-        }
+        .estrutura-linha { display: flex; align-items: center; gap: 12px; padding: 10px 20px; border-top: 1px solid var(--border); transition: background 0.2s; }
+        .estrutura-linha:hover { background: var(--bg-card-hover); }
+        .estrutura-kw   { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--cyan); min-width: 80px; }
+        .estrutura-role { font-size: 0.75rem; color: var(--text-muted); }
 
-        .meta-valor {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .meta-valor.cyan {
-            color: var(--cyan);
-            font-family: var(--font-mono);
-        }
-
-        /* Card estrutura resumida */
-        .card-estrutura {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-        }
-
-        .estrutura-titulo {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            padding: 16px 20px 12px;
-        }
-
-        .estrutura-linha {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
-            border-top: 1px solid var(--border);
-            transition: background 0.2s;
-        }
-
-        .estrutura-linha:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .estrutura-kw {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--cyan);
-            min-width: 80px;
-        }
-
-        .estrutura-role {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Próxima */
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 22px 24px;
         }
 
-        .card-proximo-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 8px;
-        }
-
-        .card-proximo h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .card-proximo p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
 
         .btn-proximo {
             display: flex;
@@ -576,227 +293,255 @@
             transition: var(--transition);
         }
 
-        .btn-proximo:hover {
-            opacity: 0.85;
-            box-shadow: 0 0 24px var(--cyan-glow);
-        }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
 
-        .secao-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            padding-left: 2px;
-        }
-
+        /* ── BOTÃO QUIZ ── */
         .btn-quiz {
             width: 100%;
             margin-bottom: 12px;
-            padding: 12px;
+            padding: 13px;
             background: var(--blue);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            letter-spacing: 0.01em;
         }
 
-        .btn-quiz:hover {
-            opacity: 0.85;
-        }
+        .btn-quiz:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+        /* ════════════════════════════════════════
+           MODAL DO QUIZ
+        ════════════════════════════════════════ */
 
         .quiz-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 999;
+            padding: 16px;
+        }
+
+        @keyframes boxSlideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .quiz-box {
-            width: 95%;
-            max-width: 600px;
-            max-height: 90vh;
+            width: 100%;
+            max-width: 580px;
+            max-height: 88vh;
             overflow-y: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 30px;
+            overflow-x: hidden;
+            background: #0f1117;
+            border: 1px solid rgba(0,229,255,0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 0 1px rgba(0,229,255,0.06), 0 32px 64px rgba(0,0,0,0.6), 0 0 80px rgba(0,229,255,0.04);
+            animation: boxSlideUp 0.3s ease both;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,229,255,0.2) transparent;
         }
+
+        .quiz-box::-webkit-scrollbar { width: 4px; }
+        .quiz-box::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.25); border-radius: 4px; }
 
         .quiz-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            padding: 24px 28px 20px;
+            background: #0f1117;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
+
+        .quiz-header-left { display: flex; flex-direction: column; gap: 4px; }
+        .quiz-header-tag  { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #00e5ff; opacity: 0.7; }
+        .quiz-header h2   { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; letter-spacing: -0.01em; }
 
         .quiz-close {
-            background: none;
-            border: none;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            font-size: 14px;
             cursor: pointer;
-            color: var(--text-muted);
+            color: #7a8a99;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
+
+        .quiz-close:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.15); }
+
+        .quiz-progress-bar { padding: 16px 28px 0; }
+        .quiz-progress-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .quiz-progress-text { font-size: 0.75rem; color: #546070; font-family: var(--font-mono, monospace); }
+        .quiz-progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .quiz-progress-fill  { height: 100%; background: linear-gradient(90deg, #00e5ff, #3b82f6); border-radius: 999px; transition: width 0.4s ease; }
+
+        .quiz-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 8px; }
 
         .quiz-pergunta {
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: border-color 0.2s ease;
         }
 
-        .quiz-pergunta p {
-            margin-bottom: 8px;
-            font-weight: 600;
+        .quiz-pergunta:hover { border-color: rgba(0,229,255,0.12); }
+        .quiz-pergunta.correta { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+        .quiz-pergunta.errada  { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.04); }
+
+        .quiz-pergunta-numero { font-family: var(--font-mono, monospace); font-size: 0.65rem; color: #00e5ff; opacity: 0.6; margin-bottom: 8px; letter-spacing: 0.08em; }
+        .quiz-pergunta p { font-size: 0.92rem; font-weight: 600; color: #e0e8f0; line-height: 1.5; margin-bottom: 14px; }
+
+        .quiz-opcoes { display: flex; flex-direction: column; gap: 7px; }
+
+        .quiz-opcao {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
         }
 
-        .quiz-pergunta label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+        .quiz-opcao:hover { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.2); }
+        .quiz-opcao input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+        .quiz-radio-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
         }
+
+        .quiz-radio-custom::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5ff;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.18s ease;
+        }
+
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom { border-color: #00e5ff; }
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom::after { opacity: 1; transform: scale(1); }
+        .quiz-opcao:has(input:checked) { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.3); }
+        .quiz-opcao-texto { font-size: 0.87rem; color: #8fa0b0; line-height: 1.4; transition: color 0.18s ease; }
+        .quiz-opcao:has(input:checked) .quiz-opcao-texto { color: #d0e4f0; }
+
+        .quiz-opcao.opcao-certa  { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); pointer-events: none; }
+        .quiz-opcao.opcao-certa .quiz-opcao-texto { color: #86efac; }
+        .quiz-opcao.opcao-certa .quiz-radio-custom { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+
+        .quiz-opcao.opcao-errada { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); pointer-events: none; }
+        .quiz-opcao.opcao-errada .quiz-opcao-texto { color: #fca5a5; }
+        .quiz-opcao.opcao-errada .quiz-radio-custom { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+
+        .quiz-opcao.opcao-desabilitada { pointer-events: none; opacity: 0.45; }
+        .quiz-feedback-icon { margin-left: auto; font-size: 14px; flex-shrink: 0; }
+
+        .quiz-footer { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 14px; }
 
         .btn-finalizar {
             width: 100%;
-            padding: 12px;
-            background: var(--cyan);
-            color: var(--bg-deep);
+            padding: 14px;
+            background: linear-gradient(135deg, #00e5ff, #3b82f6);
+            color: #050810;
             border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
+            border-radius: 10px;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-size: 0.9rem;
+            font-weight: 800;
             cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
+        .btn-finalizar:hover { opacity: 0.9; box-shadow: 0 0 32px rgba(0,229,255,0.35); transform: translateY(-1px); }
+        .btn-finalizar:active { transform: translateY(0); }
+        .btn-finalizar:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
         .quiz-resultado {
-            margin-top: 18px;
-            font-weight: 700;
+            display: none;
+            border-radius: 12px;
+            padding: 20px 22px;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-resultado.visivel { display: flex; }
+        .quiz-resultado.resultado-otimo   { background: rgba(34,197,94,0.08);  border: 1px solid rgba(34,197,94,0.25); }
+        .quiz-resultado.resultado-bom     { background: rgba(0,229,255,0.06);  border: 1px solid rgba(0,229,255,0.2); }
+        .quiz-resultado.resultado-regular { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+        .quiz-resultado.resultado-fraco   { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+
+        .resultado-emoji  { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+        .resultado-placar { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .resultado-placar span { font-size: 0.9rem; font-weight: 400; color: #546070; }
+        .resultado-msg { font-size: 0.82rem; color: #7a8a99; line-height: 1.5; }
+
+        .btn-reiniciar {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #8fa0b0;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 0.8rem;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reiniciar:hover { background: rgba(255,255,255,0.09); color: #c0d0e0; }
+
+        .quiz-aviso {
+            font-size: 0.78rem;
+            color: #f59e0b;
+            text-align: center;
+            display: none;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60%  { transform: translateX(-5px); }
+            40%, 80%  { transform: translateX(5px); }
         }
     </style>
 </head>
-
-<!-- MODAL QUIZ AULA 05 -->
-<div class="quiz-modal" id="quiz05">
-    <div class="quiz-box">
-        <div class="quiz-header">
-            <h3>Quiz — Aula 05</h3>
-            <button class="quiz-close" onclick="fecharQuiz05()">✕</button>
-        </div>
-
-        <form id="formQuiz05">
-
-            <!-- PERGUNTA 1 -->
-            <div class="quiz-pergunta">
-                <p>1) Todo programa em Portugol começa com:</p>
-                <label><input type="radio" name="q1" value="a"> inicio</label>
-                <label><input type="radio" name="q1" value="b"> algoritmo</label>
-                <label><input type="radio" name="q1" value="c"> var</label>
-            </div>
-
-            <!-- PERGUNTA 2 -->
-            <div class="quiz-pergunta">
-                <p>2) Onde declaramos variáveis?</p>
-                <label><input type="radio" name="q2" value="a"> inicio</label>
-                <label><input type="radio" name="q2" value="b"> var</label>
-                <label><input type="radio" name="q2" value="c"> fimalgoritmo</label>
-            </div>
-
-            <!-- PERGUNTA 3 -->
-            <div class="quiz-pergunta">
-                <p>3) O programa começa a executar a partir de:</p>
-                <label><input type="radio" name="q3" value="a"> var</label>
-                <label><input type="radio" name="q3" value="b"> algoritmo</label>
-                <label><input type="radio" name="q3" value="c"> inicio</label>
-            </div>
-
-            <!-- PERGUNTA 4 -->
-            <div class="quiz-pergunta">
-                <p>4) O comando que encerra o programa é:</p>
-                <label><input type="radio" name="q4" value="a"> fim</label>
-                <label><input type="radio" name="q4" value="b"> fimalgoritmo</label>
-                <label><input type="radio" name="q4" value="c"> parar</label>
-            </div>
-
-            <!-- PERGUNTA 5 -->
-            <div class="quiz-pergunta">
-                <p>5) Qual parte contém as instruções executáveis?</p>
-                <label><input type="radio" name="q5" value="a"> Entre inicio e fimalgoritmo</label>
-                <label><input type="radio" name="q5" value="b"> Dentro de var</label>
-                <label><input type="radio" name="q5" value="c"> Após fimalgoritmo</label>
-            </div>
-
-            <!-- PERGUNTA 6 -->
-            <div class="quiz-pergunta">
-                <p>6) A organização do código ajuda a:</p>
-                <label><input type="radio" name="q6" value="a"> Aumentar erros</label>
-                <label><input type="radio" name="q6" value="b"> Melhorar legibilidade</label>
-                <label><input type="radio" name="q6" value="c"> Diminuir desempenho</label>
-            </div>
-
-            <!-- PERGUNTA 7 -->
-            <div class="quiz-pergunta">
-                <p>7) O nome do programa é definido em:</p>
-                <label><input type="radio" name="q7" value="a"> algoritmo</label>
-                <label><input type="radio" name="q7" value="b"> inicio</label>
-                <label><input type="radio" name="q7" value="c"> var</label>
-            </div>
-
-            <button type="button" class="btn-finalizar" onclick="corrigirQuiz05()">
-                Finalizar Quiz
-            </button>
-
-            <div class="quiz-resultado" id="resultadoQuiz05"></div>
-
-        </form>
-    </div>
-</div>
-
-<script>
-
-    function abrirQuiz05() {
-        document.getElementById("quiz05").style.display = "flex";
-    }
-
-    function fecharQuiz05() {
-        document.getElementById("quiz05").style.display = "none";
-        document.getElementById("resultadoQuiz05").innerHTML = "";
-        document.getElementById("formQuiz05").reset();
-    }
-
-    function corrigirQuiz05() {
-
-        const respostasCorretas = {
-            q1: "b",
-            q2: "b",
-            q3: "c",
-            q4: "b",
-            q5: "a",
-            q6: "b",
-            q7: "a"
-        };
-
-        let acertos = 0;
-        let total = 7;
-
-        for (let pergunta in respostasCorretas) {
-            let resposta = document.querySelector(`input[name="${pergunta}"]:checked`);
-            if (resposta && resposta.value === respostasCorretas[pergunta]) {
-                acertos++;
-            }
-        }
-
-        let percentual = Math.round((acertos / total) * 100);
-
-        document.getElementById("resultadoQuiz05").innerHTML =
-            `Você acertou ${acertos} de ${total} questões (${percentual}%).`;
-
-    }
-
-</script>
-
 
 <body>
 
@@ -810,6 +555,212 @@
         </svg>
         Voltar ao Portal
     </a>
+
+    <!-- MODAL QUIZ AULA 05 -->
+    <div class="quiz-modal" id="quiz05" role="dialog" aria-modal="true" aria-label="Quiz da Aula 05">
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <span class="quiz-header-tag">// Quiz · Módulo I</span>
+                    <h2>Aula 05 — Estrutura Básica em Portugol</h2>
+                </div>
+                <button class="quiz-close" onclick="fecharQuiz05()" aria-label="Fechar quiz">✕</button>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text" id="quizProgressText">0 / 7 respondidas</span>
+                    <span class="quiz-progress-text" id="quizProgressPct">0%</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="formQuiz05">
+                <div class="quiz-body">
+
+                    <!-- 1 -->
+                    <div class="quiz-pergunta" id="card-q1">
+                        <div class="quiz-pergunta-numero">QUESTÃO 01</div>
+                        <p>Todo programa em Portugol começa com:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">inicio</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">algoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">var</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="quiz-pergunta" id="card-q2">
+                        <div class="quiz-pergunta-numero">QUESTÃO 02</div>
+                        <p>Onde declaramos variáveis?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">inicio</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">var</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">fimalgoritmo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="quiz-pergunta" id="card-q3">
+                        <div class="quiz-pergunta-numero">QUESTÃO 03</div>
+                        <p>O programa começa a executar a partir de:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">var</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">algoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">inicio</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="quiz-pergunta" id="card-q4">
+                        <div class="quiz-pergunta-numero">QUESTÃO 04</div>
+                        <p>O comando que encerra o programa é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">fim</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">fimalgoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">parar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="quiz-pergunta" id="card-q5">
+                        <div class="quiz-pergunta-numero">QUESTÃO 05</div>
+                        <p>Qual parte contém as instruções executáveis?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entre inicio e fimalgoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Dentro de var</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Após fimalgoritmo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="quiz-pergunta" id="card-q6">
+                        <div class="quiz-pergunta-numero">QUESTÃO 06</div>
+                        <p>A organização do código ajuda a:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Aumentar erros</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Melhorar legibilidade</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Diminuir desempenho</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="quiz-pergunta" id="card-q7">
+                        <div class="quiz-pergunta-numero">QUESTÃO 07</div>
+                        <p>O nome do programa é definido em:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">algoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">inicio</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">var</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="quiz-footer">
+                    <p class="quiz-aviso" id="quizAviso">⚠️ Responda todas as questões antes de finalizar.</p>
+
+                    <button type="button" class="btn-finalizar" id="btnFinalizar" onclick="corrigirQuiz05()">
+                        Finalizar Quiz
+                    </button>
+
+                    <div id="quizResultado05" class="quiz-resultado">
+                        <div class="resultado-emoji" id="resultadoEmoji"></div>
+                        <div class="resultado-placar" id="resultadoPlacar"></div>
+                        <div class="resultado-msg" id="resultadoMsg"></div>
+                        <button type="button" class="btn-reiniciar" onclick="reiniciarQuiz05()">↺ Tentar novamente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <section class="conteudo">
 
@@ -855,7 +806,6 @@
 
             <div class="col-principal">
 
-                <!-- Intro -->
                 <div class="card-base">
                     <p>
                         Todo programa em Portugol segue uma <strong>estrutura padrão</strong>.
@@ -864,7 +814,6 @@
                     </p>
                 </div>
 
-                <!-- Código completo com syntax highlight -->
                 <div>
                     <p class="secao-label">// exemplo completo</p>
                     <div class="codigo-completo">
@@ -893,7 +842,6 @@
                     </div>
                 </div>
 
-                <!-- Anatomia em 4 cards -->
                 <div>
                     <p class="secao-label">// anatomia do programa</p>
                     <div class="anatomia-grid">
@@ -902,57 +850,44 @@
                             <div class="anatomia-topo">
                                 <span class="anatomia-keyword">algoritmo</span>
                             </div>
-                            <p class="anatomia-desc">Define o nome do programa. Identifica sua finalidade para quem lê o
-                                código.</p>
-                            <div class="anatomia-mini-code"><span class="kw">algoritmo</span> <span
-                                    class="str">"Cadastro"</span></div>
+                            <p class="anatomia-desc">Define o nome do programa. Identifica sua finalidade para quem lê o código.</p>
+                            <div class="anatomia-mini-code"><span class="kw">algoritmo</span> <span class="str">"Cadastro"</span></div>
                         </div>
 
                         <div class="anatomia-card">
                             <div class="anatomia-topo">
                                 <span class="anatomia-keyword">var</span>
                             </div>
-                            <p class="anatomia-desc">Área de declaração de variáveis. O programa reserva espaço na
-                                memória aqui.</p>
-                            <div class="anatomia-mini-code"><span class="kw">var</span><br>&nbsp;&nbsp;<span
-                                    class="var">idade</span>: <span class="tp">inteiro</span></div>
+                            <p class="anatomia-desc">Área de declaração de variáveis. O programa reserva espaço na memória aqui.</p>
+                            <div class="anatomia-mini-code"><span class="kw">var</span><br>&nbsp;&nbsp;<span class="var">idade</span>: <span class="tp">inteiro</span></div>
                         </div>
 
                         <div class="anatomia-card">
                             <div class="anatomia-topo">
                                 <span class="anatomia-keyword">inicio</span>
                             </div>
-                            <p class="anatomia-desc">Marca onde a execução começa. Todas as instruções executáveis ficam
-                                aqui.</p>
-                            <div class="anatomia-mini-code"><span class="kw">inicio</span><br>&nbsp;&nbsp;<span
-                                    class="cm">// instruções aqui</span></div>
+                            <p class="anatomia-desc">Marca onde a execução começa. Todas as instruções executáveis ficam aqui.</p>
+                            <div class="anatomia-mini-code"><span class="kw">inicio</span><br>&nbsp;&nbsp;<span class="cm">// instruções aqui</span></div>
                         </div>
 
                         <div class="anatomia-card">
                             <div class="anatomia-topo">
                                 <span class="anatomia-keyword">fimalgoritmo</span>
                             </div>
-                            <p class="anatomia-desc">Encerra o programa. Após essa linha, nenhuma instrução é executada.
-                            </p>
-                            <div class="anatomia-mini-code"><span class="kw">fimalgoritmo</span> <span class="cm">//
-                                    fim</span></div>
+                            <p class="anatomia-desc">Encerra o programa. Após essa linha, nenhuma instrução é executada.</p>
+                            <div class="anatomia-mini-code"><span class="kw">fimalgoritmo</span> <span class="cm">// fim</span></div>
                         </div>
 
                     </div>
                 </div>
 
-                <!-- Pontos importantes + por que importa lado a lado -->
                 <div class="pontos-wrap">
                     <div class="pontos-grupo">
                         <p class="pontos-titulo">Pontos Importantes</p>
                         <ul class="pontos-lista">
-                            <li>Todo programa começa com <strong
-                                    style="color:var(--cyan);font-family:var(--font-mono)">algoritmo</strong></li>
-                            <li>Variáveis ficam dentro de <strong
-                                    style="color:var(--cyan);font-family:var(--font-mono)">var</strong></li>
-                            <li>Execução ocorre entre <strong
-                                    style="color:var(--cyan);font-family:var(--font-mono)">inicio</strong> e <strong
-                                    style="color:var(--cyan);font-family:var(--font-mono)">fimalgoritmo</strong></li>
+                            <li>Todo programa começa com <strong style="color:var(--cyan);font-family:var(--font-mono)">algoritmo</strong></li>
+                            <li>Variáveis ficam dentro de <strong style="color:var(--cyan);font-family:var(--font-mono)">var</strong></li>
+                            <li>Execução ocorre entre <strong style="color:var(--cyan);font-family:var(--font-mono)">inicio</strong> e <strong style="color:var(--cyan);font-family:var(--font-mono)">fimalgoritmo</strong></li>
                             <li>Organização reduz erros</li>
                         </ul>
                     </div>
@@ -967,7 +902,6 @@
                     </div>
                 </div>
 
-                <!-- Disciplina -->
                 <div class="card-disciplina">
                     <span class="disciplina-icone">🎯</span>
                     <p class="disciplina-texto">
@@ -978,7 +912,6 @@
 
             </div>
 
-            <!-- Sidebar -->
             <div class="aula-sidebar">
 
                 <div class="card-meta">
@@ -1001,7 +934,6 @@
                     </div>
                 </div>
 
-                <!-- Estrutura resumida -->
                 <div class="card-estrutura">
                     <p class="estrutura-titulo">// estrutura resumida</p>
                     <div class="estrutura-linha">
@@ -1060,6 +992,143 @@
         </div>
     </footer>
 
-</body>
+    <script>
+        const RESPOSTAS_CORRETAS = { q1: "b", q2: "b", q3: "c", q4: "b", q5: "a", q6: "b", q7: "a" };
+        const TOTAL = Object.keys(RESPOSTAS_CORRETAS).length;
 
+        function abrirQuiz05() {
+            document.getElementById("quiz05").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharQuiz05() {
+            document.getElementById("quiz05").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("quiz05").addEventListener("click", function(e) {
+            if (e.target === this) fecharQuiz05();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") fecharQuiz05();
+        });
+
+        function atualizarProgresso() {
+            let respondidas = 0;
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (document.querySelector(`input[name="${q}"]:checked`)) respondidas++;
+            }
+            const pct = Math.round((respondidas / TOTAL) * 100);
+            document.getElementById("quizProgressText").textContent = `${respondidas} / ${TOTAL} respondidas`;
+            document.getElementById("quizProgressPct").textContent = `${pct}%`;
+            document.getElementById("quizProgressFill").style.width = `${pct}%`;
+        }
+
+        function corrigirQuiz05() {
+            let naoRespondidas = [];
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) naoRespondidas.push(q);
+            }
+
+            if (naoRespondidas.length > 0) {
+                document.getElementById("quizAviso").style.display = "block";
+                document.getElementById(`card-${naoRespondidas[0]}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            document.getElementById("quizAviso").style.display = "none";
+
+            let acertos = 0;
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                const card = document.getElementById(`card-${q}`);
+                const opcoes = card.querySelectorAll(".quiz-opcao");
+
+                opcoes.forEach(opcao => {
+                    const input = opcao.querySelector("input");
+                    const isCorreta = input.value === RESPOSTAS_CORRETAS[q];
+                    const isMarcada = input.checked;
+
+                    if (isCorreta) {
+                        opcao.classList.add("opcao-certa");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✓";
+                        opcao.appendChild(icon);
+                    } else if (isMarcada && !isCorreta) {
+                        opcao.classList.add("opcao-errada");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✕";
+                        opcao.appendChild(icon);
+                    } else {
+                        opcao.classList.add("opcao-desabilitada");
+                    }
+                });
+
+                if (selecionada && selecionada.value === RESPOSTAS_CORRETAS[q]) {
+                    acertos++;
+                    card.classList.add("correta");
+                } else {
+                    card.classList.add("errada");
+                }
+            }
+
+            document.getElementById("btnFinalizar").disabled = true;
+
+            const pct = Math.round((acertos / TOTAL) * 100);
+            const resultado = document.getElementById("quizResultado05");
+            const emoji  = document.getElementById("resultadoEmoji");
+            const placar = document.getElementById("resultadoPlacar");
+            const msg    = document.getElementById("resultadoMsg");
+
+            resultado.classList.add("visivel");
+
+            if (pct === 100) {
+                resultado.className = "quiz-resultado visivel resultado-otimo";
+                emoji.textContent = "🏆";
+                msg.textContent = "Excelente! Você dominou o conteúdo da aula!";
+            } else if (pct >= 70) {
+                resultado.className = "quiz-resultado visivel resultado-bom";
+                emoji.textContent = "🎯";
+                msg.textContent = "Muito bom! Revise as questões que errou.";
+            } else if (pct >= 50) {
+                resultado.className = "quiz-resultado visivel resultado-regular";
+                emoji.textContent = "📚";
+                msg.textContent = "Quase lá! Vale revisar o conteúdo da aula.";
+            } else {
+                resultado.className = "quiz-resultado visivel resultado-fraco";
+                emoji.textContent = "💪";
+                msg.textContent = "Continue praticando! A aula pode te ajudar a revisar.";
+            }
+
+            placar.innerHTML = `${acertos} <span>/ ${TOTAL} acertos (${pct}%)</span>`;
+            resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function reiniciarQuiz05() {
+            document.getElementById("formQuiz05").reset();
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const card = document.getElementById(`card-${q}`);
+                card.classList.remove("correta", "errada");
+                card.querySelectorAll(".quiz-opcao").forEach(o => {
+                    o.classList.remove("opcao-certa", "opcao-errada", "opcao-desabilitada");
+                    const icon = o.querySelector(".quiz-feedback-icon");
+                    if (icon) icon.remove();
+                });
+            }
+
+            document.getElementById("quizResultado05").classList.remove("visivel");
+            document.getElementById("quizResultado05").className = "quiz-resultado";
+            document.getElementById("btnFinalizar").disabled = false;
+            document.getElementById("quizAviso").style.display = "none";
+            atualizarProgresso();
+            document.querySelector(".quiz-box").scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
+</body>
 </html>

@@ -75,16 +75,8 @@
             animation: fadeUp 0.5s ease 0.1s both;
         }
 
-        .progresso-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-
-        .progresso-meio {
-            flex: 1;
-        }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio  { flex: 1; }
 
         .progresso-track {
             height: 5px;
@@ -101,10 +93,7 @@
             border-radius: 999px;
         }
 
-        .progresso-aulas {
-            display: flex;
-            gap: 3px;
-        }
+        .progresso-aulas { display: flex; gap: 3px; }
 
         .progresso-pip {
             flex: 1;
@@ -114,17 +103,8 @@
             border: 1px solid var(--border);
         }
 
-        .progresso-pip.ativa {
-            background: linear-gradient(90deg, var(--cyan), var(--blue));
-            border-color: transparent;
-        }
-
-        .progresso-pct {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--cyan);
-            white-space: nowrap;
-        }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; }
 
         /* ── GRID ── */
         .aula-grid {
@@ -136,20 +116,11 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .progresso-modulo {
-                flex-wrap: wrap;
-            }
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
         }
 
-        .col-principal {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
 
         /* ── CARD BASE ── */
         .card-base {
@@ -159,20 +130,9 @@
             padding: 28px 32px;
         }
 
-        .card-base p {
-            color: #b0bec5;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .card-base p+p {
-            margin-top: 12px;
-        }
-
-        .card-base strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
+        .card-base p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; }
+        .card-base p+p { margin-top: 12px; }
+        .card-base strong { color: var(--text-primary); font-weight: 600; }
 
         .secao-label {
             font-family: var(--font-mono);
@@ -184,20 +144,15 @@
             padding-left: 2px;
         }
 
-        /* ── EXEMPLO VIDA REAL — dois painéis lado a lado ── */
+        /* ── EXEMPLO VIDA REAL ── */
         .exemplo-wrap {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
 
-        @media (max-width: 600px) {
-            .exemplo-wrap {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 600px) { .exemplo-wrap { grid-template-columns: 1fr; } }
 
-        /* Painel da receita */
         .painel-receita {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -205,36 +160,12 @@
             padding: 24px;
         }
 
-        .painel-receita-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
+        .painel-receita-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .receita-icone { font-size: 1.4rem; }
+        .receita-titulo { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
+        .receita-subtitle { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); }
 
-        .receita-icone {
-            font-size: 1.4rem;
-        }
-
-        .receita-titulo {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .receita-subtitle {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-        }
-
-        .receita-passos {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+        .receita-passos { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 
         .receita-passos li {
             display: flex;
@@ -263,10 +194,9 @@
             flex-shrink: 0;
         }
 
-        /* Painel da nota */
         .painel-nota {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(245, 158, 11, 0.02));
-            border: 1px solid rgba(245, 158, 11, 0.25);
+            background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+            border: 1px solid rgba(245,158,11,0.25);
             border-radius: var(--radius-lg);
             padding: 24px;
             display: flex;
@@ -275,29 +205,16 @@
             gap: 14px;
         }
 
-        .nota-icone {
-            font-size: 2rem;
-        }
-
-        .nota-titulo {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--amber);
-            margin-bottom: 4px;
-        }
-
-        .nota-texto {
-            font-size: 0.82rem;
-            color: #b0bec5;
-            line-height: 1.7;
-        }
+        .nota-icone { font-size: 2rem; }
+        .nota-titulo { font-size: 0.88rem; font-weight: 700; color: var(--amber); margin-bottom: 4px; }
+        .nota-texto { font-size: 0.82rem; color: #b0bec5; line-height: 1.7; }
 
         .nota-tag {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.3);
             color: var(--amber);
             font-family: var(--font-mono);
             font-size: 0.68rem;
@@ -307,18 +224,14 @@
             width: fit-content;
         }
 
-        /* ── EXEMPLOS PROGRAMAÇÃO — 3 cards ── */
+        /* ── EXEMPLOS PROGRAMAÇÃO ── */
         .exemplos-prog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
         }
 
-        @media (max-width: 600px) {
-            .exemplos-prog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 600px) { .exemplos-prog-grid { grid-template-columns: 1fr; } }
 
         .exemplo-prog-card {
             background: var(--bg-card);
@@ -333,54 +246,28 @@
         .exemplo-prog-card::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--cyan), var(--blue));
             opacity: 0;
             transition: opacity 0.3s;
         }
 
-        .exemplo-prog-card:hover {
-            border-color: var(--border-accent);
-            background: var(--bg-card-hover);
-        }
+        .exemplo-prog-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .exemplo-prog-card:hover::before { opacity: 1; }
 
-        .exemplo-prog-card:hover::before {
-            opacity: 1;
-        }
+        .ep-icone { font-size: 1.3rem; margin-bottom: 8px; }
+        .ep-titulo { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .ep-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
 
-        .ep-icone {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .ep-titulo {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .ep-desc {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* ── CARD POR QUE — horizontal com ícones ── */
+        /* ── POR QUE ── */
         .porque-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        @media (max-width: 500px) {
-            .porque-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 500px) { .porque-grid { grid-template-columns: 1fr; } }
 
         .porque-item {
             display: flex;
@@ -393,25 +280,11 @@
             transition: var(--transition);
         }
 
-        .porque-item:hover {
-            border-color: var(--border-accent);
-            background: var(--bg-card-hover);
-        }
+        .porque-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .porque-icone { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+        .porque-texto { font-size: 0.82rem; color: #b0bec5; line-height: 1.5; font-weight: 500; }
 
-        .porque-icone {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .porque-texto {
-            font-size: 0.82rem;
-            color: #b0bec5;
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        /* ── CARD MÁXIMA ── */
+        /* ── MÁXIMA ── */
         .card-maxima {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -423,31 +296,12 @@
             gap: 16px;
         }
 
-        .maxima-codigo {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--cyan);
-            opacity: 0.5;
-            flex-shrink: 0;
-        }
-
-        .maxima-texto {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
-        .maxima-texto span {
-            color: var(--cyan);
-        }
+        .maxima-codigo { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); opacity: 0.5; flex-shrink: 0; }
+        .maxima-texto { font-size: 0.9rem; color: var(--text-primary); font-weight: 600; line-height: 1.5; }
+        .maxima-texto span { color: var(--cyan); }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
 
         .card-meta {
             background: var(--bg-card);
@@ -456,43 +310,14 @@
             padding: 22px 24px;
         }
 
-        .card-meta-titulo {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
+        .card-meta-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
 
-        .meta-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 9px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.83rem;
-        }
+        .meta-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
 
-        .meta-item:last-child {
-            border-bottom: none;
-        }
-
-        .meta-label {
-            color: var(--text-muted);
-        }
-
-        .meta-valor {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .meta-valor.cyan {
-            color: var(--cyan);
-            font-family: var(--font-mono);
-        }
-
-        /* Card propriedades */
         .card-props {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -500,42 +325,13 @@
             padding: 22px 24px;
         }
 
-        .card-props-titulo {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-        }
+        .card-props-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
 
-        .prop-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 9px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.82rem;
-        }
+        .prop-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+        .prop-item:last-child { border-bottom: none; }
 
-        .prop-item:last-child {
-            border-bottom: none;
-        }
-
-        .prop-nome {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-        }
-
-        .prop-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--cyan);
-            flex-shrink: 0;
-        }
+        .prop-nome { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+        .prop-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; }
 
         .prop-valor {
             font-family: var(--font-mono);
@@ -547,36 +343,16 @@
             border-radius: 4px;
         }
 
-        /* Próxima */
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 22px 24px;
         }
 
-        .card-proximo-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 8px;
-        }
-
-        .card-proximo h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .card-proximo p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
+        .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
 
         .btn-proximo {
             display: flex;
@@ -594,221 +370,256 @@
             transition: var(--transition);
         }
 
-        .btn-proximo:hover {
-            opacity: 0.85;
-            box-shadow: 0 0 24px var(--cyan-glow);
-        }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
 
-        .secao-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            padding-left: 2px;
-        }
-
+        /* ── BOTÃO QUIZ ── */
         .btn-quiz {
             width: 100%;
             margin-bottom: 12px;
-            padding: 12px;
+            padding: 13px;
             background: var(--blue);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            letter-spacing: 0.01em;
         }
 
-        .btn-quiz:hover {
-            opacity: 0.85;
-        }
+        .btn-quiz:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+        /* ════════════════════════════════════════
+           MODAL DO QUIZ
+        ════════════════════════════════════════ */
 
         .quiz-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 999;
+            padding: 16px;
+        }
+
+        @keyframes boxSlideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .quiz-box {
-            width: 95%;
-            max-width: 600px;
-            max-height: 90vh;
+            width: 100%;
+            max-width: 580px;
+            max-height: 88vh;
             overflow-y: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 30px;
+            overflow-x: hidden;
+            background: #0f1117;
+            border: 1px solid rgba(0,229,255,0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 0 1px rgba(0,229,255,0.06), 0 32px 64px rgba(0,0,0,0.6), 0 0 80px rgba(0,229,255,0.04);
+            animation: boxSlideUp 0.3s ease both;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,229,255,0.2) transparent;
         }
+
+        .quiz-box::-webkit-scrollbar { width: 4px; }
+        .quiz-box::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.25); border-radius: 4px; }
 
         .quiz-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            padding: 24px 28px 20px;
+            background: #0f1117;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
+
+        .quiz-header-left { display: flex; flex-direction: column; gap: 4px; }
+
+        .quiz-header-tag { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #00e5ff; opacity: 0.7; }
+        .quiz-header h2  { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; letter-spacing: -0.01em; }
 
         .quiz-close {
-            background: none;
-            border: none;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            font-size: 14px;
             cursor: pointer;
-            color: var(--text-muted);
+            color: #7a8a99;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
+
+        .quiz-close:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.15); }
+
+        .quiz-progress-bar { padding: 16px 28px 0; }
+        .quiz-progress-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .quiz-progress-text { font-size: 0.75rem; color: #546070; font-family: var(--font-mono, monospace); }
+        .quiz-progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .quiz-progress-fill  { height: 100%; background: linear-gradient(90deg, #00e5ff, #3b82f6); border-radius: 999px; transition: width 0.4s ease; }
+
+        .quiz-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 8px; }
 
         .quiz-pergunta {
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: border-color 0.2s ease;
         }
 
-        .quiz-pergunta p {
-            margin-bottom: 8px;
-            font-weight: 600;
+        .quiz-pergunta:hover { border-color: rgba(0,229,255,0.12); }
+        .quiz-pergunta.correta { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+        .quiz-pergunta.errada  { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.04); }
+
+        .quiz-pergunta-numero { font-family: var(--font-mono, monospace); font-size: 0.65rem; color: #00e5ff; opacity: 0.6; margin-bottom: 8px; letter-spacing: 0.08em; }
+        .quiz-pergunta p { font-size: 0.92rem; font-weight: 600; color: #e0e8f0; line-height: 1.5; margin-bottom: 14px; }
+
+        .quiz-opcoes { display: flex; flex-direction: column; gap: 7px; }
+
+        .quiz-opcao {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
         }
 
-        .quiz-pergunta label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+        .quiz-opcao:hover { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.2); }
+        .quiz-opcao input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+        .quiz-radio-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
         }
+
+        .quiz-radio-custom::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5ff;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.18s ease;
+        }
+
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom { border-color: #00e5ff; }
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom::after { opacity: 1; transform: scale(1); }
+        .quiz-opcao:has(input:checked) { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.3); }
+        .quiz-opcao-texto { font-size: 0.87rem; color: #8fa0b0; line-height: 1.4; transition: color 0.18s ease; }
+        .quiz-opcao:has(input:checked) .quiz-opcao-texto { color: #d0e4f0; }
+
+        .quiz-opcao.opcao-certa  { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); pointer-events: none; }
+        .quiz-opcao.opcao-certa .quiz-opcao-texto { color: #86efac; }
+        .quiz-opcao.opcao-certa .quiz-radio-custom { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+
+        .quiz-opcao.opcao-errada { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); pointer-events: none; }
+        .quiz-opcao.opcao-errada .quiz-opcao-texto { color: #fca5a5; }
+        .quiz-opcao.opcao-errada .quiz-radio-custom { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+
+        .quiz-opcao.opcao-desabilitada { pointer-events: none; opacity: 0.45; }
+        .quiz-feedback-icon { margin-left: auto; font-size: 14px; flex-shrink: 0; }
+
+        .quiz-footer { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 14px; }
 
         .btn-finalizar {
             width: 100%;
-            padding: 12px;
-            background: var(--cyan);
-            color: var(--bg-deep);
+            padding: 14px;
+            background: linear-gradient(135deg, #00e5ff, #3b82f6);
+            color: #050810;
             border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
+            border-radius: 10px;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-size: 0.9rem;
+            font-weight: 800;
             cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
+        .btn-finalizar:hover { opacity: 0.9; box-shadow: 0 0 32px rgba(0,229,255,0.35); transform: translateY(-1px); }
+        .btn-finalizar:active { transform: translateY(0); }
+        .btn-finalizar:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
         .quiz-resultado {
-            margin-top: 18px;
-            font-weight: 700;
+            display: none;
+            border-radius: 12px;
+            padding: 20px 22px;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-resultado.visivel { display: flex; }
+        .quiz-resultado.resultado-otimo   { background: rgba(34,197,94,0.08);  border: 1px solid rgba(34,197,94,0.25); }
+        .quiz-resultado.resultado-bom     { background: rgba(0,229,255,0.06);  border: 1px solid rgba(0,229,255,0.2); }
+        .quiz-resultado.resultado-regular { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+        .quiz-resultado.resultado-fraco   { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+
+        .resultado-emoji  { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+        .resultado-placar { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .resultado-placar span { font-size: 0.9rem; font-weight: 400; color: #546070; }
+        .resultado-msg { font-size: 0.82rem; color: #7a8a99; line-height: 1.5; }
+
+        .btn-reiniciar {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #8fa0b0;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 0.8rem;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reiniciar:hover { background: rgba(255,255,255,0.09); color: #c0d0e0; }
+
+        .quiz-aviso {
+            font-size: 0.78rem;
+            color: #f59e0b;
+            text-align: center;
+            display: none;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60%  { transform: translateX(-5px); }
+            40%, 80%  { transform: translateX(5px); }
         }
     </style>
 </head>
-
-<!-- QUIZ AULA 04 -->
-<div id="quizModal04" class="quiz-modal">
-    <div class="quiz-box">
-
-        <div class="quiz-header">
-            <h2>Quiz — Aula 04</h2>
-            <button class="quiz-close" onclick="fecharQuiz04()">✕</button>
-        </div>
-
-        <form id="quizForm04">
-
-            <!-- 1 -->
-            <div class="quiz-pergunta">
-                <p>1) O que é um algoritmo?</p>
-                <label><input type="radio" name="q1" value="a"> Um programa pronto</label>
-                <label><input type="radio" name="q1" value="b"> Uma sequência organizada de passos</label>
-                <label><input type="radio" name="q1" value="c"> Um tipo de computador</label>
-            </div>
-
-            <!-- 2 -->
-            <div class="quiz-pergunta">
-                <p>2) Um algoritmo precisa ter:</p>
-                <label><input type="radio" name="q2" value="a"> Início, ordem lógica e fim</label>
-                <label><input type="radio" name="q2" value="b"> Apenas código</label>
-                <label><input type="radio" name="q2" value="c"> Interface gráfica</label>
-            </div>
-
-            <!-- 3 -->
-            <div class="quiz-pergunta">
-                <p>3) Receita de cozinha é exemplo de:</p>
-                <label><input type="radio" name="q3" value="a"> Programa executável</label>
-                <label><input type="radio" name="q3" value="b"> Sistema operacional</label>
-                <label><input type="radio" name="q3" value="c"> Algoritmo</label>
-            </div>
-
-            <!-- 4 -->
-            <div class="quiz-pergunta">
-                <p>4) Se a ordem dos passos for alterada:</p>
-                <label><input type="radio" name="q4" value="a"> Nada muda</label>
-                <label><input type="radio" name="q4" value="b"> Pode comprometer o resultado</label>
-                <label><input type="radio" name="q4" value="c"> Fica mais rápido</label>
-            </div>
-
-            <!-- 5 -->
-            <div class="quiz-pergunta">
-                <p>5) Um algoritmo deve ser:</p>
-                <label><input type="radio" name="q5" value="a"> Ambíguo</label>
-                <label><input type="radio" name="q5" value="b"> Sem fim definido</label>
-                <label><input type="radio" name="q5" value="c"> Claro e sem ambiguidade</label>
-            </div>
-
-            <!-- 6 -->
-            <div class="quiz-pergunta">
-                <p>6) Antes do código vem:</p>
-                <label><input type="radio" name="q6" value="a"> O design</label>
-                <label><input type="radio" name="q6" value="b"> O algoritmo</label>
-                <label><input type="radio" name="q6" value="c"> A interface</label>
-            </div>
-
-            <!-- 7 -->
-            <div class="quiz-pergunta">
-                <p>7) Aprender algoritmos ajuda a:</p>
-                <label><input type="radio" name="q7" value="a"> Organizar o pensamento</label>
-                <label><input type="radio" name="q7" value="b"> Editar imagens</label>
-                <label><input type="radio" name="q7" value="c"> Melhorar a digitação</label>
-            </div>
-
-            <button type="button" class="btn-finalizar" onclick="corrigirQuiz04()">
-                Finalizar Quiz
-            </button>
-
-            <div id="quizResultado04" class="quiz-resultado"></div>
-
-        </form>
-    </div>
-</div>
-
-<script>
-    function abrirQuiz04() {
-        document.getElementById("quizModal04").style.display = "flex";
-    }
-
-    function fecharQuiz04() {
-        document.getElementById("quizModal04").style.display = "none";
-    }
-
-    function corrigirQuiz04() {
-
-        const respostas = {
-            q1: "b",
-            q2: "a",
-            q3: "c",
-            q4: "b",
-            q5: "c",
-            q6: "b",
-            q7: "a"
-        };
-
-        let acertos = 0;
-
-        for (let pergunta in respostas) {
-            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
-            if (selecionada && selecionada.value === respostas[pergunta]) {
-                acertos++;
-            }
-        }
-
-        const percentual = Math.round((acertos / 7) * 100);
-
-        document.getElementById("quizResultado04").innerHTML =
-            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
-    }
-</script>
 
 <body>
 
@@ -823,6 +634,212 @@
         Voltar ao Portal
     </a>
 
+    <!-- MODAL QUIZ AULA 04 -->
+    <div id="quizModal04" class="quiz-modal" role="dialog" aria-modal="true" aria-label="Quiz da Aula 04">
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <span class="quiz-header-tag">// Quiz · Módulo I</span>
+                    <h2>Aula 04 — Algoritmo</h2>
+                </div>
+                <button class="quiz-close" onclick="fecharQuiz04()" aria-label="Fechar quiz">✕</button>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text" id="quizProgressText">0 / 7 respondidas</span>
+                    <span class="quiz-progress-text" id="quizProgressPct">0%</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="quizForm04">
+                <div class="quiz-body">
+
+                    <!-- 1 -->
+                    <div class="quiz-pergunta" id="card-q1">
+                        <div class="quiz-pergunta-numero">QUESTÃO 01</div>
+                        <p>O que é um algoritmo?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Um programa pronto</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Uma sequência organizada de passos</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Um tipo de computador</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="quiz-pergunta" id="card-q2">
+                        <div class="quiz-pergunta-numero">QUESTÃO 02</div>
+                        <p>Um algoritmo precisa ter:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Início, ordem lógica e fim</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Apenas código</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Interface gráfica</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="quiz-pergunta" id="card-q3">
+                        <div class="quiz-pergunta-numero">QUESTÃO 03</div>
+                        <p>Receita de cozinha é exemplo de:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Programa executável</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Sistema operacional</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Algoritmo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="quiz-pergunta" id="card-q4">
+                        <div class="quiz-pergunta-numero">QUESTÃO 04</div>
+                        <p>Se a ordem dos passos for alterada:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Nada muda</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Pode comprometer o resultado</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Fica mais rápido</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="quiz-pergunta" id="card-q5">
+                        <div class="quiz-pergunta-numero">QUESTÃO 05</div>
+                        <p>Um algoritmo deve ser:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Ambíguo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Sem fim definido</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Claro e sem ambiguidade</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="quiz-pergunta" id="card-q6">
+                        <div class="quiz-pergunta-numero">QUESTÃO 06</div>
+                        <p>Antes do código vem:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">O design</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">O algoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">A interface</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="quiz-pergunta" id="card-q7">
+                        <div class="quiz-pergunta-numero">QUESTÃO 07</div>
+                        <p>Aprender algoritmos ajuda a:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Organizar o pensamento</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Editar imagens</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Melhorar a digitação</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="quiz-footer">
+                    <p class="quiz-aviso" id="quizAviso">⚠️ Responda todas as questões antes de finalizar.</p>
+
+                    <button type="button" class="btn-finalizar" id="btnFinalizar" onclick="corrigirQuiz04()">
+                        Finalizar Quiz
+                    </button>
+
+                    <div id="quizResultado04" class="quiz-resultado">
+                        <div class="resultado-emoji" id="resultadoEmoji"></div>
+                        <div class="resultado-placar" id="resultadoPlacar"></div>
+                        <div class="resultado-msg" id="resultadoMsg"></div>
+                        <button type="button" class="btn-reiniciar" onclick="reiniciarQuiz04()">↺ Tentar novamente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <section class="conteudo">
 
         <div class="aula-hero">
@@ -834,7 +851,6 @@
             <p class="aula-desc">A sequência que transforma qualquer ideia em solução — dentro e fora do computador.</p>
         </div>
 
-        <!-- Progresso horizontal -->
         <div class="progresso-modulo">
             <span class="progresso-label">Progresso</span>
             <div class="progresso-meio">
@@ -868,7 +884,6 @@
 
             <div class="col-principal">
 
-                <!-- Intro -->
                 <div class="card-base">
                     <p>
                         Algoritmo é uma <strong>sequência organizada de passos</strong> para resolver um problema
@@ -880,7 +895,6 @@
                     </p>
                 </div>
 
-                <!-- Exemplo vida real + nota lado a lado -->
                 <div>
                     <p class="secao-label">// exemplo da vida real</p>
                     <div class="exemplo-wrap">
@@ -903,15 +917,13 @@
                             <div class="nota-icone">⚠️</div>
                             <div>
                                 <div class="nota-titulo">Ordem é fundamental</div>
-                                <p class="nota-texto">Se inverter os passos, o resultado não funciona. O mesmo vale para
-                                    qualquer programa.</p>
+                                <p class="nota-texto">Se inverter os passos, o resultado não funciona. O mesmo vale para qualquer programa.</p>
                             </div>
                             <span class="nota-tag">sequência obrigatória</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Exemplos na programação -->
                 <div>
                     <p class="secao-label">// algoritmos na programação</p>
                     <div class="exemplos-prog-grid">
@@ -933,7 +945,6 @@
                     </div>
                 </div>
 
-                <!-- Por que aprender -->
                 <div>
                     <p class="secao-label">// por que aprender algoritmos?</p>
                     <div class="porque-grid">
@@ -956,16 +967,13 @@
                     </div>
                 </div>
 
-                <!-- Máxima final -->
                 <div class="card-maxima">
                     <span class="maxima-codigo">01</span>
-                    <span class="maxima-texto">Antes do código, vem a ideia. <span>Primeiro o algoritmo.</span> Depois a
-                        implementação.</span>
+                    <span class="maxima-texto">Antes do código, vem a ideia. <span>Primeiro o algoritmo.</span> Depois a implementação.</span>
                 </div>
 
             </div>
 
-            <!-- Sidebar -->
             <div class="aula-sidebar">
 
                 <div class="card-meta">
@@ -988,7 +996,6 @@
                     </div>
                 </div>
 
-                <!-- Propriedades de um algoritmo -->
                 <div class="card-props">
                     <p class="card-props-titulo">// propriedades</p>
                     <div class="prop-item">
@@ -1043,6 +1050,143 @@
         </div>
     </footer>
 
-</body>
+    <script>
+        const RESPOSTAS_CORRETAS = { q1: "b", q2: "a", q3: "c", q4: "b", q5: "c", q6: "b", q7: "a" };
+        const TOTAL = Object.keys(RESPOSTAS_CORRETAS).length;
 
+        function abrirQuiz04() {
+            document.getElementById("quizModal04").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharQuiz04() {
+            document.getElementById("quizModal04").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("quizModal04").addEventListener("click", function(e) {
+            if (e.target === this) fecharQuiz04();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") fecharQuiz04();
+        });
+
+        function atualizarProgresso() {
+            let respondidas = 0;
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (document.querySelector(`input[name="${q}"]:checked`)) respondidas++;
+            }
+            const pct = Math.round((respondidas / TOTAL) * 100);
+            document.getElementById("quizProgressText").textContent = `${respondidas} / ${TOTAL} respondidas`;
+            document.getElementById("quizProgressPct").textContent = `${pct}%`;
+            document.getElementById("quizProgressFill").style.width = `${pct}%`;
+        }
+
+        function corrigirQuiz04() {
+            let naoRespondidas = [];
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) naoRespondidas.push(q);
+            }
+
+            if (naoRespondidas.length > 0) {
+                document.getElementById("quizAviso").style.display = "block";
+                document.getElementById(`card-${naoRespondidas[0]}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            document.getElementById("quizAviso").style.display = "none";
+
+            let acertos = 0;
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                const card = document.getElementById(`card-${q}`);
+                const opcoes = card.querySelectorAll(".quiz-opcao");
+
+                opcoes.forEach(opcao => {
+                    const input = opcao.querySelector("input");
+                    const isCorreta = input.value === RESPOSTAS_CORRETAS[q];
+                    const isMarcada = input.checked;
+
+                    if (isCorreta) {
+                        opcao.classList.add("opcao-certa");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✓";
+                        opcao.appendChild(icon);
+                    } else if (isMarcada && !isCorreta) {
+                        opcao.classList.add("opcao-errada");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✕";
+                        opcao.appendChild(icon);
+                    } else {
+                        opcao.classList.add("opcao-desabilitada");
+                    }
+                });
+
+                if (selecionada && selecionada.value === RESPOSTAS_CORRETAS[q]) {
+                    acertos++;
+                    card.classList.add("correta");
+                } else {
+                    card.classList.add("errada");
+                }
+            }
+
+            document.getElementById("btnFinalizar").disabled = true;
+
+            const pct = Math.round((acertos / TOTAL) * 100);
+            const resultado = document.getElementById("quizResultado04");
+            const emoji  = document.getElementById("resultadoEmoji");
+            const placar = document.getElementById("resultadoPlacar");
+            const msg    = document.getElementById("resultadoMsg");
+
+            resultado.classList.add("visivel");
+
+            if (pct === 100) {
+                resultado.className = "quiz-resultado visivel resultado-otimo";
+                emoji.textContent = "🏆";
+                msg.textContent = "Excelente! Você dominou o conteúdo da aula!";
+            } else if (pct >= 70) {
+                resultado.className = "quiz-resultado visivel resultado-bom";
+                emoji.textContent = "🎯";
+                msg.textContent = "Muito bom! Revise as questões que errou.";
+            } else if (pct >= 50) {
+                resultado.className = "quiz-resultado visivel resultado-regular";
+                emoji.textContent = "📚";
+                msg.textContent = "Quase lá! Vale revisar o conteúdo da aula.";
+            } else {
+                resultado.className = "quiz-resultado visivel resultado-fraco";
+                emoji.textContent = "💪";
+                msg.textContent = "Continue praticando! A aula pode te ajudar a revisar.";
+            }
+
+            placar.innerHTML = `${acertos} <span>/ ${TOTAL} acertos (${pct}%)</span>`;
+            resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function reiniciarQuiz04() {
+            document.getElementById("quizForm04").reset();
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const card = document.getElementById(`card-${q}`);
+                card.classList.remove("correta", "errada");
+                card.querySelectorAll(".quiz-opcao").forEach(o => {
+                    o.classList.remove("opcao-certa", "opcao-errada", "opcao-desabilitada");
+                    const icon = o.querySelector(".quiz-feedback-icon");
+                    if (icon) icon.remove();
+                });
+            }
+
+            document.getElementById("quizResultado04").classList.remove("visivel");
+            document.getElementById("quizResultado04").className = "quiz-resultado";
+            document.getElementById("btnFinalizar").disabled = false;
+            document.getElementById("quizAviso").style.display = "none";
+            atualizarProgresso();
+            document.querySelector(".quiz-box").scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
+</body>
 </html>

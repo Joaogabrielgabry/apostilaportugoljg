@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ── HERO compacto ── */
+        /* ── HERO ── */
         .aula-hero {
             padding: 48px 0 32px;
             text-align: center;
@@ -82,9 +82,7 @@
             white-space: nowrap;
         }
 
-        .progresso-meio {
-            flex: 1;
-        }
+        .progresso-meio { flex: 1; }
 
         .progresso-track {
             height: 5px;
@@ -101,10 +99,7 @@
             border-radius: 999px;
         }
 
-        .progresso-aulas {
-            display: flex;
-            gap: 3px;
-        }
+        .progresso-aulas { display: flex; gap: 3px; }
 
         .progresso-pip {
             flex: 1;
@@ -126,7 +121,7 @@
             white-space: nowrap;
         }
 
-        /* ── LAYOUT PRINCIPAL ── */
+        /* ── LAYOUT ── */
         .aula-grid {
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -136,20 +131,11 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .progresso-modulo {
-                flex-wrap: wrap;
-            }
+            .aula-grid { grid-template-columns: 1fr; }
+            .progresso-modulo { flex-wrap: wrap; }
         }
 
-        .col-principal {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .col-principal { display: flex; flex-direction: column; gap: 16px; }
 
         /* ── CARD INTRO ── */
         .card-intro {
@@ -159,22 +145,11 @@
             padding: 28px 32px;
         }
 
-        .card-intro p {
-            color: #b0bec5;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
+        .card-intro p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; }
+        .card-intro p+p { margin-top: 12px; }
+        .card-intro strong { color: var(--text-primary); font-weight: 600; }
 
-        .card-intro p+p {
-            margin-top: 12px;
-        }
-
-        .card-intro strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* ── PASSOS HORIZONTAIS ── */
+        /* ── PASSOS ── */
         .passos-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -182,9 +157,7 @@
         }
 
         @media (max-width: 600px) {
-            .passos-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .passos-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .passo-item {
@@ -207,34 +180,14 @@
             transition: opacity 0.3s ease;
         }
 
-        .passo-item:hover {
-            border-color: var(--border-accent);
-        }
+        .passo-item:hover { border-color: var(--border-accent); }
+        .passo-item:hover::before { opacity: 1; }
 
-        .passo-item:hover::before {
-            opacity: 1;
-        }
+        .passo-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); margin-bottom: 8px; }
+        .passo-icone { font-size: 1.5rem; margin-bottom: 8px; }
+        .passo-texto { font-size: 0.78rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
 
-        .passo-num {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            color: var(--cyan);
-            margin-bottom: 8px;
-        }
-
-        .passo-icone {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-
-        .passo-texto {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        /* ── VANTAGENS EM LINHA ── */
+        /* ── VANTAGENS ── */
         .vantagens-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -242,9 +195,7 @@
         }
 
         @media (max-width: 600px) {
-            .vantagens-grid {
-                grid-template-columns: 1fr;
-            }
+            .vantagens-grid { grid-template-columns: 1fr; }
         }
 
         .vantagem-card {
@@ -255,35 +206,14 @@
             transition: var(--transition);
         }
 
-        .vantagem-card:hover {
-            border-color: var(--border-accent);
-            background: var(--bg-card-hover);
-        }
+        .vantagem-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
 
-        .vantagem-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+        .vantagem-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .vantagem-icone { font-size: 1.2rem; }
+        .vantagem-titulo { font-size: 0.85rem; font-weight: 700; color: var(--cyan); }
+        .vantagem-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
 
-        .vantagem-icone {
-            font-size: 1.2rem;
-        }
-
-        .vantagem-titulo {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--cyan);
-        }
-
-        .vantagem-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ── CARD MERCADO (linha única) ── */
+        /* ── CARD MERCADO ── */
         .card-mercado {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -296,9 +226,7 @@
         }
 
         @media (max-width: 600px) {
-            .card-mercado {
-                grid-template-columns: 1fr;
-            }
+            .card-mercado { grid-template-columns: 1fr; }
         }
 
         .mercado-icone-wrap {
@@ -314,26 +242,12 @@
             flex-shrink: 0;
         }
 
-        .mercado-texto p {
-            font-size: 0.87rem;
-            color: #b0bec5;
-            line-height: 1.7;
-        }
-
-        .mercado-texto p+p {
-            margin-top: 8px;
-        }
-
-        .mercado-texto strong {
-            color: var(--text-primary);
-        }
+        .mercado-texto p { font-size: 0.87rem; color: #b0bec5; line-height: 1.7; }
+        .mercado-texto p+p { margin-top: 8px; }
+        .mercado-texto strong { color: var(--text-primary); }
 
         /* ── SIDEBAR ── */
-        .aula-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .aula-sidebar { display: flex; flex-direction: column; gap: 14px; }
 
         .card-meta {
             background: var(--bg-card);
@@ -360,25 +274,11 @@
             font-size: 0.83rem;
         }
 
-        .meta-item:last-child {
-            border-bottom: none;
-        }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label { color: var(--text-muted); }
+        .meta-valor { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
 
-        .meta-label {
-            color: var(--text-muted);
-        }
-
-        .meta-valor {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .meta-valor.cyan {
-            color: var(--cyan);
-            font-family: var(--font-mono);
-        }
-
-        /* Card caminho */
         .card-caminho {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -395,11 +295,7 @@
             margin-bottom: 14px;
         }
 
-        .caminho-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .caminho-steps { display: flex; flex-direction: column; gap: 4px; }
 
         .caminho-step {
             display: flex;
@@ -417,28 +313,14 @@
             font-weight: 600;
         }
 
-        .caminho-step.futuro {
-            color: var(--text-muted);
-        }
+        .caminho-step.futuro { color: var(--text-muted); }
 
-        .caminho-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
+        .caminho-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .atual .caminho-dot { background: var(--cyan); }
+        .futuro .caminho-dot { background: var(--text-faint); }
 
-        .atual .caminho-dot {
-            background: var(--cyan);
-        }
-
-        .futuro .caminho-dot {
-            background: var(--text-faint);
-        }
-
-        /* Próxima aula */
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 22px 24px;
@@ -453,19 +335,8 @@
             margin-bottom: 8px;
         }
 
-        .card-proximo h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .card-proximo p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
+        .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
 
         .btn-proximo {
             display: flex;
@@ -483,10 +354,7 @@
             transition: var(--transition);
         }
 
-        .btn-proximo:hover {
-            opacity: 0.85;
-            box-shadow: 0 0 24px var(--cyan-glow);
-        }
+        .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
 
         .secao-label {
             font-family: var(--font-mono);
@@ -498,206 +366,271 @@
             padding-left: 2px;
         }
 
+        /* ── BOTÃO QUIZ ── */
         .btn-quiz {
             width: 100%;
             margin-bottom: 12px;
-            padding: 12px;
+            padding: 13px;
             background: var(--blue);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            letter-spacing: 0.01em;
         }
 
-        .btn-quiz:hover {
-            opacity: 0.85;
-        }
+        .btn-quiz:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+        /* ════════════════════════════════════════
+           MODAL DO QUIZ
+        ════════════════════════════════════════ */
 
         .quiz-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 999;
+            padding: 16px;
+        }
+
+        @keyframes boxSlideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .quiz-box {
-            width: 95%;
-            max-width: 600px;
-            max-height: 90vh;
+            width: 100%;
+            max-width: 580px;
+            max-height: 88vh;
             overflow-y: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 30px;
+            overflow-x: hidden;
+            background: #0f1117;
+            border: 1px solid rgba(0,229,255,0.2);
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(0,229,255,0.06),
+                0 32px 64px rgba(0,0,0,0.6),
+                0 0 80px rgba(0,229,255,0.04);
+            animation: boxSlideUp 0.3s ease both;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,229,255,0.2) transparent;
         }
+
+        .quiz-box::-webkit-scrollbar { width: 4px; }
+        .quiz-box::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.25); border-radius: 4px; }
 
         .quiz-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            padding: 24px 28px 20px;
+            background: #0f1117;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
+
+        .quiz-header-left { display: flex; flex-direction: column; gap: 4px; }
+
+        .quiz-header-tag {
+            font-family: var(--font-mono, 'JetBrains Mono', monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #00e5ff;
+            opacity: 0.7;
+        }
+
+        .quiz-header h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; letter-spacing: -0.01em; }
 
         .quiz-close {
-            background: none;
-            border: none;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            font-size: 14px;
             cursor: pointer;
-            color: var(--text-muted);
+            color: #7a8a99;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
+
+        .quiz-close:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.15); }
+
+        .quiz-progress-bar { padding: 16px 28px 0; }
+
+        .quiz-progress-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+        .quiz-progress-text { font-size: 0.75rem; color: #546070; font-family: var(--font-mono, monospace); }
+
+        .quiz-progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .quiz-progress-fill  { height: 100%; background: linear-gradient(90deg, #00e5ff, #3b82f6); border-radius: 999px; transition: width 0.4s ease; }
+
+        .quiz-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 8px; }
 
         .quiz-pergunta {
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: border-color 0.2s ease;
         }
 
-        .quiz-pergunta p {
-            margin-bottom: 8px;
-            font-weight: 600;
+        .quiz-pergunta:hover { border-color: rgba(0,229,255,0.12); }
+        .quiz-pergunta.correta { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+        .quiz-pergunta.errada  { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.04); }
+
+        .quiz-pergunta-numero { font-family: var(--font-mono, monospace); font-size: 0.65rem; color: #00e5ff; opacity: 0.6; margin-bottom: 8px; letter-spacing: 0.08em; }
+
+        .quiz-pergunta p { font-size: 0.92rem; font-weight: 600; color: #e0e8f0; line-height: 1.5; margin-bottom: 14px; }
+
+        .quiz-opcoes { display: flex; flex-direction: column; gap: 7px; }
+
+        .quiz-opcao {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
         }
 
-        .quiz-pergunta label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+        .quiz-opcao:hover { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.2); }
+        .quiz-opcao input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+        .quiz-radio-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
         }
+
+        .quiz-radio-custom::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5ff;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.18s ease;
+        }
+
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom { border-color: #00e5ff; }
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom::after { opacity: 1; transform: scale(1); }
+        .quiz-opcao:has(input:checked) { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.3); }
+
+        .quiz-opcao-texto { font-size: 0.87rem; color: #8fa0b0; line-height: 1.4; transition: color 0.18s ease; }
+        .quiz-opcao:has(input:checked) .quiz-opcao-texto { color: #d0e4f0; }
+
+        .quiz-opcao.opcao-certa  { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); pointer-events: none; }
+        .quiz-opcao.opcao-certa .quiz-opcao-texto { color: #86efac; }
+        .quiz-opcao.opcao-certa .quiz-radio-custom { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+
+        .quiz-opcao.opcao-errada { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); pointer-events: none; }
+        .quiz-opcao.opcao-errada .quiz-opcao-texto { color: #fca5a5; }
+        .quiz-opcao.opcao-errada .quiz-radio-custom { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+
+        .quiz-opcao.opcao-desabilitada { pointer-events: none; opacity: 0.45; }
+
+        .quiz-feedback-icon { margin-left: auto; font-size: 14px; flex-shrink: 0; }
+
+        .quiz-footer { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 14px; }
 
         .btn-finalizar {
             width: 100%;
-            padding: 12px;
-            background: var(--cyan);
-            color: var(--bg-deep);
+            padding: 14px;
+            background: linear-gradient(135deg, #00e5ff, #3b82f6);
+            color: #050810;
             border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
+            border-radius: 10px;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-size: 0.9rem;
+            font-weight: 800;
             cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
+        .btn-finalizar:hover { opacity: 0.9; box-shadow: 0 0 32px rgba(0,229,255,0.35); transform: translateY(-1px); }
+        .btn-finalizar:active { transform: translateY(0); }
+        .btn-finalizar:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
         .quiz-resultado {
-            margin-top: 18px;
-            font-weight: 700;
+            display: none;
+            border-radius: 12px;
+            padding: 20px 22px;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-resultado.visivel { display: flex; }
+        .quiz-resultado.resultado-otimo   { background: rgba(34,197,94,0.08);  border: 1px solid rgba(34,197,94,0.25); }
+        .quiz-resultado.resultado-bom     { background: rgba(0,229,255,0.06);  border: 1px solid rgba(0,229,255,0.2); }
+        .quiz-resultado.resultado-regular { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+        .quiz-resultado.resultado-fraco   { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+
+        .resultado-emoji  { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+        .resultado-placar { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .resultado-placar span { font-size: 0.9rem; font-weight: 400; color: #546070; }
+        .resultado-msg { font-size: 0.82rem; color: #7a8a99; line-height: 1.5; }
+
+        .btn-reiniciar {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #8fa0b0;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 0.8rem;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reiniciar:hover { background: rgba(255,255,255,0.09); color: #c0d0e0; }
+
+        .quiz-aviso {
+            font-size: 0.78rem;
+            color: #f59e0b;
+            text-align: center;
+            display: none;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60%  { transform: translateX(-5px); }
+            40%, 80%  { transform: translateX(5px); }
         }
     </style>
 </head>
-
-<script>
-    function abrirQuiz03() {
-        document.getElementById("quizModal03").style.display = "flex";
-    }
-
-    function fecharQuiz03() {
-        document.getElementById("quizModal03").style.display = "none";
-    }
-
-    function corrigirQuiz03() {
-
-        const respostas = {
-            q1: "b",
-            q2: "b",
-            q3: "a",
-            q4: "b",
-            q5: "a",
-            q6: "b",
-            q7: "b"
-        };
-
-        let acertos = 0;
-
-        for (let pergunta in respostas) {
-            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
-            if (selecionada && selecionada.value === respostas[pergunta]) {
-                acertos++;
-            }
-        }
-
-        const percentual = Math.round((acertos / 7) * 100);
-
-        document.getElementById("quizResultado03").innerHTML =
-            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
-    }
-</script>
-
-<!-- QUIZ AULA 03 -->
-<div id="quizModal03" class="quiz-modal">
-    <div class="quiz-box">
-
-        <div class="quiz-header">
-            <h2>Quiz — Aula 03</h2>
-            <button class="quiz-close" onclick="fecharQuiz03()">✕</button>
-        </div>
-
-        <form id="quizForm03">
-
-            <!-- 1 -->
-            <div class="quiz-pergunta">
-                <p>1) O que é Portugol?</p>
-                <label><input type="radio" name="q1" value="a"> Linguagem profissional de mercado</label>
-                <label><input type="radio" name="q1" value="b"> Linguagem educacional para aprender lógica</label>
-                <label><input type="radio" name="q1" value="c"> Sistema operacional</label>
-            </div>
-
-            <!-- 2 -->
-            <div class="quiz-pergunta">
-                <p>2) O principal objetivo do Portugol é:</p>
-                <label><input type="radio" name="q2" value="a"> Criar apps comerciais</label>
-                <label><input type="radio" name="q2" value="b"> Desenvolver raciocínio lógico</label>
-                <label><input type="radio" name="q2" value="c"> Trabalhar com redes</label>
-            </div>
-
-            <!-- 3 -->
-            <div class="quiz-pergunta">
-                <p>3) Portugol utiliza comandos:</p>
-                <label><input type="radio" name="q3" value="a"> Em português estruturado</label>
-                <label><input type="radio" name="q3" value="b"> Em binário</label>
-                <label><input type="radio" name="q3" value="c"> Em inglês técnico</label>
-            </div>
-
-            <!-- 4 -->
-            <div class="quiz-pergunta">
-                <p>4) O foco do Portugol é:</p>
-                <label><input type="radio" name="q4" value="a"> Interface gráfica</label>
-                <label><input type="radio" name="q4" value="b"> Pensamento estruturado</label>
-                <label><input type="radio" name="q4" value="c"> Segurança digital</label>
-            </div>
-
-            <!-- 5 -->
-            <div class="quiz-pergunta">
-                <p>5) Portugol ajuda principalmente a:</p>
-                <label><input type="radio" name="q5" value="a"> Desenvolver lógica</label>
-                <label><input type="radio" name="q5" value="b"> Editar vídeos</label>
-                <label><input type="radio" name="q5" value="c"> Criar animações</label>
-            </div>
-
-            <!-- 6 -->
-            <div class="quiz-pergunta">
-                <p>6) Portugol é usado diretamente em empresas?</p>
-                <label><input type="radio" name="q6" value="a"> Sim</label>
-                <label><input type="radio" name="q6" value="b"> Não, é educacional</label>
-                <label><input type="radio" name="q6" value="c"> Apenas startups</label>
-            </div>
-
-            <!-- 7 -->
-            <div class="quiz-pergunta">
-                <p>7) Quem domina Portugol aprende Python e Java:</p>
-                <label><input type="radio" name="q7" value="a"> Com mais dificuldade</label>
-                <label><input type="radio" name="q7" value="b"> Com mais facilidade</label>
-                <label><input type="radio" name="q7" value="c"> Sem precisar estudar</label>
-            </div>
-
-            <button type="button" class="btn-finalizar" onclick="corrigirQuiz03()">
-                Finalizar Quiz
-            </button>
-
-            <div id="quizResultado03" class="quiz-resultado"></div>
-
-        </form>
-    </div>
-</div>
 
 <body>
 
@@ -712,20 +645,223 @@
         Voltar ao Portal
     </a>
 
+    <!-- MODAL QUIZ AULA 03 -->
+    <div id="quizModal03" class="quiz-modal" role="dialog" aria-modal="true" aria-label="Quiz da Aula 03">
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <span class="quiz-header-tag">// Quiz · Módulo I</span>
+                    <h2>Aula 03 — O que é Portugol?</h2>
+                </div>
+                <button class="quiz-close" onclick="fecharQuiz03()" aria-label="Fechar quiz">✕</button>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text" id="quizProgressText">0 / 7 respondidas</span>
+                    <span class="quiz-progress-text" id="quizProgressPct">0%</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="quizForm03">
+                <div class="quiz-body">
+
+                    <!-- 1 -->
+                    <div class="quiz-pergunta" id="card-q1">
+                        <div class="quiz-pergunta-numero">QUESTÃO 01</div>
+                        <p>O que é Portugol?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Linguagem profissional de mercado</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Linguagem educacional para aprender lógica</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Sistema operacional</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="quiz-pergunta" id="card-q2">
+                        <div class="quiz-pergunta-numero">QUESTÃO 02</div>
+                        <p>O principal objetivo do Portugol é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Criar apps comerciais</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Desenvolver raciocínio lógico</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Trabalhar com redes</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="quiz-pergunta" id="card-q3">
+                        <div class="quiz-pergunta-numero">QUESTÃO 03</div>
+                        <p>Portugol utiliza comandos:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Em português estruturado</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Em binário</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Em inglês técnico</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="quiz-pergunta" id="card-q4">
+                        <div class="quiz-pergunta-numero">QUESTÃO 04</div>
+                        <p>O foco do Portugol é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Interface gráfica</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Pensamento estruturado</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Segurança digital</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="quiz-pergunta" id="card-q5">
+                        <div class="quiz-pergunta-numero">QUESTÃO 05</div>
+                        <p>Portugol ajuda principalmente a:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Desenvolver lógica</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Editar vídeos</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Criar animações</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="quiz-pergunta" id="card-q6">
+                        <div class="quiz-pergunta-numero">QUESTÃO 06</div>
+                        <p>Portugol é usado diretamente em empresas?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Sim</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Não, é educacional</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Apenas startups</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="quiz-pergunta" id="card-q7">
+                        <div class="quiz-pergunta-numero">QUESTÃO 07</div>
+                        <p>Quem domina Portugol aprende Python e Java:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Com mais dificuldade</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Com mais facilidade</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Sem precisar estudar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="quiz-footer">
+                    <p class="quiz-aviso" id="quizAviso">⚠️ Responda todas as questões antes de finalizar.</p>
+
+                    <button type="button" class="btn-finalizar" id="btnFinalizar" onclick="corrigirQuiz03()">
+                        Finalizar Quiz
+                    </button>
+
+                    <div id="quizResultado03" class="quiz-resultado">
+                        <div class="resultado-emoji" id="resultadoEmoji"></div>
+                        <div class="resultado-placar" id="resultadoPlacar"></div>
+                        <div class="resultado-msg" id="resultadoMsg"></div>
+                        <button type="button" class="btn-reiniciar" onclick="reiniciarQuiz03()">↺ Tentar novamente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <section class="conteudo">
 
-        <!-- Hero -->
         <div class="aula-hero">
             <div class="aula-numero">
                 <span class="aula-numero-dot"></span>
                 Aula 03 · Módulo I
             </div>
             <h1 class="aula-titulo">O que é <span>Portugol?</span></h1>
-            <p class="aula-desc">A linguagem feita para você aprender a pensar — antes de qualquer sintaxe complicada.
-            </p>
+            <p class="aula-desc">A linguagem feita para você aprender a pensar — antes de qualquer sintaxe complicada.</p>
         </div>
 
-        <!-- Progresso horizontal -->
         <div class="progresso-modulo">
             <span class="progresso-label">Progresso</span>
             <div class="progresso-meio">
@@ -759,7 +895,6 @@
 
             <div class="col-principal">
 
-                <!-- Intro -->
                 <div class="card-intro">
                     <p>
                         Portugol é uma linguagem criada para <strong>facilitar o aprendizado de programação</strong>.
@@ -767,12 +902,10 @@
                     </p>
                     <p>
                         Seu objetivo não é o uso direto no mercado — é <strong>ensinar como a programação funciona
-                            internamente</strong>,
-                        desenvolvendo lógica e organização de pensamento.
+                            internamente</strong>, desenvolvendo lógica e organização de pensamento.
                     </p>
                 </div>
 
-                <!-- 4 passos em grid -->
                 <div>
                     <p class="secao-label">// com portugol você aprende a</p>
                     <div class="passos-grid">
@@ -799,7 +932,6 @@
                     </div>
                 </div>
 
-                <!-- 3 vantagens lado a lado -->
                 <div>
                     <p class="secao-label">// vantagens do portugol</p>
                     <div class="vantagens-grid">
@@ -808,29 +940,25 @@
                                 <span class="vantagem-icone">🇧🇷</span>
                                 <span class="vantagem-titulo">Sintaxe Simples</span>
                             </div>
-                            <p class="vantagem-desc">Comandos semelhantes ao português do dia a dia, fáceis de ler e
-                                entender.</p>
+                            <p class="vantagem-desc">Comandos semelhantes ao português do dia a dia, fáceis de ler e entender.</p>
                         </div>
                         <div class="vantagem-card">
                             <div class="vantagem-header">
                                 <span class="vantagem-icone">🧠</span>
                                 <span class="vantagem-titulo">Foco em Lógica</span>
                             </div>
-                            <p class="vantagem-desc">Prioriza pensamento estruturado, não memorização de regras
-                                complexas.</p>
+                            <p class="vantagem-desc">Prioriza pensamento estruturado, não memorização de regras complexas.</p>
                         </div>
                         <div class="vantagem-card">
                             <div class="vantagem-header">
                                 <span class="vantagem-icone">🚀</span>
                                 <span class="vantagem-titulo">Sem Barreiras</span>
                             </div>
-                            <p class="vantagem-desc">Remove complexidades de linguagens profissionais para ganho
-                                progressivo de confiança.</p>
+                            <p class="vantagem-desc">Remove complexidades de linguagens profissionais para ganho progressivo de confiança.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Mercado de trabalho compacto -->
                 <div class="card-mercado">
                     <div class="mercado-icone-wrap">💼</div>
                     <div class="mercado-texto">
@@ -845,7 +973,6 @@
 
             </div>
 
-            <!-- Sidebar -->
             <div class="aula-sidebar">
 
                 <div class="card-meta">
@@ -868,7 +995,6 @@
                     </div>
                 </div>
 
-                <!-- Caminho de aprendizado -->
                 <div class="card-caminho">
                     <p class="card-caminho-titulo">// caminho do aluno</p>
                     <div class="caminho-steps">
@@ -925,6 +1051,143 @@
         </div>
     </footer>
 
-</body>
+    <script>
+        const RESPOSTAS_CORRETAS = { q1: "b", q2: "b", q3: "a", q4: "b", q5: "a", q6: "b", q7: "b" };
+        const TOTAL = Object.keys(RESPOSTAS_CORRETAS).length;
 
+        function abrirQuiz03() {
+            document.getElementById("quizModal03").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharQuiz03() {
+            document.getElementById("quizModal03").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("quizModal03").addEventListener("click", function(e) {
+            if (e.target === this) fecharQuiz03();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") fecharQuiz03();
+        });
+
+        function atualizarProgresso() {
+            let respondidas = 0;
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (document.querySelector(`input[name="${q}"]:checked`)) respondidas++;
+            }
+            const pct = Math.round((respondidas / TOTAL) * 100);
+            document.getElementById("quizProgressText").textContent = `${respondidas} / ${TOTAL} respondidas`;
+            document.getElementById("quizProgressPct").textContent = `${pct}%`;
+            document.getElementById("quizProgressFill").style.width = `${pct}%`;
+        }
+
+        function corrigirQuiz03() {
+            let naoRespondidas = [];
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) naoRespondidas.push(q);
+            }
+
+            if (naoRespondidas.length > 0) {
+                document.getElementById("quizAviso").style.display = "block";
+                document.getElementById(`card-${naoRespondidas[0]}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            document.getElementById("quizAviso").style.display = "none";
+
+            let acertos = 0;
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                const card = document.getElementById(`card-${q}`);
+                const opcoes = card.querySelectorAll(".quiz-opcao");
+
+                opcoes.forEach(opcao => {
+                    const input = opcao.querySelector("input");
+                    const isCorreta = input.value === RESPOSTAS_CORRETAS[q];
+                    const isMarcada = input.checked;
+
+                    if (isCorreta) {
+                        opcao.classList.add("opcao-certa");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✓";
+                        opcao.appendChild(icon);
+                    } else if (isMarcada && !isCorreta) {
+                        opcao.classList.add("opcao-errada");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✕";
+                        opcao.appendChild(icon);
+                    } else {
+                        opcao.classList.add("opcao-desabilitada");
+                    }
+                });
+
+                if (selecionada && selecionada.value === RESPOSTAS_CORRETAS[q]) {
+                    acertos++;
+                    card.classList.add("correta");
+                } else {
+                    card.classList.add("errada");
+                }
+            }
+
+            document.getElementById("btnFinalizar").disabled = true;
+
+            const pct = Math.round((acertos / TOTAL) * 100);
+            const resultado = document.getElementById("quizResultado03");
+            const emoji  = document.getElementById("resultadoEmoji");
+            const placar = document.getElementById("resultadoPlacar");
+            const msg    = document.getElementById("resultadoMsg");
+
+            resultado.classList.add("visivel");
+
+            if (pct === 100) {
+                resultado.className = "quiz-resultado visivel resultado-otimo";
+                emoji.textContent = "🏆";
+                msg.textContent = "Excelente! Você dominou o conteúdo da aula!";
+            } else if (pct >= 70) {
+                resultado.className = "quiz-resultado visivel resultado-bom";
+                emoji.textContent = "🎯";
+                msg.textContent = "Muito bom! Revise as questões que errou.";
+            } else if (pct >= 50) {
+                resultado.className = "quiz-resultado visivel resultado-regular";
+                emoji.textContent = "📚";
+                msg.textContent = "Quase lá! Vale revisar o conteúdo da aula.";
+            } else {
+                resultado.className = "quiz-resultado visivel resultado-fraco";
+                emoji.textContent = "💪";
+                msg.textContent = "Continue praticando! A aula pode te ajudar a revisar.";
+            }
+
+            placar.innerHTML = `${acertos} <span>/ ${TOTAL} acertos (${pct}%)</span>`;
+            resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function reiniciarQuiz03() {
+            document.getElementById("quizForm03").reset();
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const card = document.getElementById(`card-${q}`);
+                card.classList.remove("correta", "errada");
+                card.querySelectorAll(".quiz-opcao").forEach(o => {
+                    o.classList.remove("opcao-certa", "opcao-errada", "opcao-desabilitada");
+                    const icon = o.querySelector(".quiz-feedback-icon");
+                    if (icon) icon.remove();
+                });
+            }
+
+            document.getElementById("quizResultado03").classList.remove("visivel");
+            document.getElementById("quizResultado03").className = "quiz-resultado";
+            document.getElementById("btnFinalizar").disabled = false;
+            document.getElementById("quizAviso").style.display = "none";
+            atualizarProgresso();
+            document.querySelector(".quiz-box").scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
+</body>
 </html>

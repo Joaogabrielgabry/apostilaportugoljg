@@ -55,165 +55,57 @@
         @media (max-width: 580px) { .intro-wrap { grid-template-columns: 1fr; } }
 
         .intro-icone { font-size: 2.4rem; }
-
         .intro-texto p { color: #b0bec5; font-size: 0.92rem; line-height: 1.7; margin-bottom: 8px; }
         .intro-texto p:last-child { margin-bottom: 0; }
         .intro-texto strong { color: var(--text-primary); font-weight: 600; }
 
         /* ── GRID DE CONCEITOS ── */
-        .conceitos-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-        }
-
+        .conceitos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         @media (max-width: 640px) { .conceitos-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        .conceito-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 16px 14px;
-            text-align: center; transition: var(--transition);
-        }
-
+        .conceito-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 14px; text-align: center; transition: var(--transition); }
         .conceito-item:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
         .conceito-icone { font-size: 1.3rem; margin-bottom: 8px; }
         .conceito-texto { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
 
         /* ── EXERCÍCIO CARD ── */
-        .exercicio-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-left: 3px solid var(--ex-cor, var(--cyan));
-            border-radius: var(--radius-lg); overflow: hidden;
-            transition: var(--transition);
-        }
-
+        .exercicio-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--ex-cor, var(--cyan)); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
         .exercicio-card:hover { border-left-width: 4px; transform: translateX(2px); }
-
-        .ex-header {
-            padding: 20px 24px;
-            display: flex; align-items: center; justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-        }
-
+        .ex-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
         .ex-titulo-wrap { display: flex; align-items: center; gap: 12px; }
         .ex-icone { font-size: 1.4rem; }
         .ex-titulo { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
-
-        .ex-badge {
-            font-family: var(--font-mono); font-size: 0.68rem;
-            background: var(--ex-badge-bg, var(--cyan-dim));
-            color: var(--ex-cor, var(--cyan));
-            border: 1px solid var(--ex-badge-border, var(--border-accent));
-            padding: 4px 10px; border-radius: 4px;
-            font-weight: 700; letter-spacing: 0.06em;
-        }
-
+        .ex-badge { font-family: var(--font-mono); font-size: 0.68rem; background: var(--ex-badge-bg, var(--cyan-dim)); color: var(--ex-cor, var(--cyan)); border: 1px solid var(--ex-badge-border, var(--border-accent)); padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: 0.06em; }
         .ex-body { padding: 20px 24px; }
+        .ex-desc { font-size: 0.88rem; color: #b0bec5; line-height: 1.7; margin-bottom: 16px; }
+        .ex-tarefas { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+        .ex-tarefas li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); padding: 8px 12px; background: var(--bg-surface); border-radius: 6px; border: 1px solid var(--border); }
+        .ex-tarefas li::before { content: "›"; color: var(--ex-cor, var(--cyan)); font-weight: 700; font-size: 1rem; }
+        .ex-exemplo { background: var(--bg-deep); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8; line-height: 1.7; }
+        .ex-exemplo-titulo { font-size: 0.7rem; color: var(--text-faint); margin-bottom: 8px; letter-spacing: 0.08em; }
 
-        .ex-desc {
-            font-size: 0.88rem; color: #b0bec5; line-height: 1.7; margin-bottom: 16px;
-        }
-
-        .ex-tarefas {
-            list-style: none; padding: 0;
-            display: flex; flex-direction: column; gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .ex-tarefas li {
-            display: flex; align-items: center; gap: 10px;
-            font-size: 0.85rem; color: var(--text-muted);
-            padding: 8px 12px; background: var(--bg-surface);
-            border-radius: 6px; border: 1px solid var(--border);
-        }
-
-        .ex-tarefas li::before {
-            content: "›"; color: var(--ex-cor, var(--cyan));
-            font-weight: 700; font-size: 1rem;
-        }
-
-        .ex-exemplo {
-            background: var(--bg-deep); border: 1px solid var(--border);
-            border-radius: 8px; padding: 12px 16px;
-            font-family: var(--font-mono); font-size: 0.8rem;
-            color: #94a3b8; line-height: 1.7;
-        }
-
-        .ex-exemplo-titulo {
-            font-size: 0.7rem; color: var(--text-faint);
-            margin-bottom: 8px; letter-spacing: 0.08em;
-        }
-
-        /* Cores dos exercícios */
         .ex-1 { --ex-cor: #00e5ff; --ex-badge-bg: rgba(0,229,255,0.12); --ex-badge-border: rgba(0,229,255,0.3); }
         .ex-2 { --ex-cor: #c084fc; --ex-badge-bg: rgba(192,132,252,0.12); --ex-badge-border: rgba(192,132,252,0.3); }
         .ex-3 { --ex-cor: #10b981; --ex-badge-bg: rgba(16,185,129,0.12); --ex-badge-border: rgba(16,185,129,0.3); }
 
-        /* ── DICAS ESTRATÉGICAS ── */
-        .dicas-wrap {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 24px 28px;
-        }
-
-        .dicas-titulo {
-            font-size: 0.92rem; font-weight: 700; color: var(--text-primary);
-            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
-        }
-
-        .dicas-titulo::before {
-            content: ""; width: 3px; height: 18px;
-            background: linear-gradient(180deg, var(--cyan), var(--blue));
-            border-radius: 2px;
-        }
-
-        .dicas-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        }
-
+        /* ── DICAS ── */
+        .dicas-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; }
+        .dicas-titulo { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .dicas-titulo::before { content: ""; width: 3px; height: 18px; background: linear-gradient(180deg, var(--cyan), var(--blue)); border-radius: 2px; }
+        .dicas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         @media (max-width: 580px) { .dicas-grid { grid-template-columns: 1fr; } }
-
-        .dicas-grupo {
-            background: var(--bg-surface); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 16px 18px;
-        }
-
-        .dicas-grupo-titulo {
-            font-size: 0.72rem; font-weight: 700;
-            color: var(--cyan); margin-bottom: 10px;
-            text-transform: uppercase; letter-spacing: 0.08em;
-        }
-
-        .dicas-lista {
-            list-style: none; padding: 0;
-            display: flex; flex-direction: column; gap: 6px;
-        }
-
-        .dicas-lista li {
-            font-size: 0.82rem; color: var(--text-muted);
-            display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
-        }
-
-        .dicas-lista li::before {
-            content: "•"; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 2px;
-        }
+        .dicas-grupo { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
+        .dicas-grupo-titulo { font-size: 0.72rem; font-weight: 700; color: var(--cyan); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+        .dicas-lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+        .dicas-lista li { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+        .dicas-lista li::before { content: "•"; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
         /* ── DESAFIO EXTRA ── */
-        .desafio-card {
-            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
-            border: 2px solid rgba(245,158,11,0.3);
-            border-radius: var(--radius-lg); padding: 28px 32px;
-        }
-
-        .desafio-header {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 16px;
-        }
-
+        .desafio-card { background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border: 2px solid rgba(245,158,11,0.3); border-radius: var(--radius-lg); padding: 28px 32px; }
+        .desafio-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .desafio-icone { font-size: 2rem; }
         .desafio-titulo { font-size: 1.1rem; font-weight: 800; color: var(--amber); }
-
-        .desafio-desc {
-            font-size: 0.92rem; color: #b0bec5; line-height: 1.7;
-        }
-
+        .desafio-desc { font-size: 0.92rem; color: #b0bec5; line-height: 1.7; }
         .desafio-desc strong { color: var(--text-primary); }
 
         /* ── SIDEBAR ── */
@@ -225,276 +117,127 @@
         .meta-item:last-child { border-bottom: none; }
         .meta-label { color: var(--text-muted); }
         .meta-valor { color: var(--text-primary); font-weight: 600; }
-        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
+        .meta-valor.cyan  { color: var(--cyan);  font-family: var(--font-mono); }
         .meta-valor.amber { color: var(--amber); font-family: var(--font-mono); }
 
-        /* Card checklist */
-        .card-checklist {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 22px 24px;
-        }
-
-        .checklist-titulo {
-            font-family: var(--font-mono); font-size: 0.68rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--text-muted); margin-bottom: 14px;
-        }
-
-        .checklist-item {
-            display: flex; align-items: flex-start; gap: 10px;
-            padding: 9px 0; border-bottom: 1px solid var(--border);
-            font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;
-        }
-
+        .card-checklist { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; }
+        .checklist-titulo { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+        .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
         .checklist-item:last-child { border-bottom: none; }
+        .checklist-box { width: 16px; height: 16px; border: 2px solid var(--border); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
 
-        .checklist-box {
-            width: 16px; height: 16px;
-            border: 2px solid var(--border);
-            border-radius: 3px; flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* Card motivação */
-        .card-motivacao {
-            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg); padding: 20px 24px;
-        }
-
-        .motivacao-quote {
-            font-size: 0.88rem; color: #b0bec5;
-            line-height: 1.7; font-style: italic; margin-bottom: 10px;
-        }
-
+        .card-motivacao { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 20px 24px; }
+        .motivacao-quote { font-size: 0.88rem; color: #b0bec5; line-height: 1.7; font-style: italic; margin-bottom: 10px; }
         .motivacao-quote strong { color: var(--text-primary); font-style: normal; }
+        .motivacao-autor { font-family: var(--font-mono); font-size: 0.7rem; color: var(--cyan); font-style: normal; }
 
-        .motivacao-autor {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--cyan); font-style: normal;
-        }
-
-        /* Próxima aula */
         .card-proximo { background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 22px 24px; }
         .card-proximo-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
         .card-proximo h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
         .card-proximo p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
         .btn-proximo { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--cyan); color: var(--bg-deep); font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; padding: 11px 16px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition); }
         .btn-proximo:hover { opacity: 0.85; box-shadow: 0 0 24px var(--cyan-glow); }
-        
-         .secao-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            padding-left: 2px;
+
+        /* ── BOTÃO QUIZ ── */
+        .btn-quiz { width: 100%; margin-bottom: 12px; padding: 13px; background: var(--blue); color: white; border: none; border-radius: var(--radius-sm); font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: 0.3s; letter-spacing: 0.01em; }
+        .btn-quiz:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+        /* ════════════════════════════════════════
+           MODAL DO QUIZ
+        ════════════════════════════════════════ */
+
+        .quiz-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 999; padding: 16px; }
+
+        @keyframes boxSlideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .btn-quiz {
-            width: 100%;
-            margin-bottom: 12px;
-            padding: 12px;
-            background: var(--blue);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .quiz-box { width: 100%; max-width: 580px; max-height: 88vh; overflow-y: auto; overflow-x: hidden; background: #0f1117; border: 1px solid rgba(0,229,255,0.2); border-radius: 20px; box-shadow: 0 0 0 1px rgba(0,229,255,0.06), 0 32px 64px rgba(0,0,0,0.6), 0 0 80px rgba(0,229,255,0.04); animation: boxSlideUp 0.3s ease both; scrollbar-width: thin; scrollbar-color: rgba(0,229,255,0.2) transparent; }
+        .quiz-box::-webkit-scrollbar { width: 4px; }
+        .quiz-box::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.25); border-radius: 4px; }
 
-        .btn-quiz:hover {
-            opacity: 0.85;
-        }
+        .quiz-header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 24px 28px 20px; background: #0f1117; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .quiz-header-left { display: flex; flex-direction: column; gap: 4px; }
+        .quiz-header-tag  { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #00e5ff; opacity: 0.7; }
+        .quiz-header h2   { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; letter-spacing: -0.01em; }
 
-        .quiz-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-        }
+        .quiz-close { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; font-size: 14px; cursor: pointer; color: #7a8a99; transition: all 0.2s ease; flex-shrink: 0; }
+        .quiz-close:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.15); }
 
-        .quiz-box {
-            width: 95%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 30px;
-        }
+        .quiz-progress-bar { padding: 16px 28px 0; }
+        .quiz-progress-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .quiz-progress-text { font-size: 0.75rem; color: #546070; font-family: var(--font-mono, monospace); }
+        .quiz-progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .quiz-progress-fill  { height: 100%; background: linear-gradient(90deg, #00e5ff, #3b82f6); border-radius: 999px; transition: width 0.4s ease; }
 
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+        .quiz-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 8px; }
 
-        .quiz-close {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
+        .quiz-pergunta { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 20px 22px; transition: border-color 0.2s ease; }
+        .quiz-pergunta:hover { border-color: rgba(0,229,255,0.12); }
+        .quiz-pergunta.correta { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+        .quiz-pergunta.errada  { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.04); }
 
-        .quiz-pergunta {
-            margin-bottom: 20px;
-        }
+        .quiz-pergunta-numero { font-family: var(--font-mono, monospace); font-size: 0.65rem; color: #00e5ff; opacity: 0.6; margin-bottom: 8px; letter-spacing: 0.08em; }
+        .quiz-pergunta p { font-size: 0.92rem; font-weight: 600; color: #e0e8f0; line-height: 1.5; margin-bottom: 14px; }
 
-        .quiz-pergunta p {
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
+        .quiz-opcoes { display: flex; flex-direction: column; gap: 7px; }
 
-        .quiz-pergunta label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
-        }
+        .quiz-opcao { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px; cursor: pointer; transition: all 0.18s ease; position: relative; }
+        .quiz-opcao:hover { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.2); }
+        .quiz-opcao input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
 
-        .btn-finalizar {
-            width: 100%;
-            padding: 12px;
-            background: var(--cyan);
-            color: var(--bg-deep);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            cursor: pointer;
-        }
+        .quiz-radio-custom { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.18s ease; }
+        .quiz-radio-custom::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #00e5ff; opacity: 0; transform: scale(0); transition: all 0.18s ease; }
 
-        .quiz-resultado {
-            margin-top: 18px;
-            font-weight: 700;
-            text-align: center;
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom { border-color: #00e5ff; }
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom::after { opacity: 1; transform: scale(1); }
+        .quiz-opcao:has(input:checked) { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.3); }
+        .quiz-opcao-texto { font-size: 0.87rem; color: #8fa0b0; line-height: 1.4; transition: color 0.18s ease; }
+        .quiz-opcao:has(input:checked) .quiz-opcao-texto { color: #d0e4f0; }
+
+        .quiz-opcao.opcao-certa  { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); pointer-events: none; }
+        .quiz-opcao.opcao-certa .quiz-opcao-texto { color: #86efac; }
+        .quiz-opcao.opcao-certa .quiz-radio-custom { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+
+        .quiz-opcao.opcao-errada { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); pointer-events: none; }
+        .quiz-opcao.opcao-errada .quiz-opcao-texto { color: #fca5a5; }
+        .quiz-opcao.opcao-errada .quiz-radio-custom { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+
+        .quiz-opcao.opcao-desabilitada { pointer-events: none; opacity: 0.45; }
+        .quiz-feedback-icon { margin-left: auto; font-size: 14px; flex-shrink: 0; }
+
+        .quiz-footer { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 14px; }
+
+        .btn-finalizar { width: 100%; padding: 14px; background: linear-gradient(135deg, #00e5ff, #3b82f6); color: #050810; border: none; border-radius: 10px; font-family: var(--font-display, 'Sora', sans-serif); font-size: 0.9rem; font-weight: 800; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.01em; }
+        .btn-finalizar:hover { opacity: 0.9; box-shadow: 0 0 32px rgba(0,229,255,0.35); transform: translateY(-1px); }
+        .btn-finalizar:active { transform: translateY(0); }
+        .btn-finalizar:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .quiz-resultado { display: none; border-radius: 12px; padding: 20px 22px; text-align: center; flex-direction: column; align-items: center; gap: 6px; }
+        .quiz-resultado.visivel { display: flex; }
+        .quiz-resultado.resultado-otimo   { background: rgba(34,197,94,0.08);  border: 1px solid rgba(34,197,94,0.25); }
+        .quiz-resultado.resultado-bom     { background: rgba(0,229,255,0.06);  border: 1px solid rgba(0,229,255,0.2); }
+        .quiz-resultado.resultado-regular { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+        .quiz-resultado.resultado-fraco   { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+
+        .resultado-emoji  { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+        .resultado-placar { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .resultado-placar span { font-size: 0.9rem; font-weight: 400; color: #546070; }
+        .resultado-msg { font-size: 0.82rem; color: #7a8a99; line-height: 1.5; }
+
+        .btn-reiniciar { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #8fa0b0; border-radius: 8px; padding: 9px 18px; font-size: 0.8rem; font-family: var(--font-display, 'Sora', sans-serif); font-weight: 600; cursor: pointer; margin-top: 6px; transition: all 0.2s ease; }
+        .btn-reiniciar:hover { background: rgba(255,255,255,0.09); color: #c0d0e0; }
+
+        .quiz-aviso { font-size: 0.78rem; color: #f59e0b; text-align: center; display: none; animation: shake 0.4s ease; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60%  { transform: translateX(-5px); }
+            40%, 80%  { transform: translateX(5px); }
         }
     </style>
 </head>
-
-<!-- QUIZ AULA 08 -->
-<div class="quiz-modal" id="quiz08">
-    <div class="quiz-box">
-
-        <div class="quiz-header">
-            <h3>Quiz — Aula 08</h3>
-            <button class="quiz-close" onclick="fecharQuiz08()">✕</button>
-        </div>
-
-        <form id="formQuiz08">
-
-            <div class="quiz-pergunta">
-                <p>1) O comando utilizado para entrada de dados é:</p>
-                <label><input type="radio" name="q1" value="a"> escreva</label>
-                <label><input type="radio" name="q1" value="b"> leia</label>
-                <label><input type="radio" name="q1" value="c"> algoritmo</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>2) Variáveis servem para:</p>
-                <label><input type="radio" name="q2" value="a"> Guardar dados</label>
-                <label><input type="radio" name="q2" value="b"> Encerrar programa</label>
-                <label><input type="radio" name="q2" value="c"> Mostrar mensagens</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>3) A soma de dois números acontece na etapa de:</p>
-                <label><input type="radio" name="q3" value="a"> Entrada</label>
-                <label><input type="radio" name="q3" value="b"> Processamento</label>
-                <label><input type="radio" name="q3" value="c"> Saída</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>4) O comando escreva é usado para:</p>
-                <label><input type="radio" name="q4" value="a"> Exibir informações</label>
-                <label><input type="radio" name="q4" value="b"> Declarar variáveis</label>
-                <label><input type="radio" name="q4" value="c"> Fazer cálculo</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>5) Antes de usar uma variável é necessário:</p>
-                <label><input type="radio" name="q5" value="a"> Declarar</label>
-                <label><input type="radio" name="q5" value="b"> Executar</label>
-                <label><input type="radio" name="q5" value="c"> Fechar programa</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>6) O dobro de um número envolve qual operação?</p>
-                <label><input type="radio" name="q6" value="a"> Divisão</label>
-                <label><input type="radio" name="q6" value="b"> Multiplicação</label>
-                <label><input type="radio" name="q6" value="c"> Subtração</label>
-            </div>
-
-            <div class="quiz-pergunta">
-                <p>7) Entrada → Processamento → Saída representa:</p>
-                <label><input type="radio" name="q7" value="a"> Estrutura lógica</label>
-                <label><input type="radio" name="q7" value="b"> Tipo de variável</label>
-                <label><input type="radio" name="q7" value="c"> Erro de código</label>
-            </div>
-
-            <button type="button" class="btn-finalizar" onclick="corrigirQuiz08()">
-                Finalizar Quiz
-            </button>
-
-            <div class="quiz-resultado" id="resultadoQuiz08"></div>
-
-        </form>
-    </div>
-</div>
-
-<script>
-function abrirQuiz08() {
-    document.getElementById("quiz08").style.display = "flex";
-}
-
-function fecharQuiz08() {
-    document.getElementById("quiz08").style.display = "none";
-    document.getElementById("resultadoQuiz08").innerHTML = "";
-}
-
-function corrigirQuiz08() {
-
-    const respostas = {
-        q1: "b",
-        q2: "a",
-        q3: "b",
-        q4: "a",
-        q5: "a",
-        q6: "b",
-        q7: "a"
-    };
-
-    let pontos = 0;
-
-    for (let pergunta in respostas) {
-        const marcada = document.querySelector(`input[name="${pergunta}"]:checked`);
-        if (marcada && marcada.value === respostas[pergunta]) {
-            pontos++;
-        }
-    }
-
-    let percentual = Math.round((pontos / 7) * 100);
-    let mensagem = "";
-
-    if (percentual === 100) {
-        mensagem = "Excelente. Domínio total da base.";
-    } else if (percentual >= 70) {
-        mensagem = "Bom desempenho. Pode avançar.";
-    } else {
-        mensagem = "Revise a aula antes de seguir.";
-    }
-
-    document.getElementById("resultadoQuiz08").innerHTML =
-        `Resultado: ${pontos}/7 (${percentual}%)<br>${mensagem}`;
-}
-</script>
 
 <body>
 
@@ -507,6 +250,212 @@ function corrigirQuiz08() {
         </svg>
         Voltar ao Portal
     </a>
+
+    <!-- MODAL QUIZ AULA 08 -->
+    <div class="quiz-modal" id="quiz08" role="dialog" aria-modal="true" aria-label="Quiz da Aula 08">
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <span class="quiz-header-tag">// Quiz · Módulo I</span>
+                    <h2>Aula 08 — Exercícios Propostos</h2>
+                </div>
+                <button class="quiz-close" onclick="fecharQuiz08()" aria-label="Fechar quiz">✕</button>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text" id="quizProgressText">0 / 7 respondidas</span>
+                    <span class="quiz-progress-text" id="quizProgressPct">0%</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="formQuiz08">
+                <div class="quiz-body">
+
+                    <!-- 1 -->
+                    <div class="quiz-pergunta" id="card-q1">
+                        <div class="quiz-pergunta-numero">QUESTÃO 01</div>
+                        <p>O comando utilizado para entrada de dados é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">escreva</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">leia</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">algoritmo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="quiz-pergunta" id="card-q2">
+                        <div class="quiz-pergunta-numero">QUESTÃO 02</div>
+                        <p>Variáveis servem para:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Guardar dados na memória</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Encerrar o programa</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Mostrar mensagens na tela</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="quiz-pergunta" id="card-q3">
+                        <div class="quiz-pergunta-numero">QUESTÃO 03</div>
+                        <p>A soma de dois números acontece na etapa de:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Processamento</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Saída</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="quiz-pergunta" id="card-q4">
+                        <div class="quiz-pergunta-numero">QUESTÃO 04</div>
+                        <p>O comando escreva é usado para:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Exibir informações na tela</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Declarar variáveis</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Fazer cálculos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="quiz-pergunta" id="card-q5">
+                        <div class="quiz-pergunta-numero">QUESTÃO 05</div>
+                        <p>Antes de usar uma variável é necessário:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Declará-la com nome e tipo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Executar o programa primeiro</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Fechar o programa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="quiz-pergunta" id="card-q6">
+                        <div class="quiz-pergunta-numero">QUESTÃO 06</div>
+                        <p>O dobro de um número envolve qual operação?</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Divisão</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Multiplicação</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Subtração</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="quiz-pergunta" id="card-q7">
+                        <div class="quiz-pergunta-numero">QUESTÃO 07</div>
+                        <p>Entrada → Processamento → Saída representa:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">A estrutura lógica de um algoritmo</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Um tipo de variável</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Um erro de código</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="quiz-footer">
+                    <p class="quiz-aviso" id="quizAviso">⚠️ Responda todas as questões antes de finalizar.</p>
+
+                    <button type="button" class="btn-finalizar" id="btnFinalizar" onclick="corrigirQuiz08()">
+                        Finalizar Quiz
+                    </button>
+
+                    <div id="quizResultado08" class="quiz-resultado">
+                        <div class="resultado-emoji" id="resultadoEmoji"></div>
+                        <div class="resultado-placar" id="resultadoPlacar"></div>
+                        <div class="resultado-msg" id="resultadoMsg"></div>
+                        <button type="button" class="btn-reiniciar" onclick="reiniciarQuiz08()">↺ Tentar novamente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <section class="conteudo">
 
@@ -542,7 +491,6 @@ function corrigirQuiz08() {
         <div class="aula-grid">
         <div class="col-principal">
 
-            <!-- Intro -->
             <div class="intro-wrap">
                 <div class="intro-icone">💪</div>
                 <div class="intro-texto">
@@ -551,7 +499,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Conceitos praticados -->
             <div>
                 <p class="secao-label">// conceitos praticados</p>
                 <div class="conceitos-grid">
@@ -562,7 +509,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Exercício 1 -->
             <div class="exercicio-card ex-1">
                 <div class="ex-header">
                     <div class="ex-titulo-wrap">
@@ -586,7 +532,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Exercício 2 -->
             <div class="exercicio-card ex-2">
                 <div class="ex-header">
                     <div class="ex-titulo-wrap">
@@ -611,7 +556,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Exercício 3 -->
             <div class="exercicio-card ex-3">
                 <div class="ex-header">
                     <div class="ex-titulo-wrap">
@@ -635,7 +579,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Dicas estratégicas -->
             <div class="dicas-wrap">
                 <p class="dicas-titulo">Dicas Estratégicas</p>
                 <div class="dicas-grid">
@@ -659,7 +602,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Desafio extra -->
             <div class="desafio-card">
                 <div class="desafio-header">
                     <span class="desafio-icone">🚀</span>
@@ -683,7 +625,6 @@ function corrigirQuiz08() {
                 <div class="meta-item"><span class="meta-label">Exercícios</span><span class="meta-valor cyan">3 + 1</span></div>
             </div>
 
-            <!-- Checklist -->
             <div class="card-checklist">
                 <p class="checklist-titulo">// antes de começar</p>
                 <div class="checklist-item">
@@ -704,7 +645,6 @@ function corrigirQuiz08() {
                 </div>
             </div>
 
-            <!-- Motivação -->
             <div class="card-motivacao">
                 <blockquote class="motivacao-quote">
                     "Programar é <strong>executar</strong>. Não apenas ler."
@@ -713,9 +653,9 @@ function corrigirQuiz08() {
             </div>
 
             <button class="btn-quiz" onclick="abrirQuiz08()">
-                    Iniciar Quiz da Aula 08
-                </button>
-                
+                Iniciar Quiz da Aula 08
+            </button>
+
             <div class="card-proximo">
                 <p class="card-proximo-label">// próxima aula</p>
                 <h3>Desafio Laboratório</h3>
@@ -744,6 +684,144 @@ function corrigirQuiz08() {
             </div>
         </div>
     </footer>
-    
+
+    <script>
+        const RESPOSTAS_CORRETAS = { q1: "b", q2: "a", q3: "b", q4: "a", q5: "a", q6: "b", q7: "a" };
+        const TOTAL = Object.keys(RESPOSTAS_CORRETAS).length;
+
+        function abrirQuiz08() {
+            document.getElementById("quiz08").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharQuiz08() {
+            document.getElementById("quiz08").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("quiz08").addEventListener("click", function(e) {
+            if (e.target === this) fecharQuiz08();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") fecharQuiz08();
+        });
+
+        function atualizarProgresso() {
+            let respondidas = 0;
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (document.querySelector(`input[name="${q}"]:checked`)) respondidas++;
+            }
+            const pct = Math.round((respondidas / TOTAL) * 100);
+            document.getElementById("quizProgressText").textContent = `${respondidas} / ${TOTAL} respondidas`;
+            document.getElementById("quizProgressPct").textContent = `${pct}%`;
+            document.getElementById("quizProgressFill").style.width = `${pct}%`;
+        }
+
+        function corrigirQuiz08() {
+            let naoRespondidas = [];
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) naoRespondidas.push(q);
+            }
+
+            if (naoRespondidas.length > 0) {
+                document.getElementById("quizAviso").style.display = "block";
+                document.getElementById(`card-${naoRespondidas[0]}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            document.getElementById("quizAviso").style.display = "none";
+
+            let acertos = 0;
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                const card = document.getElementById(`card-${q}`);
+                const opcoes = card.querySelectorAll(".quiz-opcao");
+
+                opcoes.forEach(opcao => {
+                    const input = opcao.querySelector("input");
+                    const isCorreta = input.value === RESPOSTAS_CORRETAS[q];
+                    const isMarcada = input.checked;
+
+                    if (isCorreta) {
+                        opcao.classList.add("opcao-certa");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✓";
+                        opcao.appendChild(icon);
+                    } else if (isMarcada && !isCorreta) {
+                        opcao.classList.add("opcao-errada");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✕";
+                        opcao.appendChild(icon);
+                    } else {
+                        opcao.classList.add("opcao-desabilitada");
+                    }
+                });
+
+                if (selecionada && selecionada.value === RESPOSTAS_CORRETAS[q]) {
+                    acertos++;
+                    card.classList.add("correta");
+                } else {
+                    card.classList.add("errada");
+                }
+            }
+
+            document.getElementById("btnFinalizar").disabled = true;
+
+            const pct = Math.round((acertos / TOTAL) * 100);
+            const resultado = document.getElementById("quizResultado08");
+            const emoji  = document.getElementById("resultadoEmoji");
+            const placar = document.getElementById("resultadoPlacar");
+            const msg    = document.getElementById("resultadoMsg");
+
+            resultado.classList.add("visivel");
+
+            if (pct === 100) {
+                resultado.className = "quiz-resultado visivel resultado-otimo";
+                emoji.textContent = "🏆";
+                msg.textContent = "Excelente! Você dominou o conteúdo da aula!";
+            } else if (pct >= 70) {
+                resultado.className = "quiz-resultado visivel resultado-bom";
+                emoji.textContent = "🎯";
+                msg.textContent = "Muito bom! Revise as questões que errou.";
+            } else if (pct >= 50) {
+                resultado.className = "quiz-resultado visivel resultado-regular";
+                emoji.textContent = "📚";
+                msg.textContent = "Quase lá! Vale revisar o conteúdo da aula.";
+            } else {
+                resultado.className = "quiz-resultado visivel resultado-fraco";
+                emoji.textContent = "💪";
+                msg.textContent = "Continue praticando! A aula pode te ajudar a revisar.";
+            }
+
+            placar.innerHTML = `${acertos} <span>/ ${TOTAL} acertos (${pct}%)</span>`;
+            resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function reiniciarQuiz08() {
+            document.getElementById("formQuiz08").reset();
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const card = document.getElementById(`card-${q}`);
+                card.classList.remove("correta", "errada");
+                card.querySelectorAll(".quiz-opcao").forEach(o => {
+                    o.classList.remove("opcao-certa", "opcao-errada", "opcao-desabilitada");
+                    const icon = o.querySelector(".quiz-feedback-icon");
+                    if (icon) icon.remove();
+                });
+            }
+
+            document.getElementById("quizResultado08").classList.remove("visivel");
+            document.getElementById("quizResultado08").className = "quiz-resultado";
+            document.getElementById("btnFinalizar").disabled = false;
+            document.getElementById("quizAviso").style.display = "none";
+            atualizarProgresso();
+            document.querySelector(".quiz-box").scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
 </body>
 </html>

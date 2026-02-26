@@ -138,9 +138,7 @@
         }
 
         @media (max-width: 860px) {
-            .aula-grid {
-                grid-template-columns: 1fr;
-            }
+            .aula-grid { grid-template-columns: 1fr; }
         }
 
         /* ── COLUNA PRINCIPAL ── */
@@ -150,7 +148,6 @@
             gap: 20px;
         }
 
-        /* Card de introdução */
         .card-intro {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -165,16 +162,14 @@
             margin-bottom: 16px;
         }
 
-        .card-intro p:last-child {
-            margin-bottom: 0;
-        }
+        .card-intro p:last-child { margin-bottom: 0; }
 
         .card-intro p strong {
             color: var(--text-primary);
             font-weight: 600;
         }
 
-        /* ── FLUXO ENTRADA > PROCESSAMENTO > SAÍDA ── */
+        /* ── FLUXO EPS ── */
         .fluxo-titulo {
             font-size: 1rem;
             font-weight: 700;
@@ -207,7 +202,6 @@
             position: relative;
         }
 
-        /* Linha conectora entre etapas */
         .fluxo-etapa:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -219,11 +213,8 @@
             z-index: 2;
         }
 
-        .fluxo-etapa:not(:last-child) {
-            margin-bottom: 20px;
-        }
+        .fluxo-etapa:not(:last-child) { margin-bottom: 20px; }
 
-        /* Painel esquerdo da etapa (ícone + nome) */
         .etapa-label {
             background: var(--bg-surface);
             border: 1px solid var(--border);
@@ -234,12 +225,9 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
-            position: relative;
         }
 
-        .etapa-icone {
-            font-size: 1.6rem;
-        }
+        .etapa-icone { font-size: 1.6rem; }
 
         .etapa-nome {
             font-size: 0.8rem;
@@ -255,7 +243,6 @@
             color: var(--text-muted);
         }
 
-        /* Painel direito da etapa (descrição + exemplos) */
         .etapa-conteudo {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -305,20 +292,11 @@
             font-weight: 700;
         }
 
-        /* Cores por etapa */
-        .etapa-entrada {
-            --etapa-cor: #00e5ff;
-        }
+        .etapa-entrada  { --etapa-cor: #00e5ff; }
+        .etapa-processo { --etapa-cor: #f59e0b; }
+        .etapa-saida    { --etapa-cor: #10b981; }
 
-        .etapa-processo {
-            --etapa-cor: #f59e0b;
-        }
-
-        .etapa-saida {
-            --etapa-cor: #10b981;
-        }
-
-        /* ── CARD "POR QUE IMPORTA" ── */
+        /* ── CARD IMPORTÂNCIA ── */
         .card-importancia {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -360,20 +338,13 @@
         }
 
         @media (max-width: 600px) {
-            .habilidades-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .fluxo-etapa {
-                grid-template-columns: 1fr;
-            }
-
+            .habilidades-grid { grid-template-columns: 1fr; }
+            .fluxo-etapa { grid-template-columns: 1fr; }
             .etapa-label {
                 border-right: 1px solid var(--border);
                 border-bottom: none;
                 border-radius: var(--radius-md) var(--radius-md) 0 0;
             }
-
             .etapa-conteudo {
                 border-left: 1px solid var(--border);
                 border-top: 2px solid var(--etapa-cor);
@@ -395,16 +366,8 @@
             background: var(--bg-card-hover);
         }
 
-        .habilidade-icone {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        .habilidade-nome {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+        .habilidade-icone { font-size: 1.4rem; margin-bottom: 8px; }
+        .habilidade-nome  { font-size: 0.78rem; font-weight: 600; color: var(--text-primary); }
 
         /* ── SIDEBAR ── */
         .aula-sidebar {
@@ -438,25 +401,11 @@
             font-size: 0.85rem;
         }
 
-        .meta-item:last-child {
-            border-bottom: none;
-        }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-label  { color: var(--text-muted); }
+        .meta-valor  { color: var(--text-primary); font-weight: 600; }
+        .meta-valor.cyan { color: var(--cyan); font-family: var(--font-mono); }
 
-        .meta-label {
-            color: var(--text-muted);
-        }
-
-        .meta-valor {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .meta-valor.cyan {
-            color: var(--cyan);
-            font-family: var(--font-mono);
-        }
-
-        /* Card de resumo do fluxo */
         .card-fluxo-resumo {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -473,11 +422,7 @@
             margin-bottom: 18px;
         }
 
-        .fluxo-resumo-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
+        .fluxo-resumo-steps { display: flex; flex-direction: column; gap: 0; }
 
         .resumo-step {
             display: flex;
@@ -487,24 +432,10 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .resumo-step:last-child {
-            border-bottom: none;
-        }
+        .resumo-step:last-child { border-bottom: none; }
 
-        .resumo-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .resumo-step-nome {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            flex: 1;
-        }
-
+        .resumo-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .resumo-step-nome { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); flex: 1; }
         .resumo-step-tag {
             font-family: var(--font-mono);
             font-size: 0.65rem;
@@ -514,7 +445,7 @@
         }
 
         .card-proximo {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(59, 130, 246, 0.06));
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.06));
             border: 1px solid var(--border-accent);
             border-radius: var(--radius-lg);
             padding: 28px;
@@ -529,19 +460,8 @@
             margin-bottom: 10px;
         }
 
-        .card-proximo h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .card-proximo p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+        .card-proximo h3 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .card-proximo p  { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
 
         .btn-proximo {
             display: flex;
@@ -564,205 +484,316 @@
             box-shadow: 0 0 28px var(--cyan-glow);
         }
 
+        /* ── BOTÃO QUIZ ── */
         .btn-quiz {
             width: 100%;
             margin-bottom: 14px;
-            padding: 12px;
+            padding: 13px;
             background: var(--blue);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            letter-spacing: 0.01em;
         }
 
         .btn-quiz:hover {
             opacity: 0.85;
+            box-shadow: 0 0 20px rgba(59,130,246,0.4);
         }
+
+        /* ════════════════════════════════════════
+           MODAL DO QUIZ
+        ════════════════════════════════════════ */
 
         .quiz-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 999;
+            padding: 16px;
+        }
+
+        @keyframes boxSlideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .quiz-box {
-            width: 95%;
-            max-width: 600px;
-            max-height: 90vh;
+            width: 100%;
+            max-width: 580px;
+            max-height: 88vh;
             overflow-y: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 30px;
+            overflow-x: hidden;
+            background: #0f1117;
+            border: 1px solid rgba(0,229,255,0.2);
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(0,229,255,0.06),
+                0 32px 64px rgba(0,0,0,0.6),
+                0 0 80px rgba(0,229,255,0.04);
+            animation: boxSlideUp 0.3s ease both;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,229,255,0.2) transparent;
         }
 
+        .quiz-box::-webkit-scrollbar { width: 4px; }
+        .quiz-box::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.25); border-radius: 4px; }
+
+        /* Header */
         .quiz-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            padding: 24px 28px 20px;
+            background: #0f1117;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .quiz-header-left { display: flex; flex-direction: column; gap: 4px; }
+
+        .quiz-header-tag {
+            font-family: var(--font-mono, 'JetBrains Mono', monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #00e5ff;
+            opacity: 0.7;
+        }
+
+        .quiz-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            letter-spacing: -0.01em;
         }
 
         .quiz-close {
-            background: none;
-            border: none;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            font-size: 14px;
             cursor: pointer;
+            color: #7a8a99;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
+        .quiz-close:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* Barra de progresso */
+        .quiz-progress-bar { padding: 16px 28px 0; }
+
+        .quiz-progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .quiz-progress-text {
+            font-size: 0.75rem;
+            color: #546070;
+            font-family: var(--font-mono, monospace);
+        }
+
+        .quiz-progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .quiz-progress-fill  { height: 100%; background: linear-gradient(90deg, #00e5ff, #3b82f6); border-radius: 999px; transition: width 0.4s ease; }
+
+        /* Corpo */
+        .quiz-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 8px; }
+
         .quiz-pergunta {
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: border-color 0.2s ease;
+        }
+
+        .quiz-pergunta:hover { border-color: rgba(0,229,255,0.12); }
+        .quiz-pergunta.correta { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+        .quiz-pergunta.errada  { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.04); }
+
+        .quiz-pergunta-numero {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.65rem;
+            color: #00e5ff;
+            opacity: 0.6;
+            margin-bottom: 8px;
+            letter-spacing: 0.08em;
         }
 
         .quiz-pergunta p {
-            margin-bottom: 8px;
+            font-size: 0.92rem;
             font-weight: 600;
+            color: #e0e8f0;
+            line-height: 1.5;
+            margin-bottom: 14px;
         }
 
-        .quiz-pergunta label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+        .quiz-opcoes { display: flex; flex-direction: column; gap: 7px; }
+
+        .quiz-opcao {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
         }
+
+        .quiz-opcao:hover {
+            background: rgba(0,229,255,0.06);
+            border-color: rgba(0,229,255,0.2);
+        }
+
+        .quiz-opcao input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+        .quiz-radio-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
+        }
+
+        .quiz-radio-custom::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5ff;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.18s ease;
+        }
+
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom { border-color: #00e5ff; }
+        .quiz-opcao input[type="radio"]:checked ~ .quiz-radio-custom::after { opacity: 1; transform: scale(1); }
+        .quiz-opcao:has(input:checked) { background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.3); }
+
+        .quiz-opcao-texto { font-size: 0.87rem; color: #8fa0b0; line-height: 1.4; transition: color 0.18s ease; }
+        .quiz-opcao:has(input:checked) .quiz-opcao-texto { color: #d0e4f0; }
+
+        /* Feedback pós-correção */
+        .quiz-opcao.opcao-certa  { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); pointer-events: none; }
+        .quiz-opcao.opcao-certa .quiz-opcao-texto { color: #86efac; }
+        .quiz-opcao.opcao-certa .quiz-radio-custom { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+
+        .quiz-opcao.opcao-errada { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); pointer-events: none; }
+        .quiz-opcao.opcao-errada .quiz-opcao-texto { color: #fca5a5; }
+        .quiz-opcao.opcao-errada .quiz-radio-custom { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+
+        .quiz-opcao.opcao-desabilitada { pointer-events: none; opacity: 0.45; }
+
+        .quiz-feedback-icon { margin-left: auto; font-size: 14px; flex-shrink: 0; }
+
+        /* Footer */
+        .quiz-footer { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 14px; }
 
         .btn-finalizar {
             width: 100%;
-            padding: 12px;
-            background: var(--cyan);
-            color: var(--bg-deep);
+            padding: 14px;
+            background: linear-gradient(135deg, #00e5ff, #3b82f6);
+            color: #050810;
             border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
+            border-radius: 10px;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-size: 0.9rem;
+            font-weight: 800;
             cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
+        .btn-finalizar:hover { opacity: 0.9; box-shadow: 0 0 32px rgba(0,229,255,0.35); transform: translateY(-1px); }
+        .btn-finalizar:active { transform: translateY(0); }
+        .btn-finalizar:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* Resultado */
         .quiz-resultado {
-            margin-top: 18px;
-            font-weight: 700;
+            display: none;
+            border-radius: 12px;
+            padding: 20px 22px;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-resultado.visivel { display: flex; }
+        .quiz-resultado.resultado-otimo   { background: rgba(34,197,94,0.08);  border: 1px solid rgba(34,197,94,0.25); }
+        .quiz-resultado.resultado-bom     { background: rgba(0,229,255,0.06);  border: 1px solid rgba(0,229,255,0.2); }
+        .quiz-resultado.resultado-regular { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+        .quiz-resultado.resultado-fraco   { background: rgba(239,68,68,0.06);  border: 1px solid rgba(239,68,68,0.2); }
+
+        .resultado-emoji  { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+        .resultado-placar { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .resultado-placar span { font-size: 0.9rem; font-weight: 400; color: #546070; }
+        .resultado-msg { font-size: 0.82rem; color: #7a8a99; line-height: 1.5; }
+
+        .btn-reiniciar {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #8fa0b0;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 0.8rem;
+            font-family: var(--font-display, 'Sora', sans-serif);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reiniciar:hover { background: rgba(255,255,255,0.09); color: #c0d0e0; }
+
+        .quiz-aviso {
+            font-size: 0.78rem;
+            color: #f59e0b;
+            text-align: center;
+            display: none;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60%  { transform: translateX(-5px); }
+            40%, 80%  { transform: translateX(5px); }
         }
     </style>
 </head>
-
-<script>
-    function abrirQuiz() {
-        document.getElementById("quizModal").style.display = "flex";
-    }
-
-    function fecharQuiz() {
-        document.getElementById("quizModal").style.display = "none";
-    }
-
-    function corrigirQuiz() {
-
-        const respostasCorretas = {
-            q1: "a",
-            q2: "b",
-            q3: "c",
-            q4: "b",
-            q5: "a",
-            q6: "c",
-            q7: "a"
-        };
-
-        let acertos = 0;
-
-        for (let pergunta in respostasCorretas) {
-            const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
-            if (selecionada && selecionada.value === respostasCorretas[pergunta]) {
-                acertos++;
-            }
-        }
-
-        const percentual = Math.round((acertos / 7) * 100);
-
-        document.getElementById("quizResultado").innerHTML =
-            `Resultado: ${acertos}/7 acertos (${percentual}%).`;
-    }
-</script>
-
-<!-- MODAL QUIZ AULA 02 -->
-<div id="quizModal" class="quiz-modal">
-    <div class="quiz-box">
-
-        <div class="quiz-header">
-            <h2>Quiz — Aula 02</h2>
-            <button class="quiz-close" onclick="fecharQuiz()">✕</button>
-        </div>
-
-        <form id="quizForm">
-
-            <!-- 1 -->
-            <div class="quiz-pergunta">
-                <p>1) Programar significa:</p>
-                <label><input type="radio" name="q1" value="a"> Ensinar o computador a executar tarefas</label>
-                <label><input type="radio" name="q1" value="b"> Montar peças de hardware</label>
-                <label><input type="radio" name="q1" value="c"> Navegar na internet</label>
-            </div>
-
-            <!-- 2 -->
-            <div class="quiz-pergunta">
-                <p>2) O computador executa:</p>
-                <label><input type="radio" name="q2" value="a"> O que ele acha melhor</label>
-                <label><input type="radio" name="q2" value="b"> Exatamente o que foi programado</label>
-                <label><input type="radio" name="q2" value="c"> Apenas comandos visuais</label>
-            </div>
-
-            <!-- 3 -->
-            <div class="quiz-pergunta">
-                <p>3) A estrutura básica de um programa é:</p>
-                <label><input type="radio" name="q3" value="a"> Entrada → Saída → Processamento</label>
-                <label><input type="radio" name="q3" value="b"> Processamento → Entrada → Saída</label>
-                <label><input type="radio" name="q3" value="c"> Entrada → Processamento → Saída</label>
-            </div>
-
-            <!-- 4 -->
-            <div class="quiz-pergunta">
-                <p>4) Digitar o nome no teclado é exemplo de:</p>
-                <label><input type="radio" name="q4" value="a"> Saída</label>
-                <label><input type="radio" name="q4" value="b"> Entrada</label>
-                <label><input type="radio" name="q4" value="c"> Processamento</label>
-            </div>
-
-            <!-- 5 -->
-            <div class="quiz-pergunta">
-                <p>5) Somar dois números é exemplo de:</p>
-                <label><input type="radio" name="q5" value="a"> Processamento</label>
-                <label><input type="radio" name="q5" value="b"> Entrada</label>
-                <label><input type="radio" name="q5" value="c"> Saída</label>
-            </div>
-
-            <!-- 6 -->
-            <div class="quiz-pergunta">
-                <p>6) Mostrar “Aprovado” na tela é:</p>
-                <label><input type="radio" name="q6" value="a"> Entrada</label>
-                <label><input type="radio" name="q6" value="b"> Processamento</label>
-                <label><input type="radio" name="q6" value="c"> Saída</label>
-            </div>
-
-            <!-- 7 -->
-            <div class="quiz-pergunta">
-                <p>7) Dominar a estrutura EPS facilita aprender:</p>
-                <label><input type="radio" name="q7" value="a"> Qualquer linguagem futura</label>
-                <label><input type="radio" name="q7" value="b"> Apenas Portugol</label>
-                <label><input type="radio" name="q7" value="c"> Apenas matemática</label>
-            </div>
-
-            <button type="button" class="btn-finalizar" onclick="corrigirQuiz()">
-                Finalizar Quiz
-            </button>
-
-            <div id="quizResultado" class="quiz-resultado"></div>
-
-        </form>
-    </div>
-</div>
 
 <body>
 
@@ -776,6 +807,212 @@
         </svg>
         Voltar ao Portal
     </a>
+
+    <!-- MODAL QUIZ AULA 02 -->
+    <div id="quizModal" class="quiz-modal" role="dialog" aria-modal="true" aria-label="Quiz da Aula 02">
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <span class="quiz-header-tag">// Quiz · Módulo I</span>
+                    <h2>Aula 02 — O que é Programação?</h2>
+                </div>
+                <button class="quiz-close" onclick="fecharQuiz()" aria-label="Fechar quiz">✕</button>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text" id="quizProgressText">0 / 7 respondidas</span>
+                    <span class="quiz-progress-text" id="quizProgressPct">0%</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <form id="quizForm">
+                <div class="quiz-body">
+
+                    <!-- 1 -->
+                    <div class="quiz-pergunta" id="card-q1">
+                        <div class="quiz-pergunta-numero">QUESTÃO 01</div>
+                        <p>Programar significa:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Ensinar o computador a executar tarefas</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Montar peças de hardware</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q1" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Navegar na internet</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="quiz-pergunta" id="card-q2">
+                        <div class="quiz-pergunta-numero">QUESTÃO 02</div>
+                        <p>O computador executa:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">O que ele acha melhor</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Exatamente o que foi programado</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q2" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Apenas comandos visuais</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="quiz-pergunta" id="card-q3">
+                        <div class="quiz-pergunta-numero">QUESTÃO 03</div>
+                        <p>A estrutura básica de um programa é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada → Saída → Processamento</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Processamento → Entrada → Saída</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q3" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada → Processamento → Saída</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="quiz-pergunta" id="card-q4">
+                        <div class="quiz-pergunta-numero">QUESTÃO 04</div>
+                        <p>Digitar o nome no teclado é exemplo de:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Saída</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q4" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Processamento</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="quiz-pergunta" id="card-q5">
+                        <div class="quiz-pergunta-numero">QUESTÃO 05</div>
+                        <p>Somar dois números é exemplo de:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Processamento</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q5" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Saída</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="quiz-pergunta" id="card-q6">
+                        <div class="quiz-pergunta-numero">QUESTÃO 06</div>
+                        <p>Mostrar "Aprovado" na tela é:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Entrada</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Processamento</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q6" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Saída</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="quiz-pergunta" id="card-q7">
+                        <div class="quiz-pergunta-numero">QUESTÃO 07</div>
+                        <p>Dominar a estrutura EPS facilita aprender:</p>
+                        <div class="quiz-opcoes">
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="a" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Qualquer linguagem futura</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="b" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Apenas Portugol</span>
+                            </label>
+                            <label class="quiz-opcao">
+                                <input type="radio" name="q7" value="c" onchange="atualizarProgresso()">
+                                <span class="quiz-radio-custom"></span>
+                                <span class="quiz-opcao-texto">Apenas matemática</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="quiz-footer">
+                    <p class="quiz-aviso" id="quizAviso">⚠️ Responda todas as questões antes de finalizar.</p>
+
+                    <button type="button" class="btn-finalizar" id="btnFinalizar" onclick="corrigirQuiz()">
+                        Finalizar Quiz
+                    </button>
+
+                    <div id="quizResultado" class="quiz-resultado">
+                        <div class="resultado-emoji" id="resultadoEmoji"></div>
+                        <div class="resultado-placar" id="resultadoPlacar"></div>
+                        <div class="resultado-msg" id="resultadoMsg"></div>
+                        <button type="button" class="btn-reiniciar" onclick="reiniciarQuiz()">↺ Tentar novamente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <section class="conteudo">
 
@@ -822,10 +1059,8 @@
 
         <div class="aula-grid">
 
-            <!-- Coluna principal -->
             <div class="col-principal">
 
-                <!-- Introdução -->
                 <div class="card-intro">
                     <p>
                         Programar é <strong>ensinar o computador a executar tarefas</strong> por meio de
@@ -838,7 +1073,6 @@
                     </p>
                 </div>
 
-                <!-- Fluxo EPS -->
                 <div class="card-intro">
                     <p class="fluxo-titulo">Estrutura Básica de Todo Programa</p>
 
@@ -901,7 +1135,6 @@
                     </div>
                 </div>
 
-                <!-- Por que importa -->
                 <div class="card-importancia">
                     <p class="secao-titulo">Por que isso é importante?</p>
                     <p>
@@ -930,7 +1163,6 @@
 
             </div>
 
-            <!-- Sidebar -->
             <div class="aula-sidebar">
 
                 <div class="card-meta">
@@ -953,27 +1185,23 @@
                     </div>
                 </div>
 
-                <!-- Resumo do fluxo EPS -->
                 <div class="card-fluxo-resumo">
                     <p class="fluxo-resumo-titulo">// o ciclo fundamental</p>
                     <div class="fluxo-resumo-steps">
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#00e5ff"></div>
                             <span class="resumo-step-nome">Entrada</span>
-                            <span class="resumo-step-tag"
-                                style="background:rgba(0,229,255,0.12);color:#00e5ff;">INPUT</span>
+                            <span class="resumo-step-tag" style="background:rgba(0,229,255,0.12);color:#00e5ff;">INPUT</span>
                         </div>
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#f59e0b"></div>
                             <span class="resumo-step-nome">Processamento</span>
-                            <span class="resumo-step-tag"
-                                style="background:rgba(245,158,11,0.12);color:#f59e0b;">PROCESS</span>
+                            <span class="resumo-step-tag" style="background:rgba(245,158,11,0.12);color:#f59e0b;">PROCESS</span>
                         </div>
                         <div class="resumo-step">
                             <div class="resumo-dot" style="background:#10b981"></div>
                             <span class="resumo-step-nome">Saída</span>
-                            <span class="resumo-step-tag"
-                                style="background:rgba(16,185,129,0.12);color:#10b981;">OUTPUT</span>
+                            <span class="resumo-step-tag" style="background:rgba(16,185,129,0.12);color:#10b981;">OUTPUT</span>
                         </div>
                     </div>
                 </div>
@@ -981,6 +1209,7 @@
                 <button class="btn-quiz" onclick="abrirQuiz()">
                     Iniciar Quiz da Aula 02
                 </button>
+
                 <div class="card-proximo">
                     <p class="card-proximo-label">// próxima aula</p>
                     <h3>O que é Portugol</h3>
@@ -1010,6 +1239,144 @@
             </div>
         </div>
     </footer>
-</body>
 
+    <script>
+        const RESPOSTAS_CORRETAS = { q1: "a", q2: "b", q3: "c", q4: "b", q5: "a", q6: "c", q7: "a" };
+        const TOTAL = Object.keys(RESPOSTAS_CORRETAS).length;
+
+        function abrirQuiz() {
+            document.getElementById("quizModal").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharQuiz() {
+            document.getElementById("quizModal").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("quizModal").addEventListener("click", function(e) {
+            if (e.target === this) fecharQuiz();
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") fecharQuiz();
+        });
+
+        function atualizarProgresso() {
+            let respondidas = 0;
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (document.querySelector(`input[name="${q}"]:checked`)) respondidas++;
+            }
+            const pct = Math.round((respondidas / TOTAL) * 100);
+            document.getElementById("quizProgressText").textContent = `${respondidas} / ${TOTAL} respondidas`;
+            document.getElementById("quizProgressPct").textContent = `${pct}%`;
+            document.getElementById("quizProgressFill").style.width = `${pct}%`;
+        }
+
+        function corrigirQuiz() {
+            let naoRespondidas = [];
+            for (let q in RESPOSTAS_CORRETAS) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) naoRespondidas.push(q);
+            }
+
+            if (naoRespondidas.length > 0) {
+                document.getElementById("quizAviso").style.display = "block";
+                document.getElementById(`card-${naoRespondidas[0]}`).scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            document.getElementById("quizAviso").style.display = "none";
+
+            let acertos = 0;
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const selecionada = document.querySelector(`input[name="${q}"]:checked`);
+                const card = document.getElementById(`card-${q}`);
+                const opcoes = card.querySelectorAll(".quiz-opcao");
+
+                opcoes.forEach(opcao => {
+                    const input = opcao.querySelector("input");
+                    const isCorreta = input.value === RESPOSTAS_CORRETAS[q];
+                    const isMarcada = input.checked;
+
+                    if (isCorreta) {
+                        opcao.classList.add("opcao-certa");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✓";
+                        opcao.appendChild(icon);
+                    } else if (isMarcada && !isCorreta) {
+                        opcao.classList.add("opcao-errada");
+                        const icon = document.createElement("span");
+                        icon.className = "quiz-feedback-icon";
+                        icon.textContent = "✕";
+                        opcao.appendChild(icon);
+                    } else {
+                        opcao.classList.add("opcao-desabilitada");
+                    }
+                });
+
+                if (selecionada && selecionada.value === RESPOSTAS_CORRETAS[q]) {
+                    acertos++;
+                    card.classList.add("correta");
+                } else {
+                    card.classList.add("errada");
+                }
+            }
+
+            document.getElementById("btnFinalizar").disabled = true;
+
+            const pct = Math.round((acertos / TOTAL) * 100);
+            const resultado = document.getElementById("quizResultado");
+            const emoji  = document.getElementById("resultadoEmoji");
+            const placar = document.getElementById("resultadoPlacar");
+            const msg    = document.getElementById("resultadoMsg");
+
+            resultado.classList.add("visivel");
+
+            if (pct === 100) {
+                resultado.className = "quiz-resultado visivel resultado-otimo";
+                emoji.textContent = "🏆";
+                msg.textContent = "Excelente! Você dominou o conteúdo da aula!";
+            } else if (pct >= 70) {
+                resultado.className = "quiz-resultado visivel resultado-bom";
+                emoji.textContent = "🎯";
+                msg.textContent = "Muito bom! Revise as questões que errou.";
+            } else if (pct >= 50) {
+                resultado.className = "quiz-resultado visivel resultado-regular";
+                emoji.textContent = "📚";
+                msg.textContent = "Quase lá! Vale revisar o conteúdo da aula.";
+            } else {
+                resultado.className = "quiz-resultado visivel resultado-fraco";
+                emoji.textContent = "💪";
+                msg.textContent = "Continue praticando! A aula pode te ajudar a revisar.";
+            }
+
+            placar.innerHTML = `${acertos} <span>/ ${TOTAL} acertos (${pct}%)</span>`;
+            resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function reiniciarQuiz() {
+            document.getElementById("quizForm").reset();
+
+            for (let q in RESPOSTAS_CORRETAS) {
+                const card = document.getElementById(`card-${q}`);
+                card.classList.remove("correta", "errada");
+                card.querySelectorAll(".quiz-opcao").forEach(o => {
+                    o.classList.remove("opcao-certa", "opcao-errada", "opcao-desabilitada");
+                    const icon = o.querySelector(".quiz-feedback-icon");
+                    if (icon) icon.remove();
+                });
+            }
+
+            document.getElementById("quizResultado").classList.remove("visivel");
+            document.getElementById("quizResultado").className = "quiz-resultado";
+            document.getElementById("btnFinalizar").disabled = false;
+            document.getElementById("quizAviso").style.display = "none";
+            atualizarProgresso();
+            document.querySelector(".quiz-box").scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
+</body>
 </html>
