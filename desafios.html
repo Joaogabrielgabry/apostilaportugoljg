@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 8 — Exercícios Propostos · Portugol</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── ROOT TOKENS ── */
+        :root {
+            --bg-deep:        #07080d;
+            --bg-surface:     #0d0f17;
+            --bg-card:        #111420;
+            --bg-card-hover:  #161929;
+            --border:         rgba(255,255,255,0.07);
+            --border-accent:  rgba(0,229,255,0.18);
+            --cyan:           #00e5ff;
+            --cyan-dim:       rgba(0,229,255,0.08);
+            --blue:           #3b82f6;
+            --text-primary:   #e8eef5;
+            --text-muted:     #6b7a8d;
+            --font-mono:      'JetBrains Mono', monospace;
+            --font-display:   'Sora', sans-serif;
+            --radius-sm:      8px;
+            --radius-md:      12px;
+            --radius-lg:      16px;
+            --transition:     all 0.2s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ── TEXTURES ── */
+        .noise-overlay {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        .grid-bg {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image:
+                linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* ── LAYOUT ── */
+        .conteudo {
+            position: relative; z-index: 1;
+            max-width: 960px; margin: 0 auto;
+            padding: 24px 24px 80px;
+        }
+
+        /* ── BACK BUTTON ── */
+        .voltar {
+            position: relative; z-index: 10;
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--text-muted); text-decoration: none;
+            padding: 10px 18px; margin: 20px 24px 0;
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            transition: var(--transition);
+        }
+        .voltar:hover { color: var(--cyan); border-color: var(--border-accent); background: var(--bg-card-hover); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp   { from { opacity: 0; transform: translateY(16px);  } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse    { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* ── HERO ── */
+        .aula-hero { padding: 48px 0 32px; text-align: center; animation: fadeDown 0.5s ease both; }
+        .aula-numero {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+        .aula-numero-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .badge-exercicio {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.72rem;
+            color: #a78bfa; background: rgba(167,139,250,0.1);
+            border: 1px solid rgba(167,139,250,0.3);
+            padding: 5px 14px; border-radius: 999px;
+            margin-bottom: 10px; margin-left: 8px;
+        }
+        .aula-titulo {
+            font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+            color: #fff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px;
+        }
+        .aula-titulo span {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .aula-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; margin: 0 auto; }
+
+        /* ── PROGRESSO ── */
+        .progresso-modulo {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 20px 28px;
+            display: flex; align-items: center; gap: 24px;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+        .progresso-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .progresso-meio { flex: 1; }
+        .progresso-track { height: 5px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+        .progresso-fill { height: 100%; width: 53%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: 999px; }
+        .progresso-aulas { display: flex; gap: 3px; }
+        .progresso-pip { flex: 1; height: 4px; border-radius: 999px; background: var(--bg-surface); border: 1px solid var(--border); }
+        .progresso-pip.ativa { background: linear-gradient(90deg, var(--cyan), var(--blue)); border-color: transparent; }
+        .progresso-pip.atual { background: var(--cyan); border-color: transparent; box-shadow: 0 0 8px var(--cyan); }
+        .progresso-pct { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); white-space: nowrap; font-weight: 700; }
+        @media (max-width: 580px) { .progresso-modulo { flex-wrap: wrap; } }
+
+        /* ── SECTION LABEL ── */
+        .secao-label {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 10px; padding-left: 2px;
+        }
+
+        /* ── INTRO CARD ── */
+        .intro-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px 32px;
+            display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+        @media (max-width: 580px) { .intro-card { grid-template-columns: 1fr; } }
+        .intro-icone { font-size: 2.6rem; }
+        .intro-texto p { color: #b0bec5; font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
+        .intro-texto p:last-child { margin-bottom: 0; }
+        .intro-texto strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── OVERVIEW CHIPS ── */
+        .overview-chips { display: flex; flex-wrap: wrap; gap: 10px; animation: fadeUp 0.5s ease 0.25s both; }
+        .chip {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 10px 16px;
+            font-size: 0.82rem; color: var(--text-muted); font-weight: 500;
+            transition: var(--transition);
+        }
+        .chip:hover { border-color: var(--border-accent); color: var(--text-primary); background: var(--bg-card-hover); }
+        .chip-icon { font-size: 1rem; }
+        .chip-num { font-family: var(--font-mono); color: var(--cyan); font-size: 0.75rem; font-weight: 700; }
+
+        /* ── EXERCISE CARDS ── */
+        .exercicios-lista { display: flex; flex-direction: column; gap: 16px; animation: fadeUp 0.5s ease 0.3s both; }
+
+        .ex-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+            transition: var(--transition);
+        }
+        .ex-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+        .ex-card.desafio { border-color: rgba(251,191,36,0.2); }
+        .ex-card.desafio:hover { border-color: rgba(251,191,36,0.4); }
+
+        .ex-header {
+            display: flex; align-items: center; gap: 16px;
+            padding: 20px 24px; border-bottom: 1px solid var(--border);
+            cursor: pointer; user-select: none;
+        }
+        .ex-card.desafio .ex-header { background: rgba(251,191,36,0.03); }
+
+        .ex-num {
+            font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;
+            color: var(--cyan); background: var(--cyan-dim);
+            border: 1px solid var(--border-accent);
+            width: 38px; height: 38px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .ex-card.desafio .ex-num {
+            color: #fbbf24; background: rgba(251,191,36,0.1);
+            border-color: rgba(251,191,36,0.3);
+        }
+
+        .ex-header-info { flex: 1; }
+        .ex-titulo { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .ex-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag {
+            font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em;
+            padding: 2px 8px; border-radius: 4px; font-weight: 600;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        .tag-destaque { background: var(--cyan-dim); border-color: var(--border-accent); color: var(--cyan); }
+        .tag-desafio  { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
+
+        .ex-toggle {
+            font-size: 0.85rem; color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.2s ease;
+            flex-shrink: 0;
+        }
+        .ex-card.aberto .ex-toggle { transform: rotate(180deg); color: var(--cyan); }
+
+        .ex-body {
+            padding: 0 24px;
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .ex-card.aberto .ex-body { max-height: 1200px; padding: 24px; }
+
+        /* ── OBJECTIVE ── */
+        .objetivo-box {
+            background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(59,130,246,0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md); padding: 14px 18px;
+            display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+        }
+        .objetivo-icone { font-size: 1.1rem; flex-shrink: 0; }
+        .objetivo-texto { font-size: 0.85rem; color: #b0bec5; line-height: 1.5; }
+        .objetivo-texto strong { color: var(--text-primary); }
+
+        /* ── RULES ── */
+        .regras-titulo {
+            font-size: 0.78rem; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+        }
+        .regras-titulo::before {
+            content: ""; width: 3px; height: 14px;
+            background: linear-gradient(180deg, var(--cyan), var(--blue));
+            border-radius: 2px;
+        }
+        .regras-lista { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+        .regra-item {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 14px;
+            font-size: 0.84rem; color: #b0bec5;
+        }
+        .regra-arrow { color: var(--cyan); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+        .regra-item.aprovado { border-color: rgba(34,197,94,0.2); }
+        .regra-item.aprovado .regra-arrow { color: #22c55e; }
+        .regra-item.reprovado { border-color: rgba(239,68,68,0.2); }
+        .regra-item.reprovado .regra-arrow { color: #ef4444; }
+
+        /* ── DICA ── */
+        .dica-inline {
+            background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2);
+            border-radius: var(--radius-md); padding: 12px 16px;
+            display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px;
+        }
+        .dica-inline-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+        .dica-inline-texto { font-size: 0.82rem; color: #b0bec5; line-height: 1.5; }
+        .dica-inline-texto strong { color: #fbbf24; }
+        .dica-inline-codigo {
+            font-family: var(--font-mono); font-size: 0.8rem;
+            background: var(--bg-deep); border: 1px solid var(--border);
+            border-radius: 4px; padding: 2px 8px; color: var(--cyan);
+        }
+
+        /* ── CODE BLOCK ── */
+        .codigo-bloco {
+            background: var(--bg-deep); border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px;
+        }
+        .codigo-bloco-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 16px; background: rgba(0,229,255,0.04);
+            border-bottom: 1px solid var(--border-accent);
+        }
+        .codigo-bloco-dots { display: flex; gap: 5px; }
+        .codigo-bloco-dots span { width: 9px; height: 9px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .codigo-bloco-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
+        .codigo-bloco-lang { font-family: var(--font-mono); font-size: 0.62rem; color: var(--cyan); background: var(--cyan-dim); border: 1px solid var(--border-accent); padding: 2px 7px; border-radius: 4px; }
+        .codigo-bloco pre { font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.9; color: #e2e8f0; padding: 18px 20px; overflow-x: auto; margin: 0; }
+
+        .kw  { color: #00e5ff; font-weight: 700; }
+        .fn  { color: #c084fc; }
+        .str { color: #86efac; }
+        .var { color: #fbbf24; }
+        .tp  { color: #60a5fa; }
+        .op  { color: #f472b6; }
+        .cm  { color: #475569; font-style: italic; }
+        .num { color: #fb923c; }
+
+        /* ── OUTPUT EXAMPLE ── */
+        .saida-titulo { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .saida-titulo::before { content: ""; width: 3px; height: 14px; background: #22c55e; border-radius: 2px; }
+        .saida-bloco {
+            background: #050a08; border: 1px solid rgba(34,197,94,0.2);
+            border-radius: var(--radius-md); padding: 16px 20px;
+            font-family: var(--font-mono); font-size: 0.82rem;
+            line-height: 2; color: #86efac;
+        }
+        .saida-prompt { color: var(--text-muted); }
+        .saida-input  { color: #fbbf24; }
+        .saida-output { color: #86efac; }
+
+        /* ── OPERACOES MENU ── */
+        .menu-operacoes {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 18px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+        }
+        .menu-op {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.83rem; color: #b0bec5;
+        }
+        .menu-op-num { font-family: var(--font-mono); color: var(--cyan); font-weight: 700; }
+
+        /* ── DESAFIO BANNER ── */
+        .desafio-banner {
+            background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,191,36,0.02));
+            border: 1px solid rgba(251,191,36,0.25); border-radius: var(--radius-md);
+            padding: 16px 20px; margin-bottom: 18px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .desafio-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .desafio-banner-texto { font-size: 0.85rem; color: #b0bec5; line-height: 1.5; }
+        .desafio-banner-texto strong { color: #fbbf24; }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 28px 24px;
+        }
+        .footer-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .footer-left .mono { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); opacity: 0.6; }
+        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+        .footer-right span { font-size: 0.78rem; color: var(--text-muted); }
+        .footer-author { color: var(--text-primary) !important; font-weight: 600; }
+    </style>
+</head>
+
+<body>
+
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+
+    <a class="voltar" href="index.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar ao Portal
+    </a>
+
+    <section class="conteudo">
+
+        <!-- HERO -->
+        <div class="aula-hero">
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+                <div class="aula-numero">
+                    <span class="aula-numero-dot"></span>
+                    Aula 08 · Prática
+                </div>
+                <span class="badge-exercicio">🧠 Fixação</span>
+            </div>
+            <h1 class="aula-titulo">Exercícios <span>Propostos</span></h1>
+            <p class="aula-desc">Coloque em prática tudo que você aprendeu: variáveis, entrada/saída e estruturas condicionais.</p>
+        </div>
+
+        <!-- PROGRESSO -->
+        <div class="progresso-modulo">
+            <span class="progresso-label">Progresso</span>
+            <div class="progresso-meio">
+                <div class="progresso-track"><div class="progresso-fill"></div></div>
+                <div class="progresso-aulas">
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip ativa"></div>
+                    <div class="progresso-pip atual"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                    <div class="progresso-pip"></div>
+                </div>
+            </div>
+            <span class="progresso-pct">8 / 15</span>
+        </div>
+
+        <br>
+
+        <!-- INTRO -->
+        <div class="intro-card" style="margin-bottom:20px;">
+            <div class="intro-icone">✏️</div>
+            <div class="intro-texto">
+                <p>
+                    Esta aula é toda sua! Os <strong>8 exercícios abaixo</strong> cobrem os conceitos das aulas anteriores.
+                    Resolva cada um no Portugol Studio, teste com diferentes entradas e confira a saída esperada.
+                </p>
+                <p>
+                    Clique em qualquer exercício para <strong>expandir o enunciado</strong> e ver dicas, regras e o exemplo de saída esperada.
+                </p>
+            </div>
+        </div>
+
+        <!-- CHIPS OVERVIEW -->
+        <div style="margin-bottom:20px;">
+            <p class="secao-label">// o que você vai praticar</p>
+            <div class="overview-chips">
+                <div class="chip"><span class="chip-icon">📥</span> Entrada e Saída <span class="chip-num">leia / escreva</span></div>
+                <div class="chip"><span class="chip-icon">📦</span> Variáveis <span class="chip-num">inteiro / real</span></div>
+                <div class="chip"><span class="chip-icon">➕</span> Operações Aritméticas <span class="chip-num">+ − × ÷</span></div>
+                <div class="chip"><span class="chip-icon">🔀</span> Condicionais <span class="chip-num">se / senao</span></div>
+                <div class="chip"><span class="chip-icon">💯</span> Porcentagem <span class="chip-num">× 0.10</span></div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIOS -->
+        <div style="margin-bottom:8px;">
+            <p class="secao-label">// exercícios — clique para expandir</p>
+        </div>
+
+        <div class="exercicios-lista">
+
+            <!-- EX 1 -->
+            <div class="ex-card aberto" id="ex1">
+                <div class="ex-header" onclick="toggleEx('ex1')">
+                    <div class="ex-num">01</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Calculadora Simples</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">Variáveis</span>
+                            <span class="tag tag-destaque">Operações</span>
+                            <span class="tag">Entrada/Saída</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Praticar entrada de dados, declaração de variáveis e as quatro operações aritméticas básicas.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça dois números ao usuário e mostre os resultados da <strong style="color:var(--text-primary)">soma</strong>, <strong style="color:var(--text-primary)">subtração</strong>, <strong style="color:var(--text-primary)">multiplicação</strong> e <strong style="color:var(--text-primary)">divisão</strong> entre eles.
+                    </p>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite o primeiro número: </span><span class="saida-input">10</span>
+<span class="saida-prompt">Digite o segundo número: </span><span class="saida-input">2</span>
+<span class="saida-output">Soma: 12</span>
+<span class="saida-output">Subtração: 8</span>
+<span class="saida-output">Multiplicação: 20</span>
+<span class="saida-output">Divisão: 5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 2 -->
+            <div class="ex-card" id="ex2">
+                <div class="ex-header" onclick="toggleEx('ex2')">
+                    <div class="ex-num">02</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Número Maior</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">se / senao</span>
+                            <span class="tag">Comparação</span>
+                            <span class="tag">Lógica</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Praticar lógica de decisão com estrutura <strong>se / senao</strong>.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça dois números ao usuário e mostre qual deles é o maior.
+                    </p>
+
+                    <div class="regras-titulo">Regras</div>
+                    <div class="regras-lista">
+                        <div class="regra-item">
+                            <span class="regra-arrow">A &gt; B</span>
+                            <span>Mostrar que A é o maior</span>
+                        </div>
+                        <div class="regra-item">
+                            <span class="regra-arrow">senao</span>
+                            <span>Mostrar que B é o maior</span>
+                        </div>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite o número A: </span><span class="saida-input">15</span>
+<span class="saida-prompt">Digite o número B: </span><span class="saida-input">7</span>
+<span class="saida-output">O maior número é: 15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 3 -->
+            <div class="ex-card" id="ex3">
+                <div class="ex-header" onclick="toggleEx('ex3')">
+                    <div class="ex-num">03</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Par ou Ímpar</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">Resto (%)</span>
+                            <span class="tag tag-destaque">se / senao</span>
+                            <span class="tag">Lógica</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Usar o operador de <strong>resto da divisão (%)</strong> combinado com estrutura condicional.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça um número e informe se ele é <strong style="color:var(--text-primary)">par</strong> ou <strong style="color:var(--text-primary)">ímpar</strong>.
+                    </p>
+
+                    <div class="dica-inline">
+                        <span class="dica-inline-icon">💡</span>
+                        <p class="dica-inline-texto">
+                            Use o operador <span class="dica-inline-codigo">%</span> (resto da divisão).
+                            Se <span class="dica-inline-codigo">numero % 2 == 0</span>, o número é <strong>par</strong>.
+                            Caso contrário, é <strong>ímpar</strong>.
+                        </p>
+                    </div>
+
+                    <div class="regras-titulo">Lógica do exercício</div>
+                    <div class="codigo-bloco">
+                        <div class="codigo-bloco-header">
+                            <div class="codigo-bloco-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                            <span class="codigo-bloco-label">lógica</span>
+                            <span class="codigo-bloco-lang">pseudocódigo</span>
+                        </div>
+                        <pre><span class="kw">se</span> (numero <span class="op">%</span> <span class="num">2</span> <span class="op">==</span> <span class="num">0</span>) {
+   <span class="fn">escreva</span>(<span class="str">"Par"</span>)
+} <span class="kw">senao</span> {
+   <span class="fn">escreva</span>(<span class="str">"Ímpar"</span>)
+}</pre>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite um número: </span><span class="saida-input">7</span>
+<span class="saida-output">O número 7 é Ímpar</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 4 -->
+            <div class="ex-card" id="ex4">
+                <div class="ex-header" onclick="toggleEx('ex4')">
+                    <div class="ex-num">04</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Média de Aluno</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">Média</span>
+                            <span class="tag tag-destaque">se / senao</span>
+                            <span class="tag">Escola</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Calcular média aritmética e usar condicional para definir situação do aluno.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça duas notas ao aluno, calcule a média e informe se ele foi <strong style="color:#22c55e">Aprovado</strong> ou <strong style="color:#ef4444">Reprovado</strong>.
+                    </p>
+
+                    <div class="regras-titulo">Regras de aprovação</div>
+                    <div class="regras-lista">
+                        <div class="regra-item aprovado">
+                            <span class="regra-arrow">média ≥ 7</span>
+                            <span>✅ Aprovado</span>
+                        </div>
+                        <div class="regra-item reprovado">
+                            <span class="regra-arrow">média &lt; 7</span>
+                            <span>❌ Reprovado</span>
+                        </div>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite a primeira nota: </span><span class="saida-input">8.0</span>
+<span class="saida-prompt">Digite a segunda nota: </span><span class="saida-input">6.0</span>
+<span class="saida-output">Média: 7.0</span>
+<span class="saida-output">Situação: Aprovado</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 5 -->
+            <div class="ex-card" id="ex5">
+                <div class="ex-header" onclick="toggleEx('ex5')">
+                    <div class="ex-num">05</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Calculadora com Escolha</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">se / senao se</span>
+                            <span class="tag">Menu</span>
+                            <span class="tag">Interação</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Usar múltiplas estruturas <strong>se / senao se</strong> para executar a operação escolhida pelo usuário.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça dois números e a operação desejada. Execute e mostre o resultado.
+                    </p>
+
+                    <div class="regras-titulo">Menu de operações</div>
+                    <div class="menu-operacoes">
+                        <div class="menu-op"><span class="menu-op-num">1</span> Soma</div>
+                        <div class="menu-op"><span class="menu-op-num">2</span> Subtração</div>
+                        <div class="menu-op"><span class="menu-op-num">3</span> Multiplicação</div>
+                        <div class="menu-op"><span class="menu-op-num">4</span> Divisão</div>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite o primeiro número: </span><span class="saida-input">10</span>
+<span class="saida-prompt">Digite o segundo número: </span><span class="saida-input">4</span>
+<span class="saida-prompt">Escolha a operação (1-Soma 2-Sub 3-Mult 4-Div): </span><span class="saida-input">3</span>
+<span class="saida-output">Resultado: 40</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 6 -->
+            <div class="ex-card" id="ex6">
+                <div class="ex-header" onclick="toggleEx('ex6')">
+                    <div class="ex-num">06</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Idade para Votar</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">se / senao</span>
+                            <span class="tag">Comparação</span>
+                            <span class="tag">Cotidiano</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Aplicar condicional simples em um contexto do dia a dia.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça a idade da pessoa e informe se ela <strong style="color:#22c55e">pode votar</strong> ou <strong style="color:#ef4444">não pode votar</strong>.
+                    </p>
+
+                    <div class="regras-titulo">Regras</div>
+                    <div class="regras-lista">
+                        <div class="regra-item aprovado">
+                            <span class="regra-arrow">idade ≥ 18</span>
+                            <span>✅ Pode votar</span>
+                        </div>
+                        <div class="regra-item reprovado">
+                            <span class="regra-arrow">senao</span>
+                            <span>❌ Não pode votar</span>
+                        </div>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite sua idade: </span><span class="saida-input">16</span>
+<span class="saida-output">Você ainda não pode votar.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 7 -->
+            <div class="ex-card" id="ex7">
+                <div class="ex-header" onclick="toggleEx('ex7')">
+                    <div class="ex-num">07</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Desconto de Compra</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-destaque">Porcentagem</span>
+                            <span class="tag tag-destaque">se / senao</span>
+                            <span class="tag">Real</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Combinar condicional com cálculo de porcentagem para aplicar desconto.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça o valor de uma compra. Se ultrapassar R$ 100, aplique 10% de desconto e mostre o valor final.
+                    </p>
+
+                    <div class="dica-inline">
+                        <span class="dica-inline-icon">💡</span>
+                        <p class="dica-inline-texto">
+                            Desconto de 10% = multiplicar por <span class="dica-inline-codigo">0.10</span>.
+                            Valor final = <span class="dica-inline-codigo">valor - (valor * 0.10)</span>
+                        </p>
+                    </div>
+
+                    <div class="regras-titulo">Regras</div>
+                    <div class="regras-lista">
+                        <div class="regra-item aprovado">
+                            <span class="regra-arrow">valor &gt; 100</span>
+                            <span>Aplicar 10% de desconto → mostrar valor com desconto</span>
+                        </div>
+                        <div class="regra-item">
+                            <span class="regra-arrow">senao</span>
+                            <span>Mostrar o valor normal sem desconto</span>
+                        </div>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite o valor da compra: </span><span class="saida-input">150.00</span>
+<span class="saida-output">Desconto aplicado: R$ 15.0</span>
+<span class="saida-output">Valor final: R$ 135.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EX 8 — DESAFIO -->
+            <div class="ex-card desafio" id="ex8">
+                <div class="ex-header" onclick="toggleEx('ex8')">
+                    <div class="ex-num">08</div>
+                    <div class="ex-header-info">
+                        <h2 class="ex-titulo">Maior entre Três Números</h2>
+                        <div class="ex-tags">
+                            <span class="tag tag-desafio">⭐ Desafio</span>
+                            <span class="tag">se aninhado</span>
+                            <span class="tag">Lógica avançada</span>
+                        </div>
+                    </div>
+                    <span class="ex-toggle">▼</span>
+                </div>
+                <div class="ex-body">
+                    <div class="desafio-banner">
+                        <span class="desafio-banner-icon">⭐</span>
+                        <p class="desafio-banner-texto">
+                            <strong>Desafio!</strong> Este exercício é mais difícil — você vai precisar combinar vários <strong>se</strong> aninhados para comparar três valores ao mesmo tempo.
+                        </p>
+                    </div>
+
+                    <div class="objetivo-box">
+                        <span class="objetivo-icone">🎯</span>
+                        <p class="objetivo-texto"><strong>Objetivo:</strong> Praticar estruturas condicionais aninhadas para comparar três variáveis.</p>
+                    </div>
+
+                    <p style="color:#b0bec5; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+                        Peça três números ao usuário e informe qual deles é o maior.
+                    </p>
+
+                    <div class="dica-inline">
+                        <span class="dica-inline-icon">💡</span>
+                        <p class="dica-inline-texto">
+                            Estratégia: compare A com B primeiro. Se A for maior, compare A com C. Se B for maior, compare B com C. Assim você encontra o maior dos três!
+                        </p>
+                    </div>
+
+                    <div class="saida-titulo">Saída esperada (exemplo)</div>
+                    <div class="saida-bloco">
+<span class="saida-prompt">Digite o número A: </span><span class="saida-input">42</span>
+<span class="saida-prompt">Digite o número B: </span><span class="saida-input">17</span>
+<span class="saida-prompt">Digite o número C: </span><span class="saida-input">99</span>
+<span class="saida-output">O maior número é: 99</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="mono footer-code">console.log("bons estudos!");</span>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 Job Informática e Profissionalizantes</span>
+                <span class="footer-author">João Gabriel Gabry</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleEx(id) {
+            const card = document.getElementById(id);
+            card.classList.toggle('aberto');
+        }
+    </script>
+
+</body>
+</html>
